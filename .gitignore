@@ -6,6 +6,9 @@
 *.sublime-project
 *.sublime-workspace
 
+# InteliJ
+.idea
+
 # Ruby Gem
 *.gem
 .bundle
