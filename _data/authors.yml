@@ -1,0 +1,18 @@
+# Fill out author info here
+# For samples, see https://mmistakes.github.io/minimal-mistakes/layout-author-override/
+
+GeckoEidechse:
+  name     : "Gecko"
+  avatar   : "/assets/images/gecko-profile.png"
+  bio      : "Stuck in the Titanfall community for way too long now with no escape in sight 👀"
+  location : "Harmony"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github-square"
+      url: "https://github.com/GeckoEidechse/"
+    - label: "Mastodon"
+      icon: "fab fa-fw fa-mastodon-square"
+      url: "https://fosstodon.org/@gecko"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/GeckoEidechse"
