@@ -1,6 +1,17 @@
 # Fill out author info here
 # For samples, see https://mmistakes.github.io/minimal-mistakes/layout-author-override/
 
+Alystrasz:
+  name     : "Alystrasz"
+  avatar   : "/assets/images/alystrasz-profile.jpg"
+  bio      : "I am a pilot and a developer **passionate** about Titanfall2. And beer."
+  location : "Gridiron"
+  email    :
+  links:
+      - label: "Website"
+        icon: "fas fa-fw fa-link"
+        url: "https://remyraes.com/"
+
 GeckoEidechse:
   name     : "Gecko"
   avatar   : "/assets/images/gecko-profile.png"
