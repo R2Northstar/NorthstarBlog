@@ -6,7 +6,7 @@ header:
 tags:
   - Security
 author: GeckoEidechse
-last_modified_at: 2023-02-20T22:00:00+01:00
+last_modified_at: 2023-02-21T23:00:00+01:00
 ---
 
 A few weeks ago, we accidentally discovered that Squirrel server scripts were made accessible on public Titanfall2 servers. Here's what we found, how we reported it, and how it got resolved.
