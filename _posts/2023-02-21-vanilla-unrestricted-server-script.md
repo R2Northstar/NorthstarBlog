@@ -54,7 +54,9 @@ As such, shortly afterwards, Taskinoz reached out to a Respawn employee directly
 
 ### 2023-01-09 12:30 UTC
 
-We created a quick proof of concept using an unmodified retail Titanfall2 client which has a keybind bound to run a serverside function that switches map and mode using `GameRules_ChangeMap`. Uploaded clip showcasing it as unlisted YouTube video.
+We created a quick proof of concept using an unmodified retail Titanfall2 client which has a keybind bound to run a serverside function that switches map and mode using `GameRules_ChangeMap`.
+
+We uploaded the clip showcasing it as an unlisted YouTube video.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/d1iWAfiG33k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -65,13 +67,13 @@ We purposefully decided not to perform any potentially damaging attacks to avoid
 
 ### 2023-01-09 13:40 UTC
 
-Sent initial email to EA Security to inform them about the exploit.
+We sent an initial email to EA Security to inform them about the exploit.
 
 <img src="{{ '/assets/images/posts/vanilla-unrestricted-server-script/email-sent-initial.png' | relative_url }}" alt="Screenshot of the first email sent to EA Security" />
 
 ### 2023-01-10 15:04 UTC
 
-Per EA's own instructions, sent a follow up email due to lack of response.
+Per EA's own instructions, we sent a follow up email due to a lack of response.
 
 <img src="{{ '/assets/images/posts/vanilla-unrestricted-server-script/email-sent-inital-followup.png' | relative_url }}" alt="Screenshot of a follow-up email sent to EA Security due to lack of response from their side" />
 
@@ -82,14 +84,14 @@ We also discovered first abuses of the vulnerability in the wild:
 
 ### 2023-01-10 18:28 UTC
 
-Received initial response from EA saying they are investigating the issue. Note that they asked us to keep any information regarding the issue confidential until it is resolved.
+We received an initial response from EA saying they are investigating the issue. Do note that they asked us to keep any information regarding the issue confidential until it is resolved.
 
 <img src="{{ '/assets/images/posts/vanilla-unrestricted-server-script/email-recv-initial.png' | relative_url }}" alt="Screenshot of the first response we received by EA Security" />
 
 
 ### 2023-01-14 11:30 UTC
 
-We sent another follow up email based on new information.
+We sent another follow up email based on new information,
 
 <img src="{{ '/assets/images/posts/vanilla-unrestricted-server-script/email-sent-update-affected.png' | relative_url }}" alt="Screenshot of an email we sent to EA Security with additional information regarding affected players" />
 
@@ -119,7 +121,7 @@ As such we decided to give EA Security a deadline after which we would make an a
 
 ### 2023-01-21 8:25 UTC
 
-While checking the state of the exploit, wolf109909 noticed an updated server build number. Upon further investigating we were able to confirm from our side that `script` no longer worked to run server side code.
+While checking the state of the exploit, wolf109909 noticed an updated server build number. Upon further investigation we were able to confirm from our side that `script` no longer worked to run server side code.
 
 <img src="{{ '/assets/images/posts/vanilla-unrestricted-server-script/status-server-update.png' | relative_url }}" alt="A screenshot showing the different server versions together with the date when they were taken" />
 
@@ -144,13 +146,13 @@ Now with the timeline out of the way, let's discuss the severity of the vulnerab
 
 What follows are a small set of attacks this vulnerability would have allowed for. Note that we only tested them locally using Northstar. We never tested them on the actual public Titanfall2 game servers as it could cause potential damage that we do not want to be held responsible for.
 
-## Messing with a player stats
+## Messing with player stats
 
-As the game server is able to set player stats, this vulnerability allows for arbitrarily changing player stats. In particular we observed some people trying to boost their in-game level with it. Even more so, some players would simply copy-and-paste commands commonly used to set player level in Northstar into their console in public lobbies on public Titanfall2 servers, resulting in changing other player's levels by accident.
+As the game server is able to set player stats, this vulnerability allows for arbitrarily changing player stats. In particular we observed some people trying to boost their in-game level with it. Even more so, some players would simply copy-and-paste commands commonly used to set player levels in Northstar into their console in public lobbies on public Titanfall2 servers, resulting in changing other player's levels by accident.
 
 Setting the player level too high whether by accident or on purpose is an issue as it causes the gameserver to reject the player due to incorrect player data. Essentially this means that that player is completely locked out of multiplayer.
 
-When fixing the vulnerability Respawn added a workaround for this case. Now players with a too high player level will simply show the according gen. Further the exploit allowed for unlocking all skins, banners and emblems, including the developer one. As a result of this, a player having a dev emblem does no longer indicate that they are actually a developer.
+When fixing the vulnerability Respawn added a workaround for this case. Now, players with a too high player level will simply show the according gen. Further the exploit allowed for unlocking all skins, banners and emblems, including the developer one. As a result of this, a player having a dev emblem does no longer indicate that they are actually a developer.
 
 <img src="{{ '/assets/images/posts/vanilla-unrestricted-server-script/player-fakedev1.png' | relative_url }}" alt="Screenshot of a player being above max level and having a developer batch" />
 
@@ -174,8 +176,8 @@ to create a file called `abc.txt` which contains the text `this is a test`.
 
 Note that we are not limited to just the current folder. For the filename we can give the function any absolute pathname and as long as we have access to it, it will write the file to said path. Thankfully this function is limited to text, so we cannot use this to upload any binary file to the server.
 
-However what we can do is write a script to a batch file that will then download and run a secondary payload. The only thing still preventing us is that we need a way to execute that batch file.
-To work around this, we could try to write it to the Windows user startup applications. This means that upon restarting the device, the file will be executed. However there's yet another roadblock as to write to a Windows user startup applications folder we need to know their username as it is part of the path.
+However what we can do is write a script to a batch file that will then download and run a secondary payload. The only thing still preventing us is that we need a way to execute that batch file.\
+To work around this, we could try to write it to the Windows user startup applications. This means that upon restarting the device, the file will be executed. However there's yet another roadblock, as to write to a Windows user startup applications folder we need to know their username as it is part of the path.
 
 Should we know username for some reason, all we need to do to complete the attack is to simply run
 
@@ -244,7 +246,7 @@ Once we saw more public abuse of the exploit, we had an internal discussion abou
 
 # Final Words:
 
-Congrats on making it to the end of the post. Hope you enjoyed the little tour into how we reported the script vulnerability to EA Security and Respawn, and worked with them to resolve it.
+Congrats on making it to the end of the post. I hope you enjoyed the little tour into how we reported the script vulnerability to EA Security and Respawn, and worked with them to resolve it.
 At this point I want to give a shout-out again to Respawn and EA Security for listening to us and resolving the issue. 
 
-Then of course special mention goes to _zxcPandora_ for originally finding the bug as well as _Emma_ for doing some PoC testing, _wolf109909_ for keeping us updated on usage of the exploit they found in the wild, _Taskinoz_ for reaching out to a Respawn employee directly, _H0L0_ for helping with proof-reading and of course all the lovely Northstar developers and contributors as well as the rest of community as whole <3
+Then of course special mention goes to _zxcPandora_ for originally finding the bug as well as _Emma_ for doing some PoC testing, _wolf109909_ for keeping us updated on usage of the exploit they found in the wild, _Taskinoz_ for reaching out to a Respawn employee directly, _H0L0_ and _eRaid_ for helping with proof-reading, and of course all the lovely Northstar developers and contributors as well as the rest of community as whole <3
