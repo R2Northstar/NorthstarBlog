@@ -250,4 +250,3 @@ Congrats on making it to the end of the post. I hope you enjoyed the little tour
 At this point I want to give a shout-out again to Respawn and EA Security for listening to us and resolving the issue. 
 
 Then of course special mention goes to [_zxcPandora_](https://github.com/zxcPandora) for originally finding the bug as well as [_Emma_](https://github.com/emma-miler) for doing some PoC testing, [_wolf109909_](https://github.com/wolf109909) and [_NorthstarCN Team_](https://northstar.cool/) for keeping us updated on usage of the exploit they found in the wild, [_Taskinoz_](https://github.com/Taskinoz) for reaching out to a Respawn employee directly, [_H0L0_](https://github.com/H0L0theBard) and [_eRaid_](https://github.com/PhilippHtz) for helping with proof-reading, and of course all the lovely Northstar developers and contributors as well as the rest of community as whole <3
-
