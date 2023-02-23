@@ -31,7 +31,7 @@ The following is a timeline of events between the discovery of the vulnerability
 
 ### 2023-01-09 10:22 UTC
 
-As part of a discussion about Northstar in a semi-restricted Discord channel, zxcPandora finds out that the `script` command allows for running for Squirrel script server side on official public servers.
+As part of a discussion about Northstar in a semi-restricted Discord channel, [zxcPandora](https://github.com/zxcPandora) finds out that the `script` command allows for running for Squirrel script server side on official public servers.
 
 
 <img src="{{ '/assets/images/posts/vanilla-unrestricted-server-script/pandora-discord-message.png' | relative_url }}" alt="A Discord message sent by zxcPandora when they initially discovered the vulnerability" />
@@ -121,7 +121,7 @@ As such we decided to give EA Security a deadline after which we would make an a
 
 ### 2023-01-21 8:25 UTC
 
-While checking the state of the exploit, wolf109909 noticed an updated server build number. Upon further investigation we were able to confirm from our side that `script` no longer worked to run server side code.
+While checking the state of the exploit, [D3-3109](https://d3-3109.cc/) noticed an updated server build number. Upon further investigation we were able to confirm from our side that `script` no longer worked to run server side code.
 
 <img src="{{ '/assets/images/posts/vanilla-unrestricted-server-script/status-server-update.png' | relative_url }}" alt="A screenshot showing the different server versions together with the date when they were taken" />
 
@@ -249,4 +249,4 @@ Once we saw more public abuse of the exploit, we had an internal discussion abou
 Congrats on making it to the end of the post. I hope you enjoyed the little tour into how we reported the script vulnerability to EA Security and Respawn, and worked with them to resolve it.
 At this point I want to give a shout-out again to Respawn and EA Security for listening to us and resolving the issue. 
 
-Then of course special mention goes to _zxcPandora_ for originally finding the bug as well as _Emma_ for doing some PoC testing, _wolf109909_ for keeping us updated on usage of the exploit they found in the wild, _Taskinoz_ for reaching out to a Respawn employee directly, _H0L0_ and _eRaid_ for helping with proof-reading, and of course all the lovely Northstar developers and contributors as well as the rest of community as whole <3
+Then of course special mention goes to [_zxcPandora_](https://github.com/zxcPandora) for originally finding the bug as well as [_Emma_](https://github.com/emma-miler) for doing some PoC testing, [_wolf109909_](https://github.com/wolf109909) and [_NorthstarCN Team_](https://northstar.cool/) for keeping us updated on usage of the exploit they found in the wild, [_Taskinoz_](https://github.com/Taskinoz) for reaching out to a Respawn employee directly, [_H0L0_](https://github.com/H0L0theBard) and [_eRaid_](https://github.com/PhilippHtz) for helping with proof-reading, and of course all the lovely Northstar developers and contributors as well as the rest of community as whole <3
