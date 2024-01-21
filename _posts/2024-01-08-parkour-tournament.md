@@ -115,12 +115,12 @@ tbody {
 
 #### Exoplanet
 
-TODO
+{% include parkour-results/exoplanet.html %}
 
 #### Angel City
 
-TODO
+{% include parkour-results/angelcity.html %}
 
 #### War Games
 
-TODO
+{% include parkour-results/wargames.html %}
