@@ -92,3 +92,35 @@ See you on the Frontier!
 
 ### Results
 
+<style>
+table {
+    max-height: 500px;
+}
+
+#header {
+    position: sticky;
+    top: 0;
+    background: #20263c;
+}
+
+th, td {
+    text-align: center;
+}
+
+tbody {
+    width: 100%;
+    display: inline-table;
+}
+</style>
+
+#### Exoplanet
+
+TODO
+
+#### Angel City
+
+TODO
+
+#### War Games
+
+TODO
