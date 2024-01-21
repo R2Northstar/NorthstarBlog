@@ -27,7 +27,7 @@ bell, right?).
 I also spend lots of (probably more than I should) time on World of Warcraft, which latest expansion, named Dragonflight,
 released a similar feature dubbed ["Dragonriding races"](https://www.youtube.com/watch?v=7Gr4rZXPw6w).
 
-At some point, I thought: "that would be a great mod idea for Northstar!". I would call it *"Parkour"*.
+At some point, I thought: "That would be a great mod idea for Northstar!". I would call it *"Parkour"*.
 
 <img src="https://j.gifs.com/zKxZPy.gif" />
 
