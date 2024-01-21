@@ -48,7 +48,7 @@ competition between players:
 <img src="{{ 'assets/images/posts/parkour/global-scoreboard.png' | relative_url }}" alt="Screenshot of the Parkour tournament web scoreboard" />
 
 Once the scoring server was set up, I deployed Parkour servers in Europe, Americas and Australia during twelve days,
-which led to X players scoring a time on a map (maybe more tried, but couldn't finish a route? We'll never know).
+which led to 367 players scoring a time on a map (maybe more tried, but couldn't finish a route? We'll never know).
 
 #### Feedback
 
