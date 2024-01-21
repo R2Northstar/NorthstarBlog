@@ -68,8 +68,8 @@ got an amazing one from [P3NG00N](https://www.youtube.com/@P3NG00Nlol):
 
 ---
 
-But we were also lucky enough to work with [Evan Boymel](https://www.youtube.com/@evanboymelviper), voice actor of Viper,
-to voiceoff another trailer from [Dionysus9517](https://www.youtube.com/@Dionysus9517):
+But we were also lucky enough to have [Evan Boymel](https://www.youtube.com/@evanboymelviper), voice actor of Viper,
+make a voice-over for another trailer from [Dionysus9517](https://www.youtube.com/@Dionysus9517):
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NLTfQwUpvJs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
