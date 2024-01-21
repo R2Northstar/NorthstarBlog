@@ -4,13 +4,19 @@
 Alystrasz:
   name     : "Alystrasz"
   avatar   : "/assets/images/alystrasz-profile.jpg"
-  bio      : "I am a pilot and a developer **passionate** about Titanfall2. And beer."
+  bio      : "Northstar developer passionate about Titanfall.<br/>And music.<br/>And French fries.<br/>And beer.<br/>And Titanfall."
   location : "Gridiron"
   email    :
   links:
       - label: "Website"
         icon: "fas fa-fw fa-link"
         url: "https://remyraes.com/"
+      - label: "GitHub"
+        icon: "fab fa-fw fa-github-square"
+        url: "https://github.com/Alystrasz"
+      - label: "Mastodon"
+        icon: "fab fa-fw fa-mastodon-square"
+        url: "https://fosstodon.org/@remyr"
 
 GeckoEidechse:
   name     : "Gecko"
