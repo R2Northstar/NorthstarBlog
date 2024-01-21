@@ -29,7 +29,7 @@ released a similar feature dubbed ["Dragonriding races"](https://www.youtube.com
 
 At some point, I thought: "That would be a great mod idea for Northstar!". I would call it *"Parkour"*.
 
-<img src="https://j.gifs.com/zKxZPy.gif" />
+<img src="{{ 'assets/images/posts/parkour/parkour.gif' | relative_url }}" alt="The Office's Michael Scott doing parkour." />
 
 
 #### Development
