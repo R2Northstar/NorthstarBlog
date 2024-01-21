@@ -90,7 +90,7 @@ make this mod what it is today.
 
 See you on the Frontier!
 
-### Results
+# Parkour tournament results
 
 <style>
 table {
@@ -113,14 +113,47 @@ tbody {
 }
 </style>
 
-#### Exoplanet
+## Exoplanet
+
+###### Example route from *Chill_spirit*
+
+<video controls style="max-width: 100%">
+    <source src="{{ 'assets/video/posts/parkour/chillspirit_exoplanet_34.12.mp4' | relative_url }}"
+            type="video/webm"
+    >
+    Sorry, your browser doesn't support embedded videos.
+</video>
+
+###### Final placing
 
 {% include parkour-results/exoplanet.html %}
 
-#### Angel City
+## Angel City
+
+###### Example route from *Dadadu*
+
+<video controls style="max-width: 100%">
+    <source src="{{ 'assets/video/posts/parkour/dadadu_angelcity_22.17.mp4' | relative_url }}"
+            type="video/webm"
+    >
+    Sorry, your browser doesn't support embedded videos.
+</video>
+
+###### Final placing
 
 {% include parkour-results/angelcity.html %}
 
-#### War Games
+## War Games
+
+###### Example route from *Cash Mayo*
+
+<video controls style="max-width: 100%">
+    <source src="{{ 'assets/video/posts/parkour/cashmayo_wargames_29.75.mp4' | relative_url }}"
+            type="video/webm"
+    >
+    Sorry, your browser doesn't support embedded videos.
+</video>
+
+###### Final placing
 
 {% include parkour-results/wargames.html %}
