@@ -9,7 +9,7 @@ author: Alystrasz
 last_modified_at: 2024-01-21T13:09:00-01:00
 ---
 
-Happy second anniversary, Northstar !
+Happy second anniversary, Northstar!
 
 To celebrate two years of existence, we decided to organize a competition between all players to see who's the fastest:
 this blog post tells the story of the [Parkour mod](https://github.com/Alystrasz/Alystrasz.Parkour)'s origin and
