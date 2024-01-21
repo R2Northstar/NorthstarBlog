@@ -19,12 +19,12 @@ development, and showcases results of this first Parkour tournament.
 
 #### Origin of the mod
 
-When I was younger, I loved going to my friends' houses, set up a local network, and play some LAN games: these games
+When I was younger, I loved going to my friends' houses, set up a local network, and play some LAN games. These games
 included Counter Strike 1.6, Warcraft 3, and [Trackmania](https://www.trackmania.com/?lang=en); if you don't know the
 last, it's a car game where you have to reach a finish line, crossing a set of checkpoints as fast as you can (rings a
 bell, right?).
 
-I also spend lots of (probably more than I should) time on World of Warcraft, which latest expansion, named Dragonflight,
+I also spend lots of (probably more than I should) time on World of Warcraft, whose latest expansion, named Dragonflight,
 released a similar feature dubbed ["Dragonriding races"](https://www.youtube.com/watch?v=7Gr4rZXPw6w).
 
 At some point, I thought: "That would be a great mod idea for Northstar!". I would call it *"Parkour"*.
@@ -47,7 +47,7 @@ competition between players:
 
 <img src="{{ 'assets/images/posts/parkour/global-scoreboard.png' | relative_url }}" alt="Screenshot of the Parkour tournament web scoreboard" />
 
-Once the scoring server was set up, I deployed Parkour servers in Europe, Americas and Australia during twelve days,
+Once the scoring server was set up, I deployed Parkour servers in Europe, North America and Australia during twelve days,
 which led to 367 players scoring a time on a map (maybe more tried, but couldn't finish a route? We'll never know).
 
 #### Feedback
@@ -88,7 +88,7 @@ spirit within this tournament, that's definitely something I plan to redo in the
 I want to thank all players that participated in that first tournament, and all developers + play testers who helped
 make this mod what it is today.
 
-See you on the Frontier!
+See you all on the Frontier!
 
 # Parkour tournament results
 
