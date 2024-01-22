@@ -40,6 +40,8 @@ including starting/finish lines visuals, speed indicator and scoreboards.
 For other entities I had to improvise: for instance, the model used for checkpoints is actually a Titan shield, colored
 in green :)
 
+<img src="{{ 'assets/images/posts/parkour/checkpoint.gif' | relative_url }}" alt="Parkour checkpoint using the Titan shield model, colored in green" />
+
 Initial development of the mod only included a local scoreboard, where you could see scores of players in the current
 match; we then thought it would be cool to have a way to save your personal best time for each map, which led me to
 develop a scoring server to save scores for all players in all maps, and an associated web scoreboard, to maintain
