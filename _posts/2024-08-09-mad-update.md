@@ -14,7 +14,7 @@ Hey, Alystrasz here, to give you some information about the feature I'm currentl
 ### What is MAD?
 
 MAD is an acronym that stands for *mod auto-downloading*; the idea of the feature is for your game to download
-some mods that a server requires you to have to be able to join it.
+mods required by the server as you join it.
 Some games are known to integrate this feature, like Counter-Strike or Team Fortress.
 
 On Northstar, currently, when joining a server requiring client-side mods, you will be displayed this message:
