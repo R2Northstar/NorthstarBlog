@@ -93,7 +93,7 @@ in your console to enable it) because we feel like some stuff is missing:
 
 #### Assets reloading (mad only working for gamemodes and basic maps)
 
-Currently, the game is not enable to reload assets (sounds for instance) without restarting, it means that if
+Currently, the game is not able to reload assets (sounds for instance) without restarting, it means that if
 you download a mod including sound assets through MAD, your game will just crash.
 
 #### Mod versions
