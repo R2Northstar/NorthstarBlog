@@ -27,7 +27,7 @@ you won't look for the missing mod, and just join another server).
 ---
 
 I've been working on this feature for two years (first commit on [Aug. 30th, 2022](https://github.com/R2Northstar/NorthstarLauncher/pull/262/commits/114653052972383f9b154d96c581a2b90c483c87)), and progress is slow since there is much to be taken into
-consideration here: according to `git-hours`, I invested at least 258 hours in the launcher part and 197 in the
+consideration here: according to `git-hours`, I invested at least 258 hours in the launcher part and 197 hours in the
 scripting part.
 Progress is nonetheless made: you might have noticed that we did some *production testing*
 of the feature earlier this year through the [Parkour tournament](/blog/parkour-tournament) we organised.
