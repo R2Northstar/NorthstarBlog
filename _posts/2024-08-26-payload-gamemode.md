@@ -74,6 +74,26 @@ This was probably my quickest speedrun of coding anything for Northstar project 
 timespan, one does not simply drop a whole brand new gamemode that easily, but well, it was
 fun doing that.
 
+## The game mode
+
+The objective for the attacking team is to lead a Nuclear titan to the Harvester of the opposing
+team, to hopefully destroy it; the defending team must prevent this happening to secure the win!
+Like Team Fortress and Overwatch, the more attacking players around the Titan, the faster it is.
+
+Now for the Titanfall touch:
+* defending team can steal batteries from the Titan to reinforce their harvester's shield (meaning
+it won't necessarily be destroyed if the Titan reaches it and triggers its nuclear explosion!);
+* attackers can use batteries on the Titan to shield it; while it is shielded, the Titan moves
+automatically, even without players being around;
+* both Titan and harvester shields can be damaged with conventional weapons.
+
+### Media
+
+> **TODO insert gameplay screenshots/video here**
+
 ---
+
+Payload is playable **now**, you can install it using your favorite mod manager or [download it
+from Thunderstore](https://thunderstore.io/c/northstar/p/Zanieon/PayloadGamemode/).
 
 That’s it folks! It was fun writing this piece of story!
