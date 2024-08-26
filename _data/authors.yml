@@ -33,3 +33,17 @@ GeckoEidechse:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/GeckoEidechse"
+
+Zanieon:
+  name     : "Zanieon"
+  avatar   : "/assets/images/zanieon-profile.jpeg"
+  bio      : "Just some level designer around."
+  location : "Troy"
+  email    :
+  links:
+      - label: "Website"
+        icon: "fas fa-fw fa-link"
+        url: "https://www.artstation.com/zanieon"
+      - label: "GitHub"
+        icon: "fab fa-fw fa-github-square"
+        url: "https://github.com/Zanieon"
