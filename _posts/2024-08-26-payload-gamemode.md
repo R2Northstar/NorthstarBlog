@@ -15,22 +15,23 @@ Ayo! I am Zanieon and I have a funny and interesting story to tell about a custo
 
 > "Payload? What's that Zanieon?".
 
-So for those you actually never played the other TF2 (Team
-Fortress 2) or Overwatch for the matter, both games have this gamemode of same name in
-which one team prevents the other team from pushing a vehicle carrying a bomb to its final
-destination.
+So for those you actually never played the other TF2 
+([Team Fortress 2](https://wiki.teamfortress.com/wiki/Payload)) or
+[Overwatch](https://overwatch-archive.fandom.com/wiki/Payload)
+for the matter, both games have this gamemode of same name in which one team prevents the
+other team from pushing a vehicle to its final destination.
 
 This mode has been proven very interesting in both of those games due to the way its main
 objective works and how it creates a specific dynamism in gameplay. However, Titanfall never
 had said gamemode, no cut content or anything of the kind, zero clues in regards to that.
 
 There have been attempts to make this mode in Titanfall; another contributor, named
-*cat_or_not*, tried to make it around 2022 but back at that year, the navmeshes of the maps in
-Northstar were very broken and many times, the NPCs would fail to path properly, this case
-preceding my presence as a contributor for the project, as I joined in February 2023. Ever since
-I joined, my main focus was entirely on the Frontier Defense gamemode, because my real
-motivation to join as a contributor was to make Frontier Defense work properly on Northstar,
-which back then wasn't also working as intended due the same reason of navmeshes and
+[*cat_or_not*](https://github.com/catornot), tried to make it around 2022 but back at that year,
+the navmeshes of the maps in Northstar were very broken and many times, the NPCs would fail to
+path properly, this case preceding my presence as a contributor for the project, as I joined
+in February 2023. Ever since I joined, my main focus was entirely on the Frontier Defense gamemode,
+because my real motivation to join as a contributor was to make Frontier Defense work properly
+on Northstar, which back then wasn't also working as intended due the same reason of navmeshes and
 other issues.
 
 ## Payload coming to reality
