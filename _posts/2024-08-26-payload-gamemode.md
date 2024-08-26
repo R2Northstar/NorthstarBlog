@@ -20,15 +20,15 @@ Fortress 2) or Overwatch for the matter, both games have this gamemode of same n
 which one team prevents the other team from pushing a vehicle carrying a bomb to its final
 destination.
 
-This mode has been proven very interesting in both of those games due the way its main
-objective works and how it creates a specific dynamism in gameplay. However Titanfall never
+This mode has been proven very interesting in both of those games due to the way its main
+objective works and how it creates a specific dynamism in gameplay. However, Titanfall never
 had said gamemode, no cut content or anything of the kind, zero clues in regards to that.
 
-There have been attempts to make this mode in Titanfall, another contributor, named
-*cat_or_not* tried to make it around 2022 but back at that year the navmeshes of the maps in
-Northstar were very broken and many times the NPCs would fail to path properly, this case
-preceded my presence as a contributor for the project, as i joined in February 2023. Ever since
-i joined my main focus was entirely on the Frontier Defense gamemode, because my real
+There have been attempts to make this mode in Titanfall; another contributor, named
+*cat_or_not*, tried to make it around 2022 but back at that year, the navmeshes of the maps in
+Northstar were very broken and many times, the NPCs would fail to path properly, this case
+preceding my presence as a contributor for the project, as I joined in February 2023. Ever since
+I joined, my main focus was entirely on the Frontier Defense gamemode, because my real
 motivation to join as a contributor was to make Frontier Defense work properly on Northstar,
 which back then wasn't also working as intended due the same reason of navmeshes and
 other issues.
@@ -36,37 +36,41 @@ other issues.
 ## Payload coming to reality
 
 So, due to me dedicating an entire year of my life into making Frontier Defense work, fixing up
-all problems with it and gaining experience in coding content for the game, i finally came into
-realization that i could probably attempt myself at doing such Payload gamemode because i've
+all problems with it and gaining experience in coding content for the game, I finally came into
+realization that I could probably attempt myself at doing such Payload gamemode because I've
 always had interest in playing said mode, despite never playing Team Fortress 2 or Overwatch
 in my life.
 
-Case on point, at a random day, i consulted *cat_or_not* to see how far he went with his own
-version of the mode before starting anything on my own, if there was anything i could start
-from, but the code wasn't touched ever since he lost motivation to work on it due to broken
-navmeshes, it was extremely bare-bones, starting from that code or building an entire new
+Case on point, at a random day, I consulted *cat_or_not* to see how far he went with his own
+version of the mode before starting anything on my own — if there was anything I could start
+from — but the code wasn't touched ever since he lost motivation to work on it due to broken
+navmeshes, it was extremely bare-bones: starting from that code or building an entire new
 one from scratch would be equivalent options.
 
 ## Speedrunning the code
 
-A couple days after i done this consult i decided to start writing the gamemode entirely from
-zero pratically, i had a very clear vision of what gamemode should be and how it could be
-played with its own spice of Titanfall 2 on it, so i begun writing the scripts, and here comes the
-funny part, <u>i was so hyped to see this thing working that I wrote the entire server and client
-logic within only 2 days non-stop!</u> Yes! Non-Stop, meaning I also haven’t slept between both
-days while I did that, only taking the normal breaks any person would do (toilet, eat and drink).
+A couple days after I did this consult, I decided to start writing the gamemode entirely from
+zero pratically. I had a very clear vision of what this gamemode should be and how it could be
+played with its own spice of Titanfall 2 on it; so I began writing the scripts, and here comes the
+funny part:
 
-That was actually only possible was well due to the entire work I did on Frontier Defense as a
-lot of functions and code was adapted from there alongside some logic from Amped Hardpoint
+> <u>I was so hyped to see this thing working that I wrote the entire server and client
+logic within only 2 days non-stop!</u>
+
+Yes! Non-stop, meaning I also haven’t slept between both days while I did that, only taking the
+normal breaks any person would do (toilet, eat and drink).
+
+That was actually only possible due to the entire work I did on Frontier Defense, as a
+lot of functions and code was adapted from there, alongside some logic from Amped Hardpoint
 gamemode too, with everything working on the basic level the way I conceptualized this mode
-with the touch of Titanfall 2 over it, it even attracted the attention of the Competitive players
-whose only gamemode the play is Capture The Flag.
+with the touch of Titanfall 2 over it; it even attracted the attention of the Competitive players
+whose only gamemode to play is Capture The Flag.
 
-Pretty much on the week that followed that happening I did some rebalances and touches
+Pretty much on the week that followed that happening, I did some rebalances and touches
 here and there and bam, there’s this fully brand new game mode that never existed into the
-game actually fully functional now the way it could play in Titanfall 2’s gameplay terms. This
-was probably my quickest speedrun of coding anything for Northstar project given the 2 day
-timespan, one does not simply drop a whole brand new gamemode that easily, but well it was
+game actually fully functional now with the way it could play in Titanfall 2’s gameplay terms.
+This was probably my quickest speedrun of coding anything for Northstar project given the 2 day
+timespan, one does not simply drop a whole brand new gamemode that easily, but well, it was
 fun doing that.
 
 ---
