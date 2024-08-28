@@ -75,7 +75,7 @@ This was probably my quickest speedrun of coding anything for Northstar project 
 timespan, one does not simply drop a whole brand new gamemode that easily, but well, it was
 fun doing that.
 
-## The game mode
+## The gamemode
 
 The objective for the attacking team is to lead a Nuclear titan to the Harvester of the opposing
 team, to hopefully destroy it; the defending team must prevent this happening to secure the win!
