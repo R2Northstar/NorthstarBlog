@@ -69,7 +69,7 @@ with the touch of Titanfall 2 over it; it even attracted the attention of the Co
 whose only gamemode to play is Capture The Flag.
 
 Pretty much on the week that followed that happening, I did some rebalances and touches
-here and there and bam, there’s this fully brand new game mode that never existed into the
+here and there and bam, there’s this fully brand new gamemode that never existed into the
 game actually fully functional now with the way it could play in Titanfall 2’s gameplay terms.
 This was probably my quickest speedrun of coding anything for Northstar project given the 2 day
 timespan, one does not simply drop a whole brand new gamemode that easily, but well, it was
