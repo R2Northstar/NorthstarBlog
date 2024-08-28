@@ -46,8 +46,8 @@ Case in point, at a random day, I consulted *cat_or_not* to see how far he went 
 
 version of the mode before starting anything on my own — if there was anything I could start
 from — but the code wasn't touched ever since he lost motivation to work on it due to broken
-navmeshes, it was extremely bare-bones: starting from that code or building an entire new
-one from scratch would be equivalent options.
+navmeshes. It was extremely bare-bones so starting from that code or building an entire new
+one from scratch would take equally long.
 
 ## Speedrunning the code
 
