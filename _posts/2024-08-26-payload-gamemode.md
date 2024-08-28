@@ -80,6 +80,8 @@ The objective for the attacking team is to lead a Nuclear titan to the Harvester
 team, to hopefully destroy it; the defending team must prevent this happening to secure the win!
 Like Team Fortress and Overwatch, the more attacking players around the Titan, the faster it is.
 
+<img src="{{ 'assets/images/posts/payload/defense.png' | relative_url }}" alt="Pilots hide behind a shield from attackers and incoming Titan" />
+
 Now for the Titanfall touch:
 * defending team can steal batteries from the Titan to reinforce their harvester's shield (meaning
 it won't necessarily be destroyed if the Titan reaches it and triggers its nuclear explosion!);
@@ -89,7 +91,35 @@ automatically, even without players being around;
 
 ### Media
 
-> **TODO insert gameplay screenshots/video here**
+<style>
+.video_legend {
+  font-size: 0.8em;
+  font-style: italic;
+  text-align: center;
+}
+</style>
+
+<video autoplay muted loop style="max-width: 100%">
+    <source src="{{ 'assets/video/posts/payload/titan_stops.webm' | relative_url }}"
+            type="video/webm"
+    >
+    Sorry, your browser doesn't support embedded videos.
+</video>
+<p class="video_legend">
+  The Titan payload automatically moves towards the enemy harvester... as long as there
+  are allied pilots around it.
+</p>
+
+<video autoplay muted loop style="max-width: 100%">
+    <source src="{{ 'assets/video/posts/payload/harvester_battery.webm' | relative_url }}"
+            type="video/webm"
+    >
+    Sorry, your browser doesn't support embedded videos.
+</video>
+<p class="video_legend">
+  Defending team can steal batteries from the Titan to shield their harvester (and hopefully
+  make it survive any nuclear explosion).
+</p>
 
 ---
 
