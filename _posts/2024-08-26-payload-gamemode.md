@@ -43,8 +43,8 @@ always had interest in playing said mode, despite never playing Team Fortress 2 
 in my life.
 
 Case in point, at a random day, I consulted *cat_or_not* to see how far he went with his own
-
 version of the mode before starting anything on my own — if there was anything I could start
+
 from — but the code wasn't touched ever since he lost motivation to work on it due to broken
 navmeshes. It was extremely bare-bones so starting from that code or building an entire new
 one from scratch would take equally long.
