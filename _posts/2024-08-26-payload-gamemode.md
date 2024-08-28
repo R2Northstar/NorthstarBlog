@@ -25,11 +25,11 @@ This mode has been proven very interesting in both of those games due to the way
 objective works and how it creates a specific dynamism in gameplay. However, Titanfall never
 had said gamemode, no cut content or anything of the kind, zero clues in regards to that.
 
-There have been attempts to make this mode in Titanfall; another contributor, named
-[*cat_or_not*](https://github.com/catornot), tried to make it around 2022 but back at that year,
-the navmeshes of the maps in Northstar were very broken and many times, the NPCs would fail to
-path properly, this case preceding my presence as a contributor for the project, as I joined
-in February 2023. Ever since I joined, my main focus was entirely on the Frontier Defense gamemode,
+There have been previous attempts to make this mode in Titanfall.
+Another contributor, named [*cat_or_not*](https://github.com/catornot), tried to make it around 2022
+but back at that year, the navmeshes of the maps in Northstar were very broken and many times, the NPCs
+would fail to path properly.
+Ever since I joined (in February 2023), my main focus was entirely on the Frontier Defense gamemode,
 because my real motivation to join as a contributor was to make Frontier Defense work properly
 on Northstar, which back then wasn't also working as intended due the same reason of navmeshes and
 other issues.
