@@ -87,7 +87,8 @@ With this new class system I had created, it became easier than ever to introduc
 Spectre classes were later released, with one of their key differences being the ability to double jump, intending to mimic the extreme jumps made by AI spectres.
 This new ability reopened unused parts of the maps which were lost by the removal of pilot movement, and for the first time in Grunt Mode, players could become pilots again if they acquired enough points.
 
-The class system was later expanded further with new classes with special unlock requirements. Existing classes also received upgrade trees, allowing you to specialize in a specific class, making them more powerful the more you played with it.
+The class system was later expanded further with new classes with special unlock requirements.
+Existing classes also received upgrade trees, allowing you to specialize in a specific class, making them more powerful the more you played with it.
 These unlocks reset every round, however, this meant that people were spending more time in-game, experimenting with each class and what its unlocks had to offer.
 The system had expanded so much that it was unreasonable to play as every single class within a single match, even with the later extended match times, much less upgrade each class to its fullest potential.
 This kept replayability extremely high and helped shaped the mod from a fun gamemode that twisted Titanfall's rules into its own experience that to many felt like an entirely different game compared to the main multiplayer, especially with the addition of the variety of grunt gamemodes.
