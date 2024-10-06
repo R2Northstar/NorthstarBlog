@@ -117,7 +117,7 @@ If you are more interested in Grunt Mode or Titanfall modding in general, I high
 </p>
 
 ## The limitations and roadblocks
-One of the most difficult part of creating the mod was that I was doing many things that Titanfall 2 simply wasn’t built for.
+One of the most difficult part of creating the mod was that I was doing many things that Titanfall 2 simply wasn't built for.
 Players were never intended to wear grunt or spectre models, and as such crashes would arise during certain actions, like rodeoing, or during the evacuation sequence.
 These problems force me to create workarounds, like subtly changing models during the evacuation sequence. Another heavy limitation was that I was dedicated to make the mod server-side only.
 This meant that any player could join the game without having to download any external mods.
