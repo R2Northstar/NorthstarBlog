@@ -130,7 +130,7 @@ I would still like to recognize that VoyageDB continued to support their mod for
 While VoyageDB themself has become unreachable, and the mod is currently incompatible with recent versions of Northstar, it also later introduced its own randomly spawning class system, which also began assigning players specific guns and equipment, and while it took aspects from Grunt Mode 2, VoyageDB kept their focus on making an enjoyable and more grounded spinoff of Titanfall’s original attrition mode, not shying away from giving players movement equipment like grappling hooks or stims, and not dictating any decisions based on the game’s lore.
 
 Creating Grunt Mode 2 was definitely an enjoyable hobby, and I am very thankful to everyone who helped make this idea a reality.
-This was my first large project, and I couldn’t have done it without the other contributors of Northstar, ikhadhonger and Untamed Zilla’s servers, the moderators of the playtesting server, and it wouldn’t have been shaped into what it is now without the feedback and analysis from Cassius, my friends, and the many community members who dedicated their time to playtesting through every single crash scenario.
+This was my first large project, and I couldn’t have done it without the other contributors of Northstar, ikhadhonger and Untamed Zilla's servers, the moderators of the playtesting server, and it wouldn’t have been shaped into what it is now without the feedback and analysis from Cassius, my friends, and the many community members who dedicated their time to playtesting through every single crash scenario.
 
 If you want to try the mod for yourself, it can be [downloaded on Thunderstore](<https://thunderstore.io/c/northstar/p/EnderBoy9217/Grunt_Mode_2/>).
 
