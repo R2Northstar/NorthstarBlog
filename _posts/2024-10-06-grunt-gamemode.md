@@ -48,7 +48,7 @@ After I had tried the new gamemode with my friends, I had decided to start custo
 I wanted to change the mod to bring players as close as possible to the AI grunts.
 After some research into how Titanfall 2 grunts worked, which was tremendously helped by the [Titanfall wiki](https://titanfall.wiki.gg/wiki/IMC_Marine_Corps), I discovered that the AI grunts were already organized into 5 distinct classes, with in-game models and weapons assigned to each of them.
 Using this knowledge, I created a spin-off mod of VoyageDB’s where, instead of spawning with your own loadout, your loadout and grunt model was determined by your class, which was randomly assigned to you each time you spawned in.
-This made the gameplay significantly more grounded, as people were unable to force “meta” weapons like the CAR into every situation, and any player’s loadout could quickly be determined by simply how they looked.
+This made the gameplay significantly more grounded, as people were unable to force "meta" weapons like the CAR into every situation, and any player's loadout could quickly be determined by simply how they looked.
 This change, combined with other balance change such as the full removal of wallrunning, and a significant increase to the health of many AI units, had changed and grounded the gameplay enough that it was seen by my players as a completely different experience than VoyageDB’s, at which point I started sending copies of what would later be called “Ender’s Grunt Mode 2”.
 
 ## Adding new features
