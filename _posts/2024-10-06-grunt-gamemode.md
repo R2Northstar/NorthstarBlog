@@ -54,7 +54,7 @@ This change, combined with other balance change such as the full removal of wall
 ## Adding new features
 After establishing the mod as its own experience, I included many features that myself and other players believed would help ground the experience.
 One of the first being the ability for AI to score points for their team.
-While some of VoyageDB’s code comments alluded that they had attempted to do this in their own mod, this seemingly small change completely changed how the game worked.
+While some of VoyageDB's code comments alluded that they had attempted to do this in their own mod, this seemingly small change completely changed how the game worked.
 The game was no longer a battle of players but instead a battle of teams, with each individual AI unit playing their own part. This also led to many people downloading the mod simply to play a solo experience akin to games like Ravenfield, as now it was possible to lose a match, even if you were the only player, based on your performance.
 
 While I added many features, I also later removed some of VoyageDB's work which I found didn’t fit in well with my new direction toward grounded gameplay.
