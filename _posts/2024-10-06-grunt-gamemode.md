@@ -114,10 +114,8 @@ I would like to thank everyone who participated in the playtests, as their feedb
 Many people who participated in the playtest suggested new additions and changes through in-game chat, Discord, and in Cassius Scrungoman's case, they reached out for help creating a [video essay](https://youtu.be/XU2k-3hHpEE) promoting the mod and analyzing why its changes made it popular.
 If you are more interested in Grunt Mode or Titanfall modding in general, I highly recommend the video and its much more lively format than this wall of text.
 
-<img src="{{ 'assets/images/posts/gruntmode/banner.png' | relative_url }}" alt="IMC soldiers are running together towards the enemy" />
-<p class="video_legend">
-  The Militia is ready for some action.
-</p>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/XU2k-3hHpEE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
 
 ## The limitations and roadblocks
 One of the most difficult part of creating the mod was that I was doing many things that Titanfall 2 simply wasn't built for.
@@ -128,6 +126,11 @@ This meant that any player could join the game without having to download any ex
 While this made programming some parts of the mod, especially the user interaction, exceptionally difficult, this decision greatly increased the overall accessibility and popularity of the mod.
 Although Mod-Auto-Download now exists within Northstar, most of the important features are already present through server-sided means.
 The only changes that I was unable to implement through this were improvements to the UI and custom viewmodels, both of which would have improved the user experience and feel of the mod, but wouldn't cause any significant changes.
+
+<img src="{{ 'assets/images/posts/gruntmode/banner.png' | relative_url }}" alt="IMC soldiers are running together towards the enemy" />
+<p class="video_legend">
+  The Militia is ready for some action.
+</p>
 
 ## The continuation of VoyageDB’s mod
 I would still like to recognize that VoyageDB continued to support their mod for a long time after both it and Grunt Mode 2's release.
