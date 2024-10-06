@@ -108,7 +108,7 @@ To adjust to this popularity, the server's settings were changed to include long
 I even enlisted the help of some community members who were some of the most active on the server, and they helped manage the server whenever it was online to prevent cheaters and ensure the server came back whenever it crashed (which was a lot).
 
 I would like to thank everyone who participated in the playtests, as their feedback drastically shaped, balanced, and improved the mod to be what it is now.
-Many people who participated in the playtest suggested new additions and changes through in-game chat, Discord, and in  Cassius Scrungoman’s case, they reached out for help creating a [video essay](<https://youtu.be/XU2k-3hHpEE>) promoting the mod and analyzing why its changes made it popular.
+Many people who participated in the playtest suggested new additions and changes through in-game chat, Discord, and in  Cassius Scrungoman’s case, they reached out for help creating a [video essay](https://youtu.be/XU2k-3hHpEE) promoting the mod and analyzing why its changes made it popular.
 If you are more interested in Grunt Mode or Titanfall modding in general, I highly recommend the video and its much more lively format than this wall of text.
 
 <img src="{{ 'assets/images/posts/gruntmode/banner.png' | relative_url }}" alt="IMC soldiers are running together towards the enemy" />
