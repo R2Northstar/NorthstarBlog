@@ -104,7 +104,7 @@ I am still thankful for the time and money they spent helping to make this mod a
 At one point, when ikhadhonger was taking a break from server hosting, Untamed Axis had three servers all running the mod to help handle the large influx of players.
 
 While the outside server hosting provided access to the mod for a large number of players, the organized playtests still remained highly popular, to the point where the playtest server was consistently the Northstar server with the highest playercount.
-To adjust to this popularity, the server’s settings were changed to include longer match time, higher maximum player counts, and higher AI counts.
+To adjust to this popularity, the server's settings were changed to include longer match time, higher maximum player counts, and higher AI counts.
 I even enlisted the help of some community members who were some of the most active on the server, and they helped manage the server whenever it was online to prevent cheaters and ensure the server came back whenever it crashed (which was a lot).
 
 I would like to thank everyone who participated in the playtests, as their feedback drastically shaped, balanced, and improved the mod to be what it is now.
