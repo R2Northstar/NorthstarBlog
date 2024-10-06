@@ -99,7 +99,7 @@ This kept replayability extremely high and helped shaped the mod from a fun game
 
 ## Server hosting and Playtests
 Anyone who has had the playtester role in the Northstar Discord in 2023 was constantly bombarded by the updates and changes I was making to the mod, testing the mod weekly at times. However, as I did not have access to a 24/7 dedicated server, the playtests were really just a way to announce that a server running the mod was currently active.
-Thankfully, the two largest Northstar hosts at the time, [ikhadhonger](<https://discord.gg/5xgB45SbQY>) and the [Untamed Axis group](<https://linktr.ee/untamedaxis>) both offered to host the mod free of charge.
+Thankfully, the two largest Northstar hosts at the time, [ikhadhonger](https://discord.gg/5xgB45SbQY) and the [Untamed Axis group](https://linktr.ee/untamedaxis) both offered to host the mod free of charge.
 I am still thankful for the time and money they spent helping to make this mod accessible to more people.
 At one point, when ikhadhonger was taking a break from server hosting, Untamed Axis had three servers all running the mod to help handle the large influx of players.
 
