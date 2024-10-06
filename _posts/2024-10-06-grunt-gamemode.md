@@ -36,7 +36,7 @@ This mode also featured care packages, which would occasionally land and give ou
 }
 </style>
 
-<img src="{{ 'assets/images/posts/gruntmode/spawn.png' | relative_url }}" alt="A Militia soldier just spawned and is ready for battle" />
+<img src="{{ 'assets/images/posts/gruntmode/spawn.png' | relative_url }}" alt="A Militia grunt just landed and is ready for battle" />
 <p class="video_legend">
   A Militia grunt just landed and is ready for battle.
 </p>
