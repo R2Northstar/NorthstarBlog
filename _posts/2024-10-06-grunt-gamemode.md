@@ -123,7 +123,7 @@ These problems force me to create workarounds, like subtly changing models durin
 This meant that any player could join the game without having to download any external mods.
 While this made programming some parts of the mod, especially the user interaction, exceptionally difficult, this decision greatly increased the overall accessibility and popularity of the mod.
 Although Mod-Automatic-Download now exists within Northstar, most of the important features are already present through server-sided means.
-The only changes that I was unable to implement through this were improvements to the UI and custom viewmodels, both of which would have improved the user experience and feel of the mod, but wouldn’t cause any significant changes.
+The only changes that I was unable to implement through this were improvements to the UI and custom viewmodels, both of which would have improved the user experience and feel of the mod, but wouldn't cause any significant changes.
 
 ## The continuation of VoyageDB’s mod
 I would still like to recognize that VoyageDB continued to support their mod for a long time after both it and Grunt Mode 2's release.
