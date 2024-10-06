@@ -126,7 +126,7 @@ Although Mod-Automatic-Download now exists within Northstar, most of the importa
 The only changes that I was unable to implement through this were improvements to the UI and custom viewmodels, both of which would have improved the user experience and feel of the mod, but wouldn’t cause any significant changes.
 
 ## The continuation of VoyageDB’s mod
-I would still like to recognize that VoyageDB continued to support their mod for a long time after both it and Grunt Mode 2’s release.
+I would still like to recognize that VoyageDB continued to support their mod for a long time after both it and Grunt Mode 2's release.
 While VoyageDB themself has become unreachable, and the mod is currently incompatible with recent versions of Northstar, it also later introduced its own randomly spawning class system, which also began assigning players specific guns and equipment, and while it took aspects from Grunt Mode 2, VoyageDB kept their focus on making an enjoyable and more grounded spinoff of Titanfall's original attrition mode, not shying away from giving players movement equipment like grappling hooks or stims, and not dictating any decisions based on the game’s lore.
 
 Creating Grunt Mode 2 was definitely an enjoyable hobby, and I am very thankful to everyone who helped make this idea a reality.
