@@ -14,7 +14,7 @@ Hello Northstar! I am EnderBoy9217 and here I will share with you the process of
 ## How it started
 
 My friends and I have had this idea of this style of gameplay for a while. While we enjoy the fast pace of Titanfall, we also like the slower pace and more tactical gameplay of games like Battlefield or Squad at times, where instead of being a powerhouse, or a literal Titan, you were just another expendable soldier on the battlefield.
-Gamemodes like Titanfall 2's attrition mode captured the chaos of the large-scale battles seen in these other games, however, it failed to fully immerse you into these as simply another soldier.
+Gamemodes like Titanfall 2's Attrition mode captured the chaos of the large-scale battles seen in these other games, however, it failed to fully immerse you into these as simply another soldier.
 
 ### Grunt Mode [1]
 
