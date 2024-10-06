@@ -44,7 +44,8 @@ Further it featured care packages, which would occasionally land and give out we
 
 ### Modding a mod
 I had been part of the Northstar community since the first day it launched, and since then I made a few small mods and customizations, such as bringing back the singleplayer zoom functionality of the double-take.
-After I had tried the new gamemode with my friends, I had decided to start customizing VoyageDB’s grunt mode (which was version 1.4.2 at the time). I wanted to change the mod to bring players as close as possible to the AI grunts.
+After I had tried the new gamemode with my friends, I had decided to start customizing VoyageDB’s grunt mode (which was version 1.4.2 at the time).
+I wanted to change the mod to bring players as close as possible to the AI grunts.
 After some research into how Titanfall 2 grunts worked, which was tremendously helped by the [Titanfall wiki](https://titanfall.wiki.gg/wiki/IMC_Marine_Corps), I discovered that the AI grunts were already organized into 5 distinct classes, with in-game models and weapons assigned to each of them.
 Using this knowledge, I created a spin-off mod of VoyageDB’s where, instead of spawning with your own loadout, your loadout and grunt model was determined by your class, which was randomly assigned to you each time you spawned in.
 This made the gameplay significantly more grounded, as people were unable to force “meta” weapons like the CAR into every situation, and any player’s loadout could quickly be determined by simply how they looked.
