@@ -47,3 +47,14 @@ Zanieon:
       - label: "GitHub"
         icon: "fab fa-fw fa-github-square"
         url: "https://github.com/Zanieon"
+
+EnderBoy9217:
+  name     : "EnderBoy9217"
+  avatar   : "/assets/images/enderboy-profile.jpeg"
+  bio      : "Programs things sometimes."
+  location : "Troy"
+  email    :
+  links:
+      - label: "GitHub"
+        icon: "fab fa-fw fa-github-square"
+        url: "https://github.com/EnderBoy9217"
