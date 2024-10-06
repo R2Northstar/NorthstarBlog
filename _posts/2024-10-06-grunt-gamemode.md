@@ -60,7 +60,7 @@ I removed the care package system, removing powerful weapons such as the smart p
 While the intention of the limited wallrun was to allow for the climbing of walls, it felt out-of-place, and the client’s underlying visual and audio language made the intended feature feel more like a bug.
 However, while most maps were almost entirely accessible through doors and stairways, many locations like rooftops were now entirely out-of-play by players, slightly reducing the amount of variety in the game.
 This shortcoming was later solved with the development of the most recognizable feature of grunt mode, its new economy and class system.
-New gamemodes and grunt versions of existing gamemodes like hardpoint were also added to Grunt Mode 2 later in its development.
+New gamemodes and grunt versions of existing gamemodes like Hardpoint were also added to Grunt Mode 2 later in its development.
 
 Other features of VoyageDB’s were also iterated on. The spawning system changed to include dropships for players, and camera angles for droppod spawns were reworked, and the exploding droppod door was re-added. VoyageDB continued to update their own Grunt Mode mod, and the spawning zones rework in that mod was actually added to Grunt Mode 2.
 
