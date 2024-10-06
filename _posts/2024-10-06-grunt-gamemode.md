@@ -50,7 +50,10 @@ This made the gameplay significantly more grounded, as people were unable to for
 This change, combined with other balance change such as the full removal of wallrunning, and a significant increase to the health of many AI units, had changed and grounded the gameplay enough that it was seen by my players as a completely different experience than VoyageDB’s, at which point I started sending copies of what would later be called “Ender’s Grunt Mode 2”.
 
 ## Adding new features
-After establishing the mod as its own experience, I included many features that myself and other players believed would help ground the experience. One of the first being the ability for AI to score points for their team. While some of VoyageDB’s code comments alluded that they had attempted to do this in their own mod, this seemingly small change completely changed how the game worked. The game was no longer a battle of players but instead a battle of teams, with each individual AI unit playing their own part. This also led to many people downloading the mod simply to play a solo experience akin to games like Ravenfield, as now it was possible to lose a match, even if you were the only player, based on your performance.
+After establishing the mod as its own experience, I included many features that myself and other players believed would help ground the experience.
+One of the first being the ability for AI to score points for their team.
+While some of VoyageDB’s code comments alluded that they had attempted to do this in their own mod, this seemingly small change completely changed how the game worked.
+The game was no longer a battle of players but instead a battle of teams, with each individual AI unit playing their own part. This also led to many people downloading the mod simply to play a solo experience akin to games like Ravenfield, as now it was possible to lose a match, even if you were the only player, based on your performance.
 
 While I added many features, I also later removed some of VoyageDB's work which I found didn’t fit in well with my new direction toward grounded gameplay.
 I removed the care package system, removing powerful weapons such as the smart pistol out of rotation, limiting grenades, removing the ability to rodeo, and as previously mentioned, wallrunning was removed entirely.
