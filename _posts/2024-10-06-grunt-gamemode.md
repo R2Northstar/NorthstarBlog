@@ -75,7 +75,7 @@ VoyageDB continued to update their own Grunt Mode mod, and the spawning zones re
 
 ### The class system and new game economy
 As time went on, I developed other features into the mod.
-Learning from games like Counter Strike and Tom Clancy’s Rainbow Six Siege, I understood that randomness killed competition.
+Learning from games like Counter Strike and Tom Clancy's Rainbow Six Siege, I understood that randomness killed competition.
 As such, I reworked how the class system functioned, in such a way that you were able to pick your class before you spawned in.
 This led to a problem, however, where, as the Specialist class had the extra ability to throw personal drones, and the Shield Captain class had an extra mobile shield, there was very little reason to pick other classes, as these were objectively better and more interesting.
 Leaving these classes freely available to players, however, would severely limit the variety within a match, causing players to lean back toward being much more powerful than the average grunt.
