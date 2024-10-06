@@ -26,7 +26,7 @@ VoyageDB's new [Grunt Mode](<https://thunderstore.io/c/northstar/p/VoyageDB_Modd
 It featured an Attrition match with more enemy types, including AI Titans, prowlers, and gunships, spawning in droppods, and best of all, everyone had the same grunt models and skins.
 It took many measures to slow down the gameplay, not only through the inclusion of new AI, but also through removing boosts, player titans, double jump, limiting wallrun distance, and later removing weapon attachments.
 This mode also introduced the start of the classes mechanic, where you had a small chance to spawn with either two ticks that turned into your own personal plasma drones, or a shield captain’s mobile shield.
-This mode also featured care packages, which would occasionally land and give out weapons pre-fitted with attachments.
+Further it featured care packages, which would occasionally land and give out weapons pre-fitted with attachments.
 
 <style>
 .video_legend {
