@@ -135,4 +135,4 @@ This was my first large project, and I couldn’t have done it without the other
 If you want to try the mod for yourself, it can be [downloaded on Thunderstore](<https://thunderstore.io/c/northstar/p/EnderBoy9217/Grunt_Mode_2/>).
 
 
-VoyageDB’s mod can also be [downloaded on Thunderstore](https://thunderstore.io/c/northstar/p/VoyageDB_Modding_Home/Grunt_Mode/), however it may only work for some old versions of Northstar.
+VoyageDB's mod can also be [downloaded on Thunderstore](https://thunderstore.io/c/northstar/p/VoyageDB_Modding_Home/Grunt_Mode/), however it may only work for some old versions of Northstar.
