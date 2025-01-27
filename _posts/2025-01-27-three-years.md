@@ -9,13 +9,25 @@ author: Alystrasz
 last_modified_at: 2025-01-27T17:28:00-01:00
 ---
 
+Yep, first official release was in December 2021, three years ago!
+
+<img src="{{ 'assets/images/posts/two-years/first-release-github.png' | relative_url }}" alt="Screenshot of the first Northstar release" />
+
+During 2024, progress has been made on:
+* several features, such as [mod auto-downloading](/blog/mad-update/);
+* a lot of bug fixes were integrated;
+* refactoring the code base to clean it.
+
+A massive and sincere *thank you* to all contributors and players.
 
 # Parkour
 
-This year again, we organized a Parkour tournament, where players could compete on different maps to go through all checkpoints
-in the shortest amount of time.
+[This year again](/blog/parkour-tournament/), we organized a Parkour tournament, where players could compete on different maps to go through all checkpoints in the shortest amount of time.
 
-For this occasion, we were lucky to have two different trailers, one from [Smurfson](https://www.youtube.com/@Smurfson) and another from [P3NG00N](https://www.youtube.com/@P3NG00Nlol), check them out:
+For this occasion, the mod was updated with several features, including map voting and fine-grained route configuration, plus a lot of bug fixes.
+Full changelog is [available here](https://github.com/Alystrasz/Alystrasz.Parkour/blob/main/CHANGELOG.md).
+
+To celebrate Northstar's birthday, we were lucky enough to have two different trailers, one from [Smurfson](https://www.youtube.com/@Smurfson) and another from [P3NG00N](https://www.youtube.com/@P3NG00Nlol), check them out:
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/jMME2ngNfRg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
