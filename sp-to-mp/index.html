@@ -1,0 +1,775 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Making an MP mode out of SP content - Northstar blog</title>
+<meta name="description" content="Hello, dear community, Alystrasz here!">
+
+
+  
+  <meta property="article:author" content="Alystrasz">
+  
+
+
+<!--
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Northstar blog">
+<meta property="og:title" content="Making an MP mode out of SP content">
+<meta property="og:url" content="https://northstar.tf/blog/sp-to-mp/">
+-->
+
+
+  <meta property="og:description" content="Hello, dear community, Alystrasz here!">
+
+
+
+  <meta property="og:image" content="https://northstar.tf/blog/assets/images/posts/sp-to-mp/banner.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2024-11-09T00:00:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2024-11-09T01:13:00+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://northstar.tf/blog/sp-to-mp/">
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/blog/feed.xml" type="application/atom+xml" rel="alternate" title="Northstar blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/blog/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="120x120" href="/blog/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/blog/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/blog/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/blog/">
+          Northstar blog
+          <span class="site-subtitle">Your latest information about Titanfall2 and Northstar.</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://northstar.tf">Main website</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/blog/assets/images/posts/sp-to-mp/banner.png" alt="Making an MP mode out of SP content" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://northstar.tf/blog/">
+        <img src="/blog/assets/images/alystrasz-profile.jpg" alt="Alystrasz" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://northstar.tf/blog/" itemprop="url">Alystrasz</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Northstar developer passionate about Titanfall.<br />And music.<br />And French fries.<br />And beer.<br />And Titanfall.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Gridiron</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://remyraes.com/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/Alystrasz" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github-square" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://fosstodon.org/@remyr" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-mastodon-square" aria-hidden="true"></i><span class="label">Mastodon</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Making an MP mode out of SP content">
+    <meta itemprop="description" content="Hello, dear community, Alystrasz here!">
+    <meta itemprop="datePublished" content="2024-11-09T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2024-11-09T01:13:00+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://northstar.tf/blog/sp-to-mp/" class="u-url" itemprop="url">Making an MP mode out of SP content
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-11-09T00:00:00+00:00">November 9, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p>Hello, dear community, Alystrasz here!</p>
+
+<p>While progress is being made on custom maps, some other maps are already waiting to be used: I’m talking about the singleplayer campaign map.
+But how hard is it to use those to create multiplayer maps?</p>
+
+<p>Here’s a little post about this little development adventure.</p>
+
+<h3 id="initial-imports">Initial imports</h3>
+
+<p>First of all, yes, singleplayer maps are just like multiplayer maps, as they’re stored in archive files (VPKs located in <code class="language-plaintext highlighter-rouge">Titanfall/vpk</code> directory).
+They are stored under the form of VPK archives, that you can explore with tools like <a href="https://github.com/harmonytf/HarmonyVPKTool">Harmony</a>.</p>
+
+<p>Once you found the VPK matching the SP level you wanna recycle in your MP mod, you can open it and extract several subfolders:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">maps/</code> contains:
+    <ul>
+      <li>the BSP file - map central file (I guess?);</li>
+      <li>entity files - holding coordinates, model names and other information related to the objects that are spawned in the levels, doors for instance;</li>
+      <li>navmeshes (short for navigation meshes), used by NPCs to determine where they can go on the map;</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">models/</code> contains the “shape” of all elements of the map, including NPCs;</li>
+  <li><code class="language-plaintext highlighter-rouge">materials</code> containes textures/skins that are applied to models.</li>
+</ul>
+
+<style>
+.video_legend {
+  font-size: 0.8em;
+  font-style: italic;
+  text-align: center;
+  margin-top: -15px !important;
+}
+</style>
+
+<p style="display:flex;justify-content:center">
+    <img src="/blog/assets/images/posts/sp-to-mp/plasma_railgun_charge_col.png" alt="A texture file made of white, grey and black features." />
+</p>
+<p class="video_legend">
+  The texture file for the plasma railgun turret.
+</p>
+
+<hr />
+
+<p><img src="/blog/assets/images/posts/sp-to-mp/import_1.png" alt="Screenshot of a level with no models, with ERROR written everywhere." /></p>
+<p class="video_legend">
+  With missing models and textures, the level is really ugly.
+  <br />
+  (the "ERROR" message means a model file is missing)
+</p>
+
+<p><img src="/blog/assets/images/posts/sp-to-mp/import_2.png" alt="Models have been imported, but some textures glow in pink." /></p>
+<p class="video_legend">
+  After importing models, things look nicer! Some textures are still missing, though (note the pink texture around the sky panels).
+</p>
+
+<p><img src="/blog/assets/images/posts/sp-to-mp/import_3.png" alt="Models have been imported, but some textures glow in pink." /></p>
+<p class="video_legend">
+  Final result, after importing models and materials.
+</p>
+
+<h3 id="rewritten-features">Rewritten features</h3>
+
+<p>Some features cannot be directly extracted from SP levels, but must be recreated.</p>
+
+<p>This includes the respawning system for instance: SP contains a checkpoint system that saves player’s level progression in some particular places,
+allowing them to respawn close to where they died, and restore level to a given state (respawning NPC soldiers for instance); it’s obviously something
+you don’t want in a MP level, as you’d probably prefer using the traditional MP spawnpoints system.</p>
+
+<p>Additionally, some SP features cannot be reused <em>as-is</em>, but must be extracted: as an example, for boomtown, the dome combat scenario is triggered
+when you enter the dome via the Ash-led platform; I prefer not doing that, but rather extracting the spectres + reapers spawning code, so it can be 
+used to spawn them in waves.</p>
+
+<p>In a similar fashion, the cage used to deliver Militia soldiers in the SP level can be used for the intro of the level.</p>
+
+<h3 id="sp-imported-features">SP-imported features</h3>
+
+<p style="display:flex;justify-content:center">
+    <img src="/blog/assets/images/posts/sp-to-mp/objective.png" alt="Objective interface displaying the objective 'Shut up and grab a gun'." />
+</p>
+<p class="video_legend">
+  If you played the campaign, you might have seen this interface element previously!
+  It will be very useful to guide players.
+</p>
+
+<p>I also like the scripted intro of SP levels, and implemented one for the level:</p>
+
+<blockquote class="reddit-embed-bq" style="height:500px" data-embed-theme="dark" data-embed-height="546"><a href="https://www.reddit.com/r/titanfall/comments/1ggruoj/where_am_i/">Where am I?!</a><br /> by<a href="https://www.reddit.com/user/Alystrasz/">u/Alystrasz</a> in<a href="https://www.reddit.com/r/titanfall/">titanfall</a></blockquote>
+<script async="" src="https://embed.reddit.com/widgets.js" charset="UTF-8"></script>
+
+<h3 id="new-needed-features">New needed features</h3>
+
+<p>To create a functional mod, you cannot only recycle code from SP levels, but also have to write some yourself from scratch.</p>
+
+<p>One feature that immediately came to mind was the “Gather” feature, that allows developers to make sure all players reached a given location in the level before
+triggering some action; you might have seen that in other games (in Overwatch’s Archives event for instance).</p>
+
+<h2 id="future-works">Future works</h2>
+
+<ol>
+  <li>
+    <p>I would love this level to be as close to the polished single-player experience we all know as possible: this requires using SP components (objective UI for
+instance) to communicate with the player, putting a lot of attention on all details… lots of time and playtesting are needed!</p>
+  </li>
+  <li>
+    <p>I also have to find a way to reduce the mod size. Currently, all models/materials from the <code class="language-plaintext highlighter-rouge">Into the Abyss</code> mission are imported, making my mod 1.2GB big;
+even if more and more people have access to a fiber Internet connection, this is not the case for all players: I shall seek for unused assets and/or
+dig into the possibility of reusing SP files directly.</p>
+  </li>
+  <li>
+    <p>Last but not least, in-game content can also be optimized: for instance, the server currently spawns soldiers and props on the “town manufacturing line”
+part of the level, even if players never visit this part in my mode.</p>
+  </li>
+</ol>
+
+<hr />
+
+<p>Thanks for reading, don’t hesitate to reach me on Discord!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/blog/tags/#development" class="page__taxonomy-item p-category" rel="tag">Development</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-11-09">November 9, 2024</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Making+an+MP+mode+out+of+SP+content%20https%3A%2F%2Fnorthstar.tf%2Fblog%2Fsp-to-mp%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fsp-to-mp%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <!--
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fsp-to-mp%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  -->
+  
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fsp-to-mp%2F&title=Making+an+MP+mode+out+of+SP+content" class="btn btn--reddit" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a class="btn btn--mastodon"><i class="fab fa-fw fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a>
+</section>
+
+<script src="/blog/assets/js/mastodon.js"></script>
+
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/grunt-gamemode/" class="pagination--pager" title="Grunt mode
+">Previous</a>
+    
+    
+      <a href="/blog/three-years/" class="pagination--pager" title="Frontier News Network: Happy third birthday Northstar!
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/three-years/" rel="permalink">Frontier News Network: Happy third birthday Northstar!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-01-27T00:00:00+00:00">January 27, 2025</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Yep, first official release was in December 2021, three years ago!
+
+
+
+During 2024, progress has been made on:
+
+  several features, such as mod auto-downloadi...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/grunt-gamemode/" rel="permalink">Grunt mode
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-10-06T00:00:00+00:00">October 6, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Hello Northstar! I am EnderBoy9217 and here I will share with you the process of creating one of Northstar’s most recognizable mods, Grunt Mode 2.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/payload-gamemode/" rel="permalink">Payload gamemode
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-08-26T00:00:00+00:00">August 26, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Ayo! I am Zanieon and I have a funny and interesting story to tell about a custom gamemode for Northstar.
+
+How everything started
+
+
+  “Payload? What’s that Z...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/mad-update/" rel="permalink">State of progress: MAD
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-08-09T00:00:00+00:00">August 9, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Hey, Alystrasz here, to give you some information about the feature I’m currently developing, MAD!
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/blog/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Northstar devs. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/blog/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

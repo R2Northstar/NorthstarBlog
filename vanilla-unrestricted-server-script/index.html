@@ -1,0 +1,888 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Titanfall2 Security: Unrestricted server command execution via Squirrel Script - Northstar blog</title>
+<meta name="description" content="A few weeks ago, we accidentally discovered that Squirrel server scripts were made accessible on public Titanfall2 servers. Here’s what we found, how we reported it, and how it got resolved.  The discovered exploit allows an adversary to run any Squirrel script on the server within the bounds of Titanfall2’s commands by using the script command. Usually clients should not be able to send the server Squirrel commands to execute.  We believe that the vulnerability was introduced in a recent server side patch given that we found a different vulnerability before in early 2022 (we reported it and saw it getting patched) that achieved a similar effect but was harder to exploit.  This issue was reported through EA’s Coordinated Vulnerability Disclosure process and was triaged and patched within 2 weeks of our initial report.  (And yes Respawn does still patch Titanfall2 servers for vulnerabilities. Stay tuned for more blog posts on other vulnerabilities we found on public Titanfall2 servers and reported to Respawn that then got patched.)  Terminology:     Squirrel is the scripting language used by Titanfall2.   Squirrel VM, a virtual machine for scripting that acts as an abstract binding layer between the Source engine and external scripts.   Timeline The following is a timeline of events between the discovery of the vulnerability and its fix.  2023-01-09 10:22 UTC  As part of a discussion about Northstar in a semi-restricted Discord channel, zxcPandora finds out that the script command allows for running for Squirrel script server side on official public servers.    In particular this issue was found to affect build number 8740 of the official public Titanfall2 dedicated servers.    Within half an hour we identified the severity of the exploit.  We immediately began archiving the entire conversation via screenshots and deleted all references to the exploit to limit exposure of the vulnerability.  Note that the message was posted in a semi-private channel with 100+ members. As such it was clear from the beginning that it was only a matter of time until the exploit would become public knowledge.  As such, shortly afterwards, Taskinoz reached out to a Respawn employee directly. We’ve been using this person as contact previously for reporting exploits.  2023-01-09 12:30 UTC  We created a quick proof of concept using an unmodified retail Titanfall2 client which has a keybind bound to run a serverside function that switches map and mode using GameRules_ChangeMap.  We uploaded the clip showcasing it as an unlisted YouTube video.    Note that this clip shows loading Frontier Defense on the map Glitch. This map/mode combination was however never released in the retail game as you can see by the map being locked in the map selection screen, after setting the gamemode to Frontier Defense.  Again loading an unreleased map/mode combination is not really a security issue per se. This clip is to simply show that the vulnerability of running arbitrary Squirrel functions server side exists.  We purposefully decided not to perform any potentially damaging attacks to avoid any liability.  2023-01-09 13:40 UTC  We sent an initial email to EA Security to inform them about the exploit.    2023-01-10 15:04 UTC  Per EA’s own instructions, we sent a follow up email due to a lack of response.    We also discovered first abuses of the vulnerability in the wild:    2023-01-10 18:28 UTC  We received an initial response from EA saying they are investigating the issue. Do note that they asked us to keep any information regarding the issue confidential until it is resolved.    2023-01-14 11:30 UTC  We sent another follow up email based on new information,    with the following attachments        (The linked post from the email: https://www.reddit.com/r/titanfall/comments/10awcv8/i_have_now_become_a_top_pilot/)  2023-01-17 at 17:12 UTC  We sent another update email to EA Security.  At this point it had been over a week since the initial discovery and we received no further communication from EA Security and little to no updates via our contact at Respawn. At the same time we saw more cases of the exploit being used in the wild. While the cases we saw were usually benign, e.g. someone giving themselves Titan weapons as a pilot, it was a clear indicator that the exploit started becoming public knowledge.  Since a proper attack is invisible to the player, we could only make guesses whether or not the exploit was being used maliciously to take control of dedicated servers.  As such we decided to give EA Security a deadline after which we would make an announcement that playing on vanilla servers might potentially be unsafe.    2023-01-21 8:25 UTC  While checking the state of the exploit, D3-3109 noticed an updated server build number. Upon further investigation we were able to confirm from our side that script no longer worked to run server side code.    2023-01-21 at 13:39 UTC  As we deemed the issue fixed, we informed EA Security accordingly.    2023-01-23 at 20:23 UTC  And two days later we got confirmation from EA Security that a patch was in place :D    Potential attack vectors:  Now with the timeline out of the way, let’s discuss the severity of the vulnerability. Essentially it gives full access to the servers’ Squirrel VM meaning that any Squirrel function on the server can be called and in-game data can be extracted.  What follows are a small set of attacks this vulnerability would have allowed for. Note that we only tested them locally using Northstar. We never tested them on the actual public Titanfall2 game servers as it could cause potential damage that we do not want to be held responsible for.  Messing with player stats  As the game server is able to set player stats, this vulnerability allows for arbitrarily changing player stats. In particular we observed some people trying to boost their in-game level with it. Even more so, some players would simply copy-and-paste commands commonly used to set player levels in Northstar into their console in public lobbies on public Titanfall2 servers, resulting in changing other player’s levels by accident.  Setting the player level too high whether by accident or on purpose is an issue as it causes the gameserver to reject the player due to incorrect player data. Essentially this means that that player is completely locked out of multiplayer.  When fixing the vulnerability Respawn added a workaround for this case. Now, players with a too high player level will simply show the according gen. Further the exploit allowed for unlocking all skins, banners and emblems, including the developer one. As a result of this, a player having a dev emblem does no longer indicate that they are actually a developer.      DevTextBufferWrite / DevTextBufferDumpToFile  To aid in debugging, Squirrel contains a few functions intended for developers. Here we take a specific look at two of those, DevTextBufferWrite and DevTextBufferDumpToFile.  Note that these functions could have been executed only against the Titanfall2 game servers, not game clients. Furthermore, the server cannot tell the client to compile/execute scripts without a remote callback registered.  With DevTextBufferWrite a developer can write a string to buffer and then save said buffer to a file using DevTextBufferDumpToFile. This means combining the two functions one can e.g. use  script DevTextBufferWrite(&quot;this is a test&quot;) script DevTextBufferDumpToFile(&quot;abc.txt&quot;)   to create a file called abc.txt which contains the text this is a test.  Note that we are not limited to just the current folder. For the filename we can give the function any absolute pathname and as long as we have access to it, it will write the file to said path. Thankfully this function is limited to text, so we cannot use this to upload any binary file to the server.  However what we can do is write a script to a batch file that will then download and run a secondary payload. The only thing still preventing us is that we need a way to execute that batch file. To work around this, we could try to write it to the Windows user startup applications. This means that upon restarting the device, the file will be executed. However there’s yet another roadblock, as to write to a Windows user startup applications folder we need to know their username as it is part of the path.  Should we know username for some reason, all we need to do to complete the attack is to simply run  script DevTextBufferWrite(&quot;start \&quot;calc.exe\&quot;&quot;) script DevTextBufferDumpToFile(&quot;C:\\Users\\USERNAME\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\test.bat&quot;)   and upon restart our batch file is executed. In this example, it simply opens the calculator app but replacing this line with a PowerShell script to download and run a virus is all that is needed to take control of the server.  Note that we cannot use %appdata%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\test.bat  as the path as %appdata% does not get resolved at all.  Now given that this is about an attack on the server, the Windows user name could probably be bruteforced from a list of commonly used ones but assuming best practices, gameservers are usually set up to rebuild from a fresh image on reboot.  Note that again this attack would only work against Titanfall2 game servers but not against game clients.  For reference in Northstar, these developer functions are blocked by default.  ClientCommand  However, we do not even need to take full control of the gameserver to start attacking other clients.  What makes the vulnerability especially bad is that in the security model of Titanfall2 unlike Northstar, the dedicated server is fully trusted and due to this the client accepts any commands from the server. This is for example used to connect a client to a server during matchmaking, where essentially the server sends a ClientCommand that tells the client to connect to a specific server.  Note that ClientCommand cannot be used to force script execution on the client since the retail game-clients do not have the script_client/script_ui functions. As such in an attack against ClientCommand we’re limited to certain commands like connect.  In Northstar, ClientCommand is blocked meaning the server cannot tell the client to run any command at all. This is necessary as unlike standard Titanfall2 where only Respawn is hosting dedicated servers, anyone can host a game server in Northstar so in our security model, the game server is always untrusted.  Stryder session token stealing  When connecting to a gameserver, the unmodified retail game client sends it a valid Stryder session token on connect. Presumably this is done for some kind of authentication.  Now using ClientCommand mentioned above, this means an attacker can use the script vulnerability to force all clients in a public match to connect to a server they host themselves.  When the clients connect they then send the Stryder token which the attacker can then grab. With this token the attacker achieves limited access to the victim’s Titanfall2 account. The token can be used to make API calls on behalf of the victim against the Stryder Titanfall2 backend server.  Around October 2022 we found out about the fact of clients sending Stryder token to game server and as such deployed a patch for Northstar that clears the token, so that the client no longer send valid tokens to the gameserver. Further we restricted players to only the patched version by requiring players to update in order to play on Northstar.  For the official public Titanfall2 game servers this method of sending the Stryder token would technically be fine under its security model as the server is fully trusted, so sending it a valid token is not an issue. However with the script vulnerability, this trust model fell apart as suddenly an attacker could gain control of the server, making it no longer trusted.  FAQ:     Q: Why didn’t you publicly announce that vanilla Titanfall2 servers were insecure when you found out?   Answer: We followed (and were asked by EA Security to follow) the process of Coordinated Vulnerability Disclosure.  This means that the issue is reported confidentially to the affected party, in this case Respawn/EA and information about the vulnerability are only made public once there was enough time to implement a fix.  Once we saw more public abuse of the exploit, we had an internal discussion about putting out a PSA to warn players about the potential of a vulnerability without disclosing how it works. Ultimately we settled on giving Respawn/EA a one week deadline. Thankfully the issue was patched before reaching the deadline and as such a PSA was no longer necessary.        Q: With this exploit I could have played Frontier Defense on maps where it was never released, why didn’t you tell me about this? &gt;:(   Answer: This exploit allows for so much more than just playing unreleased map/mod combinations. As such letting anyone know about this publicly before it was patched would have been a huge security risk.        Q: Can you recap again what the vulnerability was?   Answer: Titanfall2 game servers had a bug where any player could run Squirrel commands on server-side. Usually this should not happen as it completely breaks the security model of Titanfall2. This is essentially remote code execution (RCE) within the bounds of Titanfall2’s scripting language called Squirrel.  Final Words:  Congrats on making it to the end of the post. I hope you enjoyed the little tour into how we reported the script vulnerability to EA Security and Respawn, and worked with them to resolve it. At this point I want to give a shout-out again to Respawn and EA Security for listening to us and resolving the issue.  Then of course special mention goes to zxcPandora for originally finding the bug as well as Emma for doing some PoC testing, wolf109909 and NorthstarCN Team for keeping us updated on usage of the exploit they found in the wild, Taskinoz for reaching out to a Respawn employee directly, H0L0 and eRaid for helping with proof-reading, and of course all the lovely Northstar developers and contributors as well as the rest of community as whole &lt;3">
+
+
+  
+  <meta property="article:author" content="Gecko">
+  
+
+
+<!--
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Northstar blog">
+<meta property="og:title" content="Titanfall2 Security: Unrestricted server command execution via Squirrel Script">
+<meta property="og:url" content="https://northstar.tf/blog/vanilla-unrestricted-server-script/">
+-->
+
+
+  <meta property="og:description" content="A few weeks ago, we accidentally discovered that Squirrel server scripts were made accessible on public Titanfall2 servers. Here’s what we found, how we reported it, and how it got resolved.  The discovered exploit allows an adversary to run any Squirrel script on the server within the bounds of Titanfall2’s commands by using the script command. Usually clients should not be able to send the server Squirrel commands to execute.  We believe that the vulnerability was introduced in a recent server side patch given that we found a different vulnerability before in early 2022 (we reported it and saw it getting patched) that achieved a similar effect but was harder to exploit.  This issue was reported through EA’s Coordinated Vulnerability Disclosure process and was triaged and patched within 2 weeks of our initial report.  (And yes Respawn does still patch Titanfall2 servers for vulnerabilities. Stay tuned for more blog posts on other vulnerabilities we found on public Titanfall2 servers and reported to Respawn that then got patched.)  Terminology:     Squirrel is the scripting language used by Titanfall2.   Squirrel VM, a virtual machine for scripting that acts as an abstract binding layer between the Source engine and external scripts.   Timeline The following is a timeline of events between the discovery of the vulnerability and its fix.  2023-01-09 10:22 UTC  As part of a discussion about Northstar in a semi-restricted Discord channel, zxcPandora finds out that the script command allows for running for Squirrel script server side on official public servers.    In particular this issue was found to affect build number 8740 of the official public Titanfall2 dedicated servers.    Within half an hour we identified the severity of the exploit.  We immediately began archiving the entire conversation via screenshots and deleted all references to the exploit to limit exposure of the vulnerability.  Note that the message was posted in a semi-private channel with 100+ members. As such it was clear from the beginning that it was only a matter of time until the exploit would become public knowledge.  As such, shortly afterwards, Taskinoz reached out to a Respawn employee directly. We’ve been using this person as contact previously for reporting exploits.  2023-01-09 12:30 UTC  We created a quick proof of concept using an unmodified retail Titanfall2 client which has a keybind bound to run a serverside function that switches map and mode using GameRules_ChangeMap.  We uploaded the clip showcasing it as an unlisted YouTube video.    Note that this clip shows loading Frontier Defense on the map Glitch. This map/mode combination was however never released in the retail game as you can see by the map being locked in the map selection screen, after setting the gamemode to Frontier Defense.  Again loading an unreleased map/mode combination is not really a security issue per se. This clip is to simply show that the vulnerability of running arbitrary Squirrel functions server side exists.  We purposefully decided not to perform any potentially damaging attacks to avoid any liability.  2023-01-09 13:40 UTC  We sent an initial email to EA Security to inform them about the exploit.    2023-01-10 15:04 UTC  Per EA’s own instructions, we sent a follow up email due to a lack of response.    We also discovered first abuses of the vulnerability in the wild:    2023-01-10 18:28 UTC  We received an initial response from EA saying they are investigating the issue. Do note that they asked us to keep any information regarding the issue confidential until it is resolved.    2023-01-14 11:30 UTC  We sent another follow up email based on new information,    with the following attachments        (The linked post from the email: https://www.reddit.com/r/titanfall/comments/10awcv8/i_have_now_become_a_top_pilot/)  2023-01-17 at 17:12 UTC  We sent another update email to EA Security.  At this point it had been over a week since the initial discovery and we received no further communication from EA Security and little to no updates via our contact at Respawn. At the same time we saw more cases of the exploit being used in the wild. While the cases we saw were usually benign, e.g. someone giving themselves Titan weapons as a pilot, it was a clear indicator that the exploit started becoming public knowledge.  Since a proper attack is invisible to the player, we could only make guesses whether or not the exploit was being used maliciously to take control of dedicated servers.  As such we decided to give EA Security a deadline after which we would make an announcement that playing on vanilla servers might potentially be unsafe.    2023-01-21 8:25 UTC  While checking the state of the exploit, D3-3109 noticed an updated server build number. Upon further investigation we were able to confirm from our side that script no longer worked to run server side code.    2023-01-21 at 13:39 UTC  As we deemed the issue fixed, we informed EA Security accordingly.    2023-01-23 at 20:23 UTC  And two days later we got confirmation from EA Security that a patch was in place :D    Potential attack vectors:  Now with the timeline out of the way, let’s discuss the severity of the vulnerability. Essentially it gives full access to the servers’ Squirrel VM meaning that any Squirrel function on the server can be called and in-game data can be extracted.  What follows are a small set of attacks this vulnerability would have allowed for. Note that we only tested them locally using Northstar. We never tested them on the actual public Titanfall2 game servers as it could cause potential damage that we do not want to be held responsible for.  Messing with player stats  As the game server is able to set player stats, this vulnerability allows for arbitrarily changing player stats. In particular we observed some people trying to boost their in-game level with it. Even more so, some players would simply copy-and-paste commands commonly used to set player levels in Northstar into their console in public lobbies on public Titanfall2 servers, resulting in changing other player’s levels by accident.  Setting the player level too high whether by accident or on purpose is an issue as it causes the gameserver to reject the player due to incorrect player data. Essentially this means that that player is completely locked out of multiplayer.  When fixing the vulnerability Respawn added a workaround for this case. Now, players with a too high player level will simply show the according gen. Further the exploit allowed for unlocking all skins, banners and emblems, including the developer one. As a result of this, a player having a dev emblem does no longer indicate that they are actually a developer.      DevTextBufferWrite / DevTextBufferDumpToFile  To aid in debugging, Squirrel contains a few functions intended for developers. Here we take a specific look at two of those, DevTextBufferWrite and DevTextBufferDumpToFile.  Note that these functions could have been executed only against the Titanfall2 game servers, not game clients. Furthermore, the server cannot tell the client to compile/execute scripts without a remote callback registered.  With DevTextBufferWrite a developer can write a string to buffer and then save said buffer to a file using DevTextBufferDumpToFile. This means combining the two functions one can e.g. use  script DevTextBufferWrite(&quot;this is a test&quot;) script DevTextBufferDumpToFile(&quot;abc.txt&quot;)   to create a file called abc.txt which contains the text this is a test.  Note that we are not limited to just the current folder. For the filename we can give the function any absolute pathname and as long as we have access to it, it will write the file to said path. Thankfully this function is limited to text, so we cannot use this to upload any binary file to the server.  However what we can do is write a script to a batch file that will then download and run a secondary payload. The only thing still preventing us is that we need a way to execute that batch file. To work around this, we could try to write it to the Windows user startup applications. This means that upon restarting the device, the file will be executed. However there’s yet another roadblock, as to write to a Windows user startup applications folder we need to know their username as it is part of the path.  Should we know username for some reason, all we need to do to complete the attack is to simply run  script DevTextBufferWrite(&quot;start \&quot;calc.exe\&quot;&quot;) script DevTextBufferDumpToFile(&quot;C:\\Users\\USERNAME\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\test.bat&quot;)   and upon restart our batch file is executed. In this example, it simply opens the calculator app but replacing this line with a PowerShell script to download and run a virus is all that is needed to take control of the server.  Note that we cannot use %appdata%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\test.bat  as the path as %appdata% does not get resolved at all.  Now given that this is about an attack on the server, the Windows user name could probably be bruteforced from a list of commonly used ones but assuming best practices, gameservers are usually set up to rebuild from a fresh image on reboot.  Note that again this attack would only work against Titanfall2 game servers but not against game clients.  For reference in Northstar, these developer functions are blocked by default.  ClientCommand  However, we do not even need to take full control of the gameserver to start attacking other clients.  What makes the vulnerability especially bad is that in the security model of Titanfall2 unlike Northstar, the dedicated server is fully trusted and due to this the client accepts any commands from the server. This is for example used to connect a client to a server during matchmaking, where essentially the server sends a ClientCommand that tells the client to connect to a specific server.  Note that ClientCommand cannot be used to force script execution on the client since the retail game-clients do not have the script_client/script_ui functions. As such in an attack against ClientCommand we’re limited to certain commands like connect.  In Northstar, ClientCommand is blocked meaning the server cannot tell the client to run any command at all. This is necessary as unlike standard Titanfall2 where only Respawn is hosting dedicated servers, anyone can host a game server in Northstar so in our security model, the game server is always untrusted.  Stryder session token stealing  When connecting to a gameserver, the unmodified retail game client sends it a valid Stryder session token on connect. Presumably this is done for some kind of authentication.  Now using ClientCommand mentioned above, this means an attacker can use the script vulnerability to force all clients in a public match to connect to a server they host themselves.  When the clients connect they then send the Stryder token which the attacker can then grab. With this token the attacker achieves limited access to the victim’s Titanfall2 account. The token can be used to make API calls on behalf of the victim against the Stryder Titanfall2 backend server.  Around October 2022 we found out about the fact of clients sending Stryder token to game server and as such deployed a patch for Northstar that clears the token, so that the client no longer send valid tokens to the gameserver. Further we restricted players to only the patched version by requiring players to update in order to play on Northstar.  For the official public Titanfall2 game servers this method of sending the Stryder token would technically be fine under its security model as the server is fully trusted, so sending it a valid token is not an issue. However with the script vulnerability, this trust model fell apart as suddenly an attacker could gain control of the server, making it no longer trusted.  FAQ:     Q: Why didn’t you publicly announce that vanilla Titanfall2 servers were insecure when you found out?   Answer: We followed (and were asked by EA Security to follow) the process of Coordinated Vulnerability Disclosure.  This means that the issue is reported confidentially to the affected party, in this case Respawn/EA and information about the vulnerability are only made public once there was enough time to implement a fix.  Once we saw more public abuse of the exploit, we had an internal discussion about putting out a PSA to warn players about the potential of a vulnerability without disclosing how it works. Ultimately we settled on giving Respawn/EA a one week deadline. Thankfully the issue was patched before reaching the deadline and as such a PSA was no longer necessary.        Q: With this exploit I could have played Frontier Defense on maps where it was never released, why didn’t you tell me about this? &gt;:(   Answer: This exploit allows for so much more than just playing unreleased map/mod combinations. As such letting anyone know about this publicly before it was patched would have been a huge security risk.        Q: Can you recap again what the vulnerability was?   Answer: Titanfall2 game servers had a bug where any player could run Squirrel commands on server-side. Usually this should not happen as it completely breaks the security model of Titanfall2. This is essentially remote code execution (RCE) within the bounds of Titanfall2’s scripting language called Squirrel.  Final Words:  Congrats on making it to the end of the post. I hope you enjoyed the little tour into how we reported the script vulnerability to EA Security and Respawn, and worked with them to resolve it. At this point I want to give a shout-out again to Respawn and EA Security for listening to us and resolving the issue.  Then of course special mention goes to zxcPandora for originally finding the bug as well as Emma for doing some PoC testing, wolf109909 and NorthstarCN Team for keeping us updated on usage of the exploit they found in the wild, Taskinoz for reaching out to a Respawn employee directly, H0L0 and eRaid for helping with proof-reading, and of course all the lovely Northstar developers and contributors as well as the rest of community as whole &lt;3">
+
+
+
+  <meta property="og:image" content="https://northstar.tf/blog/assets/images/page-header-image.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2023-02-21T00:00:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2023-02-21T22:00:00+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://northstar.tf/blog/vanilla-unrestricted-server-script/">
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/blog/feed.xml" type="application/atom+xml" rel="alternate" title="Northstar blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/blog/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="120x120" href="/blog/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/blog/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/blog/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/blog/">
+          Northstar blog
+          <span class="site-subtitle">Your latest information about Titanfall2 and Northstar.</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://northstar.tf">Main website</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/blog/assets/images/page-header-image.jpg" alt="Titanfall2 Security: Unrestricted server command execution via Squirrel Script" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://northstar.tf/blog/">
+        <img src="/blog/assets/images/gecko-profile.png" alt="Gecko" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://northstar.tf/blog/" itemprop="url">Gecko</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Stuck in the Titanfall community for way too long now with no escape in sight 👀</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Harmony</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/GeckoEidechse/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github-square" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://fosstodon.org/@gecko" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-mastodon-square" aria-hidden="true"></i><span class="label">Mastodon</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/GeckoEidechse" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Titanfall2 Security: Unrestricted server command execution via Squirrel Script">
+    <meta itemprop="description" content="A few weeks ago, we accidentally discovered that Squirrel server scripts were made accessible on public Titanfall2 servers. Here’s what we found, how we reported it, and how it got resolved.The discovered exploit allows an adversary to run any Squirrel script on the server within the bounds of Titanfall2’s commands by using the script command. Usually clients should not be able to send the server Squirrel commands to execute.We believe that the vulnerability was introduced in a recent server side patch given that we found a different vulnerability before in early 2022 (we reported it and saw it getting patched) that achieved a similar effect but was harder to exploit.This issue was reported through EA’s Coordinated Vulnerability Disclosure process and was triaged and patched within 2 weeks of our initial report.(And yes Respawn does still patch Titanfall2 servers for vulnerabilities. Stay tuned for more blog posts on other vulnerabilities we found on public Titanfall2 servers and reported to Respawn that then got patched.)Terminology:  Squirrel is the scripting language used by Titanfall2.  Squirrel VM, a virtual machine for scripting that acts as an abstract binding layer between the Source engine and external scripts.TimelineThe following is a timeline of events between the discovery of the vulnerability and its fix.2023-01-09 10:22 UTCAs part of a discussion about Northstar in a semi-restricted Discord channel, zxcPandora finds out that the script command allows for running for Squirrel script server side on official public servers.In particular this issue was found to affect build number 8740 of the official public Titanfall2 dedicated servers.Within half an hour we identified the severity of the exploit.We immediately began archiving the entire conversation via screenshots and deleted all references to the exploit to limit exposure of the vulnerability.Note that the message was posted in a semi-private channel with 100+ members. As such it was clear from the beginning that it was only a matter of time until the exploit would become public knowledge.As such, shortly afterwards, Taskinoz reached out to a Respawn employee directly. We’ve been using this person as contact previously for reporting exploits.2023-01-09 12:30 UTCWe created a quick proof of concept using an unmodified retail Titanfall2 client which has a keybind bound to run a serverside function that switches map and mode using GameRules_ChangeMap.We uploaded the clip showcasing it as an unlisted YouTube video.Note that this clip shows loading Frontier Defense on the map Glitch. This map/mode combination was however never released in the retail game as you can see by the map being locked in the map selection screen, after setting the gamemode to Frontier Defense.Again loading an unreleased map/mode combination is not really a security issue per se. This clip is to simply show that the vulnerability of running arbitrary Squirrel functions server side exists. We purposefully decided not to perform any potentially damaging attacks to avoid any liability.2023-01-09 13:40 UTCWe sent an initial email to EA Security to inform them about the exploit.2023-01-10 15:04 UTCPer EA’s own instructions, we sent a follow up email due to a lack of response.We also discovered first abuses of the vulnerability in the wild:2023-01-10 18:28 UTCWe received an initial response from EA saying they are investigating the issue. Do note that they asked us to keep any information regarding the issue confidential until it is resolved.2023-01-14 11:30 UTCWe sent another follow up email based on new information,with the following attachments(The linked post from the email: https://www.reddit.com/r/titanfall/comments/10awcv8/i_have_now_become_a_top_pilot/)2023-01-17 at 17:12 UTCWe sent another update email to EA Security.At this point it had been over a week since the initial discovery and we received no further communication from EA Security and little to no updates via our contact at Respawn. At the same time we saw more cases of the exploit being used in the wild. While the cases we saw were usually benign, e.g. someone giving themselves Titan weapons as a pilot, it was a clear indicator that the exploit started becoming public knowledge.Since a proper attack is invisible to the player, we could only make guesses whether or not the exploit was being used maliciously to take control of dedicated servers.As such we decided to give EA Security a deadline after which we would make an announcement that playing on vanilla servers might potentially be unsafe.2023-01-21 8:25 UTCWhile checking the state of the exploit, D3-3109 noticed an updated server build number. Upon further investigation we were able to confirm from our side that script no longer worked to run server side code.2023-01-21 at 13:39 UTCAs we deemed the issue fixed, we informed EA Security accordingly.2023-01-23 at 20:23 UTCAnd two days later we got confirmation from EA Security that a patch was in place :DPotential attack vectors:Now with the timeline out of the way, let’s discuss the severity of the vulnerability. Essentially it gives full access to the servers’ Squirrel VM meaning that any Squirrel function on the server can be called and in-game data can be extracted.What follows are a small set of attacks this vulnerability would have allowed for. Note that we only tested them locally using Northstar. We never tested them on the actual public Titanfall2 game servers as it could cause potential damage that we do not want to be held responsible for.Messing with player statsAs the game server is able to set player stats, this vulnerability allows for arbitrarily changing player stats. In particular we observed some people trying to boost their in-game level with it. Even more so, some players would simply copy-and-paste commands commonly used to set player levels in Northstar into their console in public lobbies on public Titanfall2 servers, resulting in changing other player’s levels by accident.Setting the player level too high whether by accident or on purpose is an issue as it causes the gameserver to reject the player due to incorrect player data. Essentially this means that that player is completely locked out of multiplayer.When fixing the vulnerability Respawn added a workaround for this case. Now, players with a too high player level will simply show the according gen. Further the exploit allowed for unlocking all skins, banners and emblems, including the developer one. As a result of this, a player having a dev emblem does no longer indicate that they are actually a developer.DevTextBufferWrite / DevTextBufferDumpToFileTo aid in debugging, Squirrel contains a few functions intended for developers. Here we take a specific look at two of those, DevTextBufferWrite and DevTextBufferDumpToFile.Note that these functions could have been executed only against the Titanfall2 game servers, not game clients. Furthermore, the server cannot tell the client to compile/execute scripts without a remote callback registered.With DevTextBufferWrite a developer can write a string to buffer and then save said buffer to a file using DevTextBufferDumpToFile. This means combining the two functions one can e.g. usescript DevTextBufferWrite(&quot;this is a test&quot;)script DevTextBufferDumpToFile(&quot;abc.txt&quot;)to create a file called abc.txt which contains the text this is a test.Note that we are not limited to just the current folder. For the filename we can give the function any absolute pathname and as long as we have access to it, it will write the file to said path. Thankfully this function is limited to text, so we cannot use this to upload any binary file to the server.However what we can do is write a script to a batch file that will then download and run a secondary payload. The only thing still preventing us is that we need a way to execute that batch file.To work around this, we could try to write it to the Windows user startup applications. This means that upon restarting the device, the file will be executed. However there’s yet another roadblock, as to write to a Windows user startup applications folder we need to know their username as it is part of the path.Should we know username for some reason, all we need to do to complete the attack is to simply runscript DevTextBufferWrite(&quot;start \&quot;calc.exe\&quot;&quot;)script DevTextBufferDumpToFile(&quot;C:\\Users\\USERNAME\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\test.bat&quot;)and upon restart our batch file is executed. In this example, it simply opens the calculator app but replacing this line with a PowerShell script to download and run a virus is all that is needed to take control of the server.Note that we cannot use%appdata%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\test.batas the path as %appdata% does not get resolved at all.Now given that this is about an attack on the server, the Windows user name could probably be bruteforced from a list of commonly used ones but assuming best practices, gameservers are usually set up to rebuild from a fresh image on reboot.Note that again this attack would only work against Titanfall2 game servers but not against game clients.For reference in Northstar, these developer functions are blocked by default.ClientCommandHowever, we do not even need to take full control of the gameserver to start attacking other clients.What makes the vulnerability especially bad is that in the security model of Titanfall2 unlike Northstar, the dedicated server is fully trusted and due to this the client accepts any commands from the server. This is for example used to connect a client to a server during matchmaking, where essentially the server sends a ClientCommand that tells the client to connect to a specific server.Note that ClientCommand cannot be used to force script execution on the client since the retail game-clients do not have the script_client/script_ui functions. As such in an attack against ClientCommand we’re limited to certain commands like connect.In Northstar, ClientCommand is blocked meaning the server cannot tell the client to run any command at all. This is necessary as unlike standard Titanfall2 where only Respawn is hosting dedicated servers, anyone can host a game server in Northstar so in our security model, the game server is always untrusted.Stryder session token stealingWhen connecting to a gameserver, the unmodified retail game client sends it a valid Stryder session token on connect. Presumably this is done for some kind of authentication.Now using ClientCommand mentioned above, this means an attacker can use the script vulnerability to force all clients in a public match to connect to a server they host themselves.When the clients connect they then send the Stryder token which the attacker can then grab. With this token the attacker achieves limited access to the victim’s Titanfall2 account. The token can be used to make API calls on behalf of the victim against the Stryder Titanfall2 backend server.Around October 2022 we found out about the fact of clients sending Stryder token to game server and as such deployed a patch for Northstar that clears the token, so that the client no longer send valid tokens to the gameserver. Further we restricted players to only the patched version by requiring players to update in order to play on Northstar.For the official public Titanfall2 game servers this method of sending the Stryder token would technically be fine under its security model as the server is fully trusted, so sending it a valid token is not an issue. However with the script vulnerability, this trust model fell apart as suddenly an attacker could gain control of the server, making it no longer trusted.FAQ:  Q: Why didn’t you publicly announce that vanilla Titanfall2 servers were insecure when you found out?Answer: We followed (and were asked by EA Security to follow) the process of Coordinated Vulnerability Disclosure. This means that the issue is reported confidentially to the affected party, in this case Respawn/EA and information about the vulnerability are only made public once there was enough time to implement a fix.Once we saw more public abuse of the exploit, we had an internal discussion about putting out a PSA to warn players about the potential of a vulnerability without disclosing how it works. Ultimately we settled on giving Respawn/EA a one week deadline. Thankfully the issue was patched before reaching the deadline and as such a PSA was no longer necessary.   Q: With this exploit I could have played Frontier Defense on maps where it was never released, why didn’t you tell me about this? &gt;:(Answer: This exploit allows for so much more than just playing unreleased map/mod combinations. As such letting anyone know about this publicly before it was patched would have been a huge security risk.   Q: Can you recap again what the vulnerability was?Answer: Titanfall2 game servers had a bug where any player could run Squirrel commands on server-side. Usually this should not happen as it completely breaks the security model of Titanfall2. This is essentially remote code execution (RCE) within the bounds of Titanfall2’s scripting language called Squirrel.Final Words:Congrats on making it to the end of the post. I hope you enjoyed the little tour into how we reported the script vulnerability to EA Security and Respawn, and worked with them to resolve it.At this point I want to give a shout-out again to Respawn and EA Security for listening to us and resolving the issue.Then of course special mention goes to zxcPandora for originally finding the bug as well as Emma for doing some PoC testing, wolf109909 and NorthstarCN Team for keeping us updated on usage of the exploit they found in the wild, Taskinoz for reaching out to a Respawn employee directly, H0L0 and eRaid for helping with proof-reading, and of course all the lovely Northstar developers and contributors as well as the rest of community as whole &lt;3">
+    <meta itemprop="datePublished" content="2023-02-21T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2023-02-21T22:00:00+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://northstar.tf/blog/vanilla-unrestricted-server-script/" class="u-url" itemprop="url">Titanfall2 Security: Unrestricted server command execution via Squirrel Script
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-02-21T00:00:00+00:00">February 21, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          11 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p>A few weeks ago, we accidentally discovered that Squirrel server scripts were made accessible on public Titanfall2 servers. Here’s what we found, how we reported it, and how it got resolved.</p>
+
+<p>The discovered exploit allows an adversary to run any Squirrel script on the server within the bounds of Titanfall2’s commands by using the <code class="language-plaintext highlighter-rouge">script</code> command. Usually clients should not be able to send the server Squirrel commands to execute.</p>
+
+<p>We believe that the vulnerability was introduced in a recent server side patch given that we found a different vulnerability before in early 2022 (we reported it and saw it getting patched) that achieved a similar effect but was harder to exploit.</p>
+
+<p>This issue was reported through EA’s Coordinated Vulnerability Disclosure process and was triaged and patched within 2 weeks of our initial report.</p>
+
+<p>(And yes Respawn does still patch Titanfall2 servers for vulnerabilities. Stay tuned for more blog posts on other vulnerabilities we found on public Titanfall2 servers and reported to Respawn that then got patched.)</p>
+
+<p><strong>Terminology:</strong></p>
+
+<ul>
+  <li><em>Squirrel</em> is the scripting language used by Titanfall2.</li>
+  <li><em>Squirrel VM</em>, a virtual machine for scripting that acts as an abstract binding layer between the Source engine and external scripts.</li>
+</ul>
+
+<h2 id="timeline">Timeline</h2>
+<p>The following is a timeline of events between the discovery of the vulnerability and its fix.</p>
+
+<h3 id="2023-01-09-1022-utc">2023-01-09 10:22 UTC</h3>
+
+<p>As part of a discussion about Northstar in a semi-restricted Discord channel, <a href="https://github.com/zxcPandora">zxcPandora</a> finds out that the <code class="language-plaintext highlighter-rouge">script</code> command allows for running for Squirrel script server side on official public servers.</p>
+
+<p><img src="/blog/assets/images/posts/vanilla-unrestricted-server-script/pandora-discord-message.png" alt="A Discord message sent by zxcPandora when they initially discovered the vulnerability" /></p>
+
+<p>In particular this issue was found to affect build number <code class="language-plaintext highlighter-rouge">8740</code> of the official public Titanfall2 dedicated servers.</p>
+
+<p><img src="/blog/assets/images/posts/vanilla-unrestricted-server-script/status-command.png" alt="Screenshot of status command being run against vanilla server to get affect server version number" /></p>
+
+<p>Within half an hour we identified the severity of the exploit.</p>
+
+<p>We immediately began archiving the entire conversation via screenshots and deleted all references to the exploit to limit exposure of the vulnerability.</p>
+
+<p>Note that the message was posted in a semi-private channel with 100+ members. As such it was clear from the beginning that it was only a matter of time until the exploit would become public knowledge.</p>
+
+<p>As such, shortly afterwards, Taskinoz reached out to a Respawn employee directly. We’ve been using this person as contact previously for reporting exploits.</p>
+
+<h3 id="2023-01-09-1230-utc">2023-01-09 12:30 UTC</h3>
+
+<p>We created a quick proof of concept using an unmodified retail Titanfall2 client which has a keybind bound to run a serverside function that switches map and mode using <code class="language-plaintext highlighter-rouge">GameRules_ChangeMap</code>.</p>
+
+<p>We uploaded the clip showcasing it as an unlisted YouTube video.</p>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/d1iWAfiG33k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+
+<p>Note that this clip shows loading Frontier Defense on the map Glitch. This map/mode combination was however never released in the retail game as you can see by the map being locked in the map selection screen, after setting the gamemode to Frontier Defense.</p>
+
+<p>Again loading an unreleased map/mode combination is not really a security issue per se. This clip is to simply show that the vulnerability of running arbitrary Squirrel functions server side exists. <br />
+We purposefully decided not to perform any potentially damaging attacks to avoid any liability.</p>
+
+<h3 id="2023-01-09-1340-utc">2023-01-09 13:40 UTC</h3>
+
+<p>We sent an initial email to EA Security to inform them about the exploit.</p>
+
+<p><img src="/blog/assets/images/posts/vanilla-unrestricted-server-script/email-sent-initial.png" alt="Screenshot of the first email sent to EA Security" /></p>
+
+<h3 id="2023-01-10-1504-utc">2023-01-10 15:04 UTC</h3>
+
+<p>Per EA’s own instructions, we sent a follow up email due to a lack of response.</p>
+
+<p><img src="/blog/assets/images/posts/vanilla-unrestricted-server-script/email-sent-inital-followup.png" alt="Screenshot of a follow-up email sent to EA Security due to lack of response from their side" /></p>
+
+<p>We also discovered first abuses of the vulnerability in the wild:</p>
+
+<iframe id="reddit-embed" src="https://www.redditmedia.com/r/titanfall/comments/108426e/servers_just_got_knocked_offline_but_not_before/?ref_source=embed&amp;ref=share&amp;embed=true&amp;theme=dark" sandbox="allow-scripts allow-same-origin allow-popups" style="border: none;" height="410" width="640" scrolling="no"></iframe>
+
+<h3 id="2023-01-10-1828-utc">2023-01-10 18:28 UTC</h3>
+
+<p>We received an initial response from EA saying they are investigating the issue. Do note that they asked us to keep any information regarding the issue confidential until it is resolved.</p>
+
+<p><img src="/blog/assets/images/posts/vanilla-unrestricted-server-script/email-recv-initial.png" alt="Screenshot of the first response we received by EA Security" /></p>
+
+<h3 id="2023-01-14-1130-utc">2023-01-14 11:30 UTC</h3>
+
+<p>We sent another follow up email based on new information,</p>
+
+<p><img src="/blog/assets/images/posts/vanilla-unrestricted-server-script/email-sent-update-affected.png" alt="Screenshot of an email we sent to EA Security with additional information regarding affected players" /></p>
+
+<p>with the following attachments</p>
+
+<p><img src="/blog/assets/images/posts/vanilla-unrestricted-server-script/player-affected1.png" alt="Screenshot of a player who's in-game level was altered" /></p>
+
+<p><img src="/blog/assets/images/posts/vanilla-unrestricted-server-script/player-affected2.png" alt="Screenshot of a player who's in-game level was altered" /></p>
+
+<p><img src="/blog/assets/images/posts/vanilla-unrestricted-server-script/player-affected3.png" alt="Screenshot of a player who's in-game level was altered" /></p>
+
+<p>(The linked post from the email: <a href="https://www.reddit.com/r/titanfall/comments/10awcv8/i_have_now_become_a_top_pilot/">https://www.reddit.com/r/titanfall/comments/10awcv8/i_have_now_become_a_top_pilot/</a>)</p>
+
+<h3 id="2023-01-17-at-1712-utc">2023-01-17 at 17:12 UTC</h3>
+
+<p>We sent another update email to EA Security.</p>
+
+<p>At this point it had been over a week since the initial discovery and we received no further communication from EA Security and little to no updates via our contact at Respawn. At the same time we saw more cases of the exploit being used in the wild. While the cases we saw were usually benign, e.g. someone giving themselves Titan weapons as a pilot, it was a clear indicator that the exploit started becoming public knowledge.</p>
+
+<p>Since a proper attack is invisible to the player, we could only make guesses whether or not the exploit was being used maliciously to take control of dedicated servers.</p>
+
+<p>As such we decided to give EA Security a deadline after which we would make an announcement that playing on vanilla servers might potentially be unsafe.</p>
+
+<p><img src="/blog/assets/images/posts/vanilla-unrestricted-server-script/email-sent-deadline.png" alt="Screenshot of an email we sent to EA Security due to lack of response on their side." /></p>
+
+<h3 id="2023-01-21-825-utc">2023-01-21 8:25 UTC</h3>
+
+<p>While checking the state of the exploit, <a href="https://d3-3109.cc/">D3-3109</a> noticed an updated server build number. Upon further investigation we were able to confirm from our side that <code class="language-plaintext highlighter-rouge">script</code> no longer worked to run server side code.</p>
+
+<p><img src="/blog/assets/images/posts/vanilla-unrestricted-server-script/status-server-update.png" alt="A screenshot showing the different server versions together with the date when they were taken" /></p>
+
+<h3 id="2023-01-21-at-1339-utc">2023-01-21 at 13:39 UTC</h3>
+
+<p>As we deemed the issue fixed, we informed EA Security accordingly.</p>
+
+<p><img src="/blog/assets/images/posts/vanilla-unrestricted-server-script/email-sent-fixed.png" alt="Screenshot of an email we sent to EA Security as we noticed the issue resolved on our end" /></p>
+
+<h3 id="2023-01-23-at-2023-utc">2023-01-23 at 20:23 UTC</h3>
+
+<p>And two days later we got confirmation from EA Security that a patch was in place :D</p>
+
+<p><img src="/blog/assets/images/posts/vanilla-unrestricted-server-script/email-recv-fixed.png" alt="Screenshot of the email EA Security sent back to us confirm that a fix was in place" /></p>
+
+<h1 id="potential-attack-vectors">Potential attack vectors:</h1>
+
+<p>Now with the timeline out of the way, let’s discuss the severity of the vulnerability. Essentially it gives full access to the servers’ Squirrel VM meaning that any Squirrel function on the server can be called and in-game data can be extracted.</p>
+
+<p>What follows are a small set of attacks this vulnerability would have allowed for. Note that we only tested them locally using Northstar. We never tested them on the actual public Titanfall2 game servers as it could cause potential damage that we do not want to be held responsible for.</p>
+
+<h2 id="messing-with-player-stats">Messing with player stats</h2>
+
+<p>As the game server is able to set player stats, this vulnerability allows for arbitrarily changing player stats. In particular we observed some people trying to boost their in-game level with it. Even more so, some players would simply copy-and-paste commands commonly used to set player levels in Northstar into their console in public lobbies on public Titanfall2 servers, resulting in changing other player’s levels by accident.</p>
+
+<p>Setting the player level too high whether by accident or on purpose is an issue as it causes the gameserver to reject the player due to incorrect player data. Essentially this means that that player is completely locked out of multiplayer.</p>
+
+<p>When fixing the vulnerability Respawn added a workaround for this case. Now, players with a too high player level will simply show the according gen. Further the exploit allowed for unlocking all skins, banners and emblems, including the developer one. As a result of this, a player having a dev emblem does no longer indicate that they are actually a developer.</p>
+
+<p><img src="/blog/assets/images/posts/vanilla-unrestricted-server-script/player-fakedev1.png" alt="Screenshot of a player being above max level and having a developer batch" /></p>
+
+<p><img src="/blog/assets/images/posts/vanilla-unrestricted-server-script/player-fakedev2.png" alt="Screenshot of a player being above max level and having a developer batch" /></p>
+
+<h2 id="devtextbufferwrite--devtextbufferdumptofile">DevTextBufferWrite / DevTextBufferDumpToFile</h2>
+
+<p>To aid in debugging, Squirrel contains a few functions intended for developers. Here we take a specific look at two of those, <code class="language-plaintext highlighter-rouge">DevTextBufferWrite</code> and <code class="language-plaintext highlighter-rouge">DevTextBufferDumpToFile</code>.</p>
+
+<p>Note that these functions could have been executed only against the Titanfall2 game servers, not game clients. Furthermore, the server cannot tell the client to compile/execute scripts without a remote callback registered.</p>
+
+<p>With <code class="language-plaintext highlighter-rouge">DevTextBufferWrite</code> a developer can write a string to buffer and then save said buffer to a file using <code class="language-plaintext highlighter-rouge">DevTextBufferDumpToFile</code>. This means combining the two functions one can e.g. use</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>script DevTextBufferWrite("this is a test")
+script DevTextBufferDumpToFile("abc.txt")
+</code></pre></div></div>
+
+<p>to create a file called <code class="language-plaintext highlighter-rouge">abc.txt</code> which contains the text <code class="language-plaintext highlighter-rouge">this is a test</code>.</p>
+
+<p>Note that we are not limited to just the current folder. For the filename we can give the function any absolute pathname and as long as we have access to it, it will write the file to said path. Thankfully this function is limited to text, so we cannot use this to upload any binary file to the server.</p>
+
+<p>However what we can do is write a script to a batch file that will then download and run a secondary payload. The only thing still preventing us is that we need a way to execute that batch file.<br />
+To work around this, we could try to write it to the Windows user startup applications. This means that upon restarting the device, the file will be executed. However there’s yet another roadblock, as to write to a Windows user startup applications folder we need to know their username as it is part of the path.</p>
+
+<p>Should we know username for some reason, all we need to do to complete the attack is to simply run</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>script DevTextBufferWrite("start \"calc.exe\"")
+script DevTextBufferDumpToFile("C:\\Users\\USERNAME\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\test.bat")
+</code></pre></div></div>
+
+<p>and upon restart our batch file is executed. In this example, it simply opens the calculator app but replacing this line with a PowerShell script to download and run a virus is all that is needed to take control of the server.</p>
+
+<p>Note that we cannot use</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%appdata%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\test.bat
+</code></pre></div></div>
+<p>as the path as <code class="language-plaintext highlighter-rouge">%appdata%</code> does not get resolved at all.</p>
+
+<p>Now given that this is about an attack on the server, the Windows user name could probably be bruteforced from a list of commonly used ones but assuming best practices, gameservers are usually set up to rebuild from a fresh image on reboot.</p>
+
+<p>Note that again this attack would only work against Titanfall2 game servers but not against game clients.</p>
+
+<p>For reference in Northstar, <a href="https://github.com/R2Northstar/NorthstarLauncher/pull/211">these developer functions are blocked by default</a>.</p>
+
+<h2 id="clientcommand">ClientCommand</h2>
+
+<p>However, we do not even need to take full control of the gameserver to start attacking other clients.</p>
+
+<p>What makes the vulnerability especially bad is that in the security model of Titanfall2 unlike Northstar, the dedicated server is fully trusted and due to this the client accepts any commands from the server. This is for example used to connect a client to a server during matchmaking, where essentially the server sends a ClientCommand that tells the client to connect to a specific server.</p>
+
+<p>Note that ClientCommand cannot be used to force script execution on the client since the retail game-clients do not have the <code class="language-plaintext highlighter-rouge">script_client</code>/<code class="language-plaintext highlighter-rouge">script_ui</code> functions. As such in an attack against ClientCommand we’re limited to certain commands like <code class="language-plaintext highlighter-rouge">connect</code>.</p>
+
+<p>In Northstar, ClientCommand is blocked meaning the server cannot tell the client to run any command at all. This is necessary as unlike standard Titanfall2 where only Respawn is hosting dedicated servers, anyone can host a game server in Northstar so in our security model, the game server is always untrusted.</p>
+
+<h2 id="stryder-session-token-stealing">Stryder session token stealing</h2>
+
+<p>When connecting to a gameserver, the unmodified retail game client sends it a valid Stryder session token on connect. Presumably this is done for some kind of authentication.</p>
+
+<p>Now using ClientCommand mentioned above, this means an attacker can use the <code class="language-plaintext highlighter-rouge">script</code> vulnerability to force all clients in a public match to connect to a server they host themselves.</p>
+
+<p>When the clients connect they then send the Stryder token which the attacker can then grab. With this token the attacker achieves limited access to the victim’s Titanfall2 account. The token can be used to make API calls on behalf of the victim against the Stryder Titanfall2 backend server.</p>
+
+<p>Around October 2022 we found out about the fact of clients sending Stryder token to game server and as such <a href="https://github.com/R2Northstar/NorthstarLauncher/pull/282">deployed a patch for Northstar that clears the token</a>, so that the client no longer send valid tokens to the gameserver. Further we restricted players to only the patched version by requiring players to update in order to play on Northstar.</p>
+
+<p>For the official public Titanfall2 game servers this method of sending the Stryder token would technically be fine under its security model as the server is fully trusted, so sending it a valid token is not an issue. However with the <code class="language-plaintext highlighter-rouge">script</code> vulnerability, this trust model fell apart as suddenly an attacker could gain control of the server, making it no longer trusted.</p>
+
+<h1 id="faq">FAQ:</h1>
+
+<blockquote>
+  <p><strong>Q:</strong> Why didn’t you publicly announce that vanilla Titanfall2 servers were insecure when you found out?</p>
+</blockquote>
+
+<p><strong>Answer:</strong> We followed (and were asked by EA Security to follow) the process of <em>Coordinated Vulnerability Disclosure</em>. <br />
+This means that the issue is reported confidentially to the affected party, in this case Respawn/EA and information about the vulnerability are only made public once there was enough time to implement a fix.</p>
+
+<p>Once we saw more public abuse of the exploit, we had an internal discussion about putting out a PSA to warn players about the potential of a vulnerability without disclosing how it works. Ultimately we settled on giving Respawn/EA a one week deadline. Thankfully the issue was patched before reaching the deadline and as such a PSA was no longer necessary.</p>
+
+<p> </p>
+
+<blockquote>
+  <p><strong>Q:</strong> With this exploit I could have played Frontier Defense on maps where it was never released, why didn’t you tell me about this? &gt;:(</p>
+</blockquote>
+
+<p><strong>Answer:</strong> This exploit allows for so much more than just playing unreleased map/mod combinations. As such letting anyone know about this publicly before it was patched would have been a huge security risk.</p>
+
+<p> </p>
+
+<blockquote>
+  <p><strong>Q:</strong> Can you recap again what the vulnerability was?</p>
+</blockquote>
+
+<p><strong>Answer:</strong> Titanfall2 game servers had a bug where any player could run Squirrel commands on server-side. Usually this should not happen as it completely breaks the security model of Titanfall2. This is essentially remote code execution (RCE) within the bounds of Titanfall2’s scripting language called Squirrel.</p>
+
+<h1 id="final-words">Final Words:</h1>
+
+<p>Congrats on making it to the end of the post. I hope you enjoyed the little tour into how we reported the script vulnerability to EA Security and Respawn, and worked with them to resolve it.
+At this point I want to give a shout-out again to Respawn and EA Security for listening to us and resolving the issue.</p>
+
+<p>Then of course special mention goes to <a href="https://github.com/zxcPandora"><em>zxcPandora</em></a> for originally finding the bug as well as <a href="https://github.com/emma-miler"><em>Emma</em></a> for doing some PoC testing, <a href="https://github.com/wolf109909"><em>wolf109909</em></a> and <a href="https://northstar.cool/"><em>NorthstarCN Team</em></a> for keeping us updated on usage of the exploit they found in the wild, <a href="https://github.com/Taskinoz"><em>Taskinoz</em></a> for reaching out to a Respawn employee directly, <a href="https://github.com/H0L0theBard"><em>H0L0</em></a> and <a href="https://github.com/PhilippHtz"><em>eRaid</em></a> for helping with proof-reading, and of course all the lovely Northstar developers and contributors as well as the rest of community as whole &lt;3</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/blog/tags/#security" class="page__taxonomy-item p-category" rel="tag">Security</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-02-21">February 21, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Titanfall2+Security%3A+Unrestricted+server+command+execution+via+Squirrel+Script%20https%3A%2F%2Fnorthstar.tf%2Fblog%2Fvanilla-unrestricted-server-script%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fvanilla-unrestricted-server-script%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <!--
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fvanilla-unrestricted-server-script%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  -->
+  
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fvanilla-unrestricted-server-script%2F&title=Titanfall2+Security%3A+Unrestricted+server+command+execution+via+Squirrel+Script" class="btn btn--reddit" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a class="btn btn--mastodon"><i class="fab fa-fw fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a>
+</section>
+
+<script src="/blog/assets/js/mastodon.js"></script>
+
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/one-year/" class="pagination--pager" title="Frontier News Network: One year already!
+">Previous</a>
+    
+    
+      <a href="/blog/two-years/" class="pagination--pager" title="Frontier News Network: Oh hey, it’s two years now!
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/three-years/" rel="permalink">Frontier News Network: Happy third birthday Northstar!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-01-27T00:00:00+00:00">January 27, 2025</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Yep, first official release was in December 2021, three years ago!
+
+
+
+During 2024, progress has been made on:
+
+  several features, such as mod auto-downloadi...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/sp-to-mp/" rel="permalink">Making an MP mode out of SP content
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-11-09T00:00:00+00:00">November 9, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Hello, dear community, Alystrasz here!
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/grunt-gamemode/" rel="permalink">Grunt mode
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-10-06T00:00:00+00:00">October 6, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Hello Northstar! I am EnderBoy9217 and here I will share with you the process of creating one of Northstar’s most recognizable mods, Grunt Mode 2.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/payload-gamemode/" rel="permalink">Payload gamemode
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-08-26T00:00:00+00:00">August 26, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Ayo! I am Zanieon and I have a funny and interesting story to tell about a custom gamemode for Northstar.
+
+How everything started
+
+
+  “Payload? What’s that Z...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/blog/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Northstar devs. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/blog/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

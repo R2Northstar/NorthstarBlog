@@ -1,0 +1,771 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Payload gamemode - Northstar blog</title>
+<meta name="description" content="Ayo! I am Zanieon and I have a funny and interesting story to tell about a custom gamemode for Northstar.  How everything started     “Payload? What’s that Zanieon?”.   So for those you actually never played the other TF2  (Team Fortress 2) or Overwatch for the matter, both games have this gamemode of same name in which one team prevents the other team from pushing a vehicle to its final destination.  This mode has been proven very interesting in both of those games due to the way its main objective works and how it creates a specific dynamism in gameplay. However, Titanfall never had said gamemode, no cut content or anything of the kind, zero clues in regards to that.  There have been previous attempts to make this mode in Titanfall. Another contributor, named cat_or_not, tried to make it around 2022 but back at that year, the navmeshes of the maps in Northstar were very broken and many times, the NPCs would fail to path properly. Ever since I joined (in February 2023), my main focus was entirely on the Frontier Defense gamemode, because my real motivation to join as a contributor was to make Frontier Defense work properly on Northstar, which back then wasn’t also working as intended due the same reason of navmeshes and other issues.  Payload coming to reality  So, due to me dedicating an entire year of my life into making Frontier Defense work, fixing up all problems with it and gaining experience in coding content for the game, I finally came into realization that I could probably attempt myself at doing such Payload gamemode because I’ve always had interest in playing said mode, despite never playing Team Fortress 2 or Overwatch in my life.  Case in point, at a random day, I consulted cat_or_not to see how far he went with his own version of the mode before starting anything on my own — if there was anything I could start from — but the code wasn’t touched ever since he lost motivation to work on it due to broken navmeshes. It was extremely bare-bones so starting from that code or building an entire new one from scratch would take equally long.  Speedrunning the code  A couple days after I did this consult, I decided to start writing the gamemode entirely from zero pratically. I had a very clear vision of what this gamemode should be and how it could be played with its own spice of Titanfall 2 on it; so I began writing the scripts, and here comes the funny part:     I was so hyped to see this thing working that I wrote the entire server and client logic within only 2 days non-stop!   Yes! Non-stop, meaning I also haven’t slept between both days while I did that, only taking the normal breaks any person would do (toilet, eat and drink).  That was actually only possible due to the entire work I did on Frontier Defense, as a lot of functions and code was adapted from there, alongside some logic from Amped Hardpoint gamemode too, with everything working on the basic level the way I conceptualized this mode with the touch of Titanfall 2 over it; it even attracted the attention of the Competitive players whose only gamemode to play is Capture The Flag.  Pretty much on the week that followed that happening, I did some rebalances and touches here and there and bam, there’s this fully brand new gamemode that never existed into the game actually fully functional now with the way it could play in Titanfall 2’s gameplay terms. This was probably my quickest speedrun of coding anything for Northstar project given the 2 day timespan, one does not simply drop a whole brand new gamemode that easily, but well, it was fun doing that.  The gamemode  The objective for the attacking team is to lead a Nuclear titan to the Harvester of the opposing team, to hopefully destroy it; the defending team must prevent this happening to secure the win! Like Team Fortress and Overwatch, the more attacking players around the Titan, the faster it is.    Now for the Titanfall touch:    defending team can steal batteries from the Titan to reinforce their harvester’s shield (meaning it won’t necessarily be destroyed if the Titan reaches it and triggers its nuclear explosion!);   attackers can use batteries on the Titan to shield it; while it is shielded, the Titan moves automatically, even without players being around;   both Titan and harvester shields can be damaged with conventional weapons.   Media              Sorry, your browser doesn&#39;t support embedded videos.     The Titan payload automatically moves towards the enemy harvester... as long as there   are allied pilots around it.             Sorry, your browser doesn&#39;t support embedded videos.     Defending team can steal batteries from the Titan to shield their harvester (and hopefully   make it survive any nuclear explosion).     Payload is playable now, you can install it using your favorite mod manager or download it from Thunderstore.  That’s it folks! It was fun writing this piece of story!">
+
+
+  
+  <meta property="article:author" content="Zanieon">
+  
+
+
+<!--
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Northstar blog">
+<meta property="og:title" content="Payload gamemode">
+<meta property="og:url" content="https://northstar.tf/blog/payload-gamemode/">
+-->
+
+
+  <meta property="og:description" content="Ayo! I am Zanieon and I have a funny and interesting story to tell about a custom gamemode for Northstar.  How everything started     “Payload? What’s that Zanieon?”.   So for those you actually never played the other TF2  (Team Fortress 2) or Overwatch for the matter, both games have this gamemode of same name in which one team prevents the other team from pushing a vehicle to its final destination.  This mode has been proven very interesting in both of those games due to the way its main objective works and how it creates a specific dynamism in gameplay. However, Titanfall never had said gamemode, no cut content or anything of the kind, zero clues in regards to that.  There have been previous attempts to make this mode in Titanfall. Another contributor, named cat_or_not, tried to make it around 2022 but back at that year, the navmeshes of the maps in Northstar were very broken and many times, the NPCs would fail to path properly. Ever since I joined (in February 2023), my main focus was entirely on the Frontier Defense gamemode, because my real motivation to join as a contributor was to make Frontier Defense work properly on Northstar, which back then wasn’t also working as intended due the same reason of navmeshes and other issues.  Payload coming to reality  So, due to me dedicating an entire year of my life into making Frontier Defense work, fixing up all problems with it and gaining experience in coding content for the game, I finally came into realization that I could probably attempt myself at doing such Payload gamemode because I’ve always had interest in playing said mode, despite never playing Team Fortress 2 or Overwatch in my life.  Case in point, at a random day, I consulted cat_or_not to see how far he went with his own version of the mode before starting anything on my own — if there was anything I could start from — but the code wasn’t touched ever since he lost motivation to work on it due to broken navmeshes. It was extremely bare-bones so starting from that code or building an entire new one from scratch would take equally long.  Speedrunning the code  A couple days after I did this consult, I decided to start writing the gamemode entirely from zero pratically. I had a very clear vision of what this gamemode should be and how it could be played with its own spice of Titanfall 2 on it; so I began writing the scripts, and here comes the funny part:     I was so hyped to see this thing working that I wrote the entire server and client logic within only 2 days non-stop!   Yes! Non-stop, meaning I also haven’t slept between both days while I did that, only taking the normal breaks any person would do (toilet, eat and drink).  That was actually only possible due to the entire work I did on Frontier Defense, as a lot of functions and code was adapted from there, alongside some logic from Amped Hardpoint gamemode too, with everything working on the basic level the way I conceptualized this mode with the touch of Titanfall 2 over it; it even attracted the attention of the Competitive players whose only gamemode to play is Capture The Flag.  Pretty much on the week that followed that happening, I did some rebalances and touches here and there and bam, there’s this fully brand new gamemode that never existed into the game actually fully functional now with the way it could play in Titanfall 2’s gameplay terms. This was probably my quickest speedrun of coding anything for Northstar project given the 2 day timespan, one does not simply drop a whole brand new gamemode that easily, but well, it was fun doing that.  The gamemode  The objective for the attacking team is to lead a Nuclear titan to the Harvester of the opposing team, to hopefully destroy it; the defending team must prevent this happening to secure the win! Like Team Fortress and Overwatch, the more attacking players around the Titan, the faster it is.    Now for the Titanfall touch:    defending team can steal batteries from the Titan to reinforce their harvester’s shield (meaning it won’t necessarily be destroyed if the Titan reaches it and triggers its nuclear explosion!);   attackers can use batteries on the Titan to shield it; while it is shielded, the Titan moves automatically, even without players being around;   both Titan and harvester shields can be damaged with conventional weapons.   Media              Sorry, your browser doesn&#39;t support embedded videos.     The Titan payload automatically moves towards the enemy harvester... as long as there   are allied pilots around it.             Sorry, your browser doesn&#39;t support embedded videos.     Defending team can steal batteries from the Titan to shield their harvester (and hopefully   make it survive any nuclear explosion).     Payload is playable now, you can install it using your favorite mod manager or download it from Thunderstore.  That’s it folks! It was fun writing this piece of story!">
+
+
+
+  <meta property="og:image" content="https://northstar.tf/blog/assets/images/page-header-image.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2024-08-26T00:00:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2024-08-26T14:24:00+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://northstar.tf/blog/payload-gamemode/">
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/blog/feed.xml" type="application/atom+xml" rel="alternate" title="Northstar blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/blog/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="120x120" href="/blog/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/blog/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/blog/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/blog/">
+          Northstar blog
+          <span class="site-subtitle">Your latest information about Titanfall2 and Northstar.</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://northstar.tf">Main website</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/blog/assets/images/page-header-image.jpg" alt="Payload gamemode" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://northstar.tf/blog/">
+        <img src="/blog/assets/images/zanieon-profile.jpeg" alt="Zanieon" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://northstar.tf/blog/" itemprop="url">Zanieon</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Just some level designer around.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Troy</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://www.artstation.com/zanieon" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/Zanieon" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github-square" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Payload gamemode">
+    <meta itemprop="description" content="Ayo! I am Zanieon and I have a funny and interesting story to tell about a custom gamemode for Northstar.How everything started  “Payload? What’s that Zanieon?”.So for those you actually never played the other TF2 (Team Fortress 2) orOverwatchfor the matter, both games have this gamemode of same name in which one team prevents theother team from pushing a vehicle to its final destination.This mode has been proven very interesting in both of those games due to the way its mainobjective works and how it creates a specific dynamism in gameplay. However, Titanfall neverhad said gamemode, no cut content or anything of the kind, zero clues in regards to that.There have been previous attempts to make this mode in Titanfall.Another contributor, named cat_or_not, tried to make it around 2022but back at that year, the navmeshes of the maps in Northstar were very broken and many times, the NPCswould fail to path properly.Ever since I joined (in February 2023), my main focus was entirely on the Frontier Defense gamemode,because my real motivation to join as a contributor was to make Frontier Defense work properlyon Northstar, which back then wasn’t also working as intended due the same reason of navmeshes andother issues.Payload coming to realitySo, due to me dedicating an entire year of my life into making Frontier Defense work, fixing upall problems with it and gaining experience in coding content for the game, I finally came intorealization that I could probably attempt myself at doing such Payload gamemode because I’vealways had interest in playing said mode, despite never playing Team Fortress 2 or Overwatchin my life.Case in point, at a random day, I consulted cat_or_not to see how far he went with his ownversion of the mode before starting anything on my own — if there was anything I could startfrom — but the code wasn’t touched ever since he lost motivation to work on it due to brokennavmeshes. It was extremely bare-bones so starting from that code or building an entire newone from scratch would take equally long.Speedrunning the codeA couple days after I did this consult, I decided to start writing the gamemode entirely fromzero pratically. I had a very clear vision of what this gamemode should be and how it could beplayed with its own spice of Titanfall 2 on it; so I began writing the scripts, and here comes thefunny part:  I was so hyped to see this thing working that I wrote the entire server and clientlogic within only 2 days non-stop!Yes! Non-stop, meaning I also haven’t slept between both days while I did that, only taking thenormal breaks any person would do (toilet, eat and drink).That was actually only possible due to the entire work I did on Frontier Defense, as alot of functions and code was adapted from there, alongside some logic from Amped Hardpointgamemode too, with everything working on the basic level the way I conceptualized this modewith the touch of Titanfall 2 over it; it even attracted the attention of the Competitive playerswhose only gamemode to play is Capture The Flag.Pretty much on the week that followed that happening, I did some rebalances and toucheshere and there and bam, there’s this fully brand new gamemode that never existed into thegame actually fully functional now with the way it could play in Titanfall 2’s gameplay terms.This was probably my quickest speedrun of coding anything for Northstar project given the 2 daytimespan, one does not simply drop a whole brand new gamemode that easily, but well, it wasfun doing that.The gamemodeThe objective for the attacking team is to lead a Nuclear titan to the Harvester of the opposingteam, to hopefully destroy it; the defending team must prevent this happening to secure the win!Like Team Fortress and Overwatch, the more attacking players around the Titan, the faster it is.Now for the Titanfall touch:  defending team can steal batteries from the Titan to reinforce their harvester’s shield (meaningit won’t necessarily be destroyed if the Titan reaches it and triggers its nuclear explosion!);  attackers can use batteries on the Titan to shield it; while it is shielded, the Titan movesautomatically, even without players being around;  both Titan and harvester shields can be damaged with conventional weapons.Media        Sorry, your browser doesn&#39;t support embedded videos.  The Titan payload automatically moves towards the enemy harvester... as long as there  are allied pilots around it.        Sorry, your browser doesn&#39;t support embedded videos.  Defending team can steal batteries from the Titan to shield their harvester (and hopefully  make it survive any nuclear explosion).Payload is playable now, you can install it using your favorite mod manager or download itfrom Thunderstore.That’s it folks! It was fun writing this piece of story!">
+    <meta itemprop="datePublished" content="2024-08-26T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2024-08-26T14:24:00+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://northstar.tf/blog/payload-gamemode/" class="u-url" itemprop="url">Payload gamemode
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-08-26T00:00:00+00:00">August 26, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p>Ayo! I am Zanieon and I have a funny and interesting story to tell about a custom gamemode for Northstar.</p>
+
+<h2 id="how-everything-started">How everything started</h2>
+
+<blockquote>
+  <p>“Payload? What’s that Zanieon?”.</p>
+</blockquote>
+
+<p>So for those you actually never played the other TF2 
+(<a href="https://wiki.teamfortress.com/wiki/Payload">Team Fortress 2</a>) or
+<a href="https://overwatch-archive.fandom.com/wiki/Payload">Overwatch</a>
+for the matter, both games have this gamemode of same name in which one team prevents the
+other team from pushing a vehicle to its final destination.</p>
+
+<p>This mode has been proven very interesting in both of those games due to the way its main
+objective works and how it creates a specific dynamism in gameplay. However, Titanfall never
+had said gamemode, no cut content or anything of the kind, zero clues in regards to that.</p>
+
+<p>There have been previous attempts to make this mode in Titanfall.
+Another contributor, named <a href="https://github.com/catornot"><em>cat_or_not</em></a>, tried to make it around 2022
+but back at that year, the navmeshes of the maps in Northstar were very broken and many times, the NPCs
+would fail to path properly.
+Ever since I joined (in February 2023), my main focus was entirely on the Frontier Defense gamemode,
+because my real motivation to join as a contributor was to make Frontier Defense work properly
+on Northstar, which back then wasn’t also working as intended due the same reason of navmeshes and
+other issues.</p>
+
+<h2 id="payload-coming-to-reality">Payload coming to reality</h2>
+
+<p>So, due to me dedicating an entire year of my life into making Frontier Defense work, fixing up
+all problems with it and gaining experience in coding content for the game, I finally came into
+realization that I could probably attempt myself at doing such Payload gamemode because I’ve
+always had interest in playing said mode, despite never playing Team Fortress 2 or Overwatch
+in my life.</p>
+
+<p>Case in point, at a random day, I consulted <em>cat_or_not</em> to see how far he went with his own
+version of the mode before starting anything on my own — if there was anything I could start
+from — but the code wasn’t touched ever since he lost motivation to work on it due to broken
+navmeshes. It was extremely bare-bones so starting from that code or building an entire new
+one from scratch would take equally long.</p>
+
+<h2 id="speedrunning-the-code">Speedrunning the code</h2>
+
+<p>A couple days after I did this consult, I decided to start writing the gamemode entirely from
+zero pratically. I had a very clear vision of what this gamemode should be and how it could be
+played with its own spice of Titanfall 2 on it; so I began writing the scripts, and here comes the
+funny part:</p>
+
+<blockquote>
+  <p><u>I was so hyped to see this thing working that I wrote the entire server and client
+logic within only 2 days non-stop!</u></p>
+</blockquote>
+
+<p>Yes! Non-stop, meaning I also haven’t slept between both days while I did that, only taking the
+normal breaks any person would do (toilet, eat and drink).</p>
+
+<p>That was actually only possible due to the entire work I did on Frontier Defense, as a
+lot of functions and code was adapted from there, alongside some logic from Amped Hardpoint
+gamemode too, with everything working on the basic level the way I conceptualized this mode
+with the touch of Titanfall 2 over it; it even attracted the attention of the Competitive players
+whose only gamemode to play is Capture The Flag.</p>
+
+<p>Pretty much on the week that followed that happening, I did some rebalances and touches
+here and there and bam, there’s this fully brand new gamemode that never existed into the
+game actually fully functional now with the way it could play in Titanfall 2’s gameplay terms.
+This was probably my quickest speedrun of coding anything for Northstar project given the 2 day
+timespan, one does not simply drop a whole brand new gamemode that easily, but well, it was
+fun doing that.</p>
+
+<h2 id="the-gamemode">The gamemode</h2>
+
+<p>The objective for the attacking team is to lead a Nuclear titan to the Harvester of the opposing
+team, to hopefully destroy it; the defending team must prevent this happening to secure the win!
+Like Team Fortress and Overwatch, the more attacking players around the Titan, the faster it is.</p>
+
+<p><img src="/blog/assets/images/posts/payload/defense.png" alt="Pilots hide behind a shield from attackers and incoming Titan" /></p>
+
+<p>Now for the Titanfall touch:</p>
+<ul>
+  <li>defending team can steal batteries from the Titan to reinforce their harvester’s shield (meaning
+it won’t necessarily be destroyed if the Titan reaches it and triggers its nuclear explosion!);</li>
+  <li>attackers can use batteries on the Titan to shield it; while it is shielded, the Titan moves
+automatically, even without players being around;</li>
+  <li>both Titan and harvester shields can be damaged with conventional weapons.</li>
+</ul>
+
+<h3 id="media">Media</h3>
+
+<style>
+.video_legend {
+  font-size: 0.8em;
+  font-style: italic;
+  text-align: center;
+}
+</style>
+
+<video autoplay="" muted="" loop="" style="max-width: 100%">
+    <source src="/blog/assets/video/posts/payload/titan_stops.webm" type="video/webm" />
+    Sorry, your browser doesn't support embedded videos.
+</video>
+<p class="video_legend">
+  The Titan payload automatically moves towards the enemy harvester... as long as there
+  are allied pilots around it.
+</p>
+
+<video autoplay="" muted="" loop="" style="max-width: 100%">
+    <source src="/blog/assets/video/posts/payload/harvester_battery.webm" type="video/webm" />
+    Sorry, your browser doesn't support embedded videos.
+</video>
+<p class="video_legend">
+  Defending team can steal batteries from the Titan to shield their harvester (and hopefully
+  make it survive any nuclear explosion).
+</p>
+
+<hr />
+
+<p>Payload is playable <strong>now</strong>, you can install it using your favorite mod manager or <a href="https://thunderstore.io/c/northstar/p/Zanieon/PayloadGamemode/">download it
+from Thunderstore</a>.</p>
+
+<p>That’s it folks! It was fun writing this piece of story!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/blog/tags/#gamemode" class="page__taxonomy-item p-category" rel="tag">Gamemode</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-08-26">August 26, 2024</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Payload+gamemode%20https%3A%2F%2Fnorthstar.tf%2Fblog%2Fpayload-gamemode%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fpayload-gamemode%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <!--
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fpayload-gamemode%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  -->
+  
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fpayload-gamemode%2F&title=Payload+gamemode" class="btn btn--reddit" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a class="btn btn--mastodon"><i class="fab fa-fw fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a>
+</section>
+
+<script src="/blog/assets/js/mastodon.js"></script>
+
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/mad-update/" class="pagination--pager" title="State of progress: MAD
+">Previous</a>
+    
+    
+      <a href="/blog/grunt-gamemode/" class="pagination--pager" title="Grunt mode
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/three-years/" rel="permalink">Frontier News Network: Happy third birthday Northstar!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-01-27T00:00:00+00:00">January 27, 2025</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Yep, first official release was in December 2021, three years ago!
+
+
+
+During 2024, progress has been made on:
+
+  several features, such as mod auto-downloadi...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/sp-to-mp/" rel="permalink">Making an MP mode out of SP content
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-11-09T00:00:00+00:00">November 9, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Hello, dear community, Alystrasz here!
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/grunt-gamemode/" rel="permalink">Grunt mode
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-10-06T00:00:00+00:00">October 6, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Hello Northstar! I am EnderBoy9217 and here I will share with you the process of creating one of Northstar’s most recognizable mods, Grunt Mode 2.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/mad-update/" rel="permalink">State of progress: MAD
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-08-09T00:00:00+00:00">August 9, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Hey, Alystrasz here, to give you some information about the feature I’m currently developing, MAD!
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/blog/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Northstar devs. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/blog/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

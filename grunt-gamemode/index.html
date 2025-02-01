@@ -1,0 +1,783 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Grunt mode - Northstar blog</title>
+<meta name="description" content="Hello Northstar! I am EnderBoy9217 and here I will share with you the process of creating one of Northstar’s most recognizable mods, Grunt Mode 2.">
+
+
+  
+  <meta property="article:author" content="EnderBoy9217">
+  
+
+
+<!--
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Northstar blog">
+<meta property="og:title" content="Grunt mode">
+<meta property="og:url" content="https://northstar.tf/blog/grunt-gamemode/">
+-->
+
+
+  <meta property="og:description" content="Hello Northstar! I am EnderBoy9217 and here I will share with you the process of creating one of Northstar’s most recognizable mods, Grunt Mode 2.">
+
+
+
+  <meta property="og:image" content="https://northstar.tf/blog/assets/images/posts/gruntmode/banner.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2024-10-06T00:00:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2024-10-06T16:28:00+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://northstar.tf/blog/grunt-gamemode/">
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/blog/feed.xml" type="application/atom+xml" rel="alternate" title="Northstar blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/blog/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="120x120" href="/blog/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/blog/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/blog/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/blog/">
+          Northstar blog
+          <span class="site-subtitle">Your latest information about Titanfall2 and Northstar.</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://northstar.tf">Main website</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/blog/assets/images/posts/gruntmode/banner.png" alt="Grunt mode" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://northstar.tf/blog/">
+        <img src="/blog/assets/images/enderboy-profile.jpeg" alt="EnderBoy9217" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://northstar.tf/blog/" itemprop="url">EnderBoy9217</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Programs things sometimes.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Troy</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/EnderBoy9217" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github-square" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Grunt mode">
+    <meta itemprop="description" content="Hello Northstar! I am EnderBoy9217 and here I will share with you the process of creating one of Northstar’s most recognizable mods, Grunt Mode 2.">
+    <meta itemprop="datePublished" content="2024-10-06T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2024-10-06T16:28:00+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://northstar.tf/blog/grunt-gamemode/" class="u-url" itemprop="url">Grunt mode
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-10-06T00:00:00+00:00">October 6, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p>Hello Northstar! I am EnderBoy9217 and here I will share with you the process of creating one of Northstar’s most recognizable mods, Grunt Mode 2.</p>
+
+<h2 id="how-it-started">How it started</h2>
+
+<p>My friends and I have had this idea of this style of gameplay for a while.
+While we enjoy the fast pace of Titanfall, we also like the slower pace and more tactical gameplay of games like Battlefield or Squad at times, where instead of being a powerhouse, or a literal Titan, you were just another expendable soldier on the battlefield.
+Gamemodes like Titanfall 2’s Attrition mode captured the chaos of the large-scale battles seen in these other games, however, it failed to fully immerse you into these as simply another soldier.</p>
+
+<h3 id="grunt-mode-1">Grunt Mode [1]</h3>
+
+<p>Many people have asked where the “2” in Grunt Mode 2 came from.
+The reason is that the initial creation of the Grunt Mode was not my own, but instead created by another modder on the platform, VoyageDB.</p>
+
+<p>VoyageDB’s new <a href="https://thunderstore.io/c/northstar/p/VoyageDB_Modding_Home/Grunt_Mode/">Grunt Mode</a> gained massive popularity soon after its initial release.
+It featured an Attrition match with more enemy types, including AI Titans, prowlers, and gunships, spawning in droppods, and best of all, everyone had the same grunt models and skins.
+It took many measures to slow down the gameplay, not only through the inclusion of new AI, but also through removing boosts, player titans, double jump, limiting wallrun distance, and later removing weapon attachments.
+This mode also introduced the start of the classes mechanic, where you had a small chance to spawn with either two ticks that turned into your own personal plasma drones, or a shield captain’s mobile shield.
+Further it featured care packages, which would occasionally land and give out weapons pre-fitted with attachments.</p>
+
+<style>
+.video_legend {
+  font-size: 0.8em;
+  font-style: italic;
+  text-align: center;
+  margin-top: -15px !important;
+}
+</style>
+
+<p><img src="/blog/assets/images/posts/gruntmode/spawn.png" alt="A Militia grunt just landed and is ready for battle" /></p>
+<p class="video_legend">
+  A Militia grunt just landed and is ready for battle.
+</p>
+
+<h3 id="modding-a-mod">Modding a mod</h3>
+<p>I had been part of the Northstar community since the first day it launched, and since then I made a few small mods and customizations, such as bringing back the singleplayer zoom functionality of the double-take.
+After I had tried the new gamemode with my friends, I had decided to start customizing VoyageDB’s grunt mode (which was version 1.4.2 at the time).
+I wanted to change the mod to bring players as close as possible to the AI grunts.
+After some research into how Titanfall 2 grunts worked, which was tremendously helped by the <a href="https://titanfall.wiki.gg/wiki/IMC_Marine_Corps">Titanfall wiki</a>, I discovered that the AI grunts were already organized into 5 distinct classes, with in-game models and weapons assigned to each of them.
+Using this knowledge, I created a spin-off mod of VoyageDB’s where, instead of spawning with your own loadout, your loadout and grunt model was determined by your class, which was randomly assigned to you each time you spawned in.
+This made the gameplay significantly more grounded, as people were unable to force “meta” weapons like the CAR into every situation, and any player’s loadout could quickly be determined by simply how they looked.
+This change, combined with other balance change such as the full removal of wallrunning, and a significant increase to the health of many AI units, had changed and grounded the gameplay enough that it was seen by my players as a completely different experience than VoyageDB’s, at which point I started sending copies of what would later be called “Ender’s Grunt Mode 2”.</p>
+
+<h2 id="adding-new-features">Adding new features</h2>
+<p>After establishing the mod as its own experience, I included many features that myself and other players believed would help ground the experience.
+One of the first being the ability for AI to score points for their team.
+While some of VoyageDB’s code comments alluded that they had attempted to do this in their own mod, this seemingly small change completely changed how the game worked.
+The game was no longer a battle of players but instead a battle of teams, with each individual AI unit playing their own part. This also led to many people downloading the mod simply to play a solo experience akin to games like Ravenfield, as now it was possible to lose a match, even if you were the only player, based on your performance.</p>
+
+<p>While I added many features, I also later removed some of VoyageDB’s work which I found didn’t fit in well with my new direction toward grounded gameplay.
+I removed the care package system, removing powerful weapons such as the smart pistol out of rotation, limiting grenades, removing the ability to rodeo, and as previously mentioned, wallrunning was removed entirely.
+While the intention of the limited wallrun was to allow for the climbing of walls, it felt out-of-place, and the client’s underlying visual and audio language made the intended feature feel more like a bug.
+However, while most maps were almost entirely accessible through doors and stairways, many locations like rooftops were now entirely out-of-play by players, slightly reducing the amount of variety in the game.
+This shortcoming was later solved with the development of the most recognizable feature of grunt mode, its new economy and class system.
+New gamemodes and grunt versions of existing gamemodes like Hardpoint were also added to Grunt Mode 2 later in its development.</p>
+
+<p>Other features of VoyageDB’s were also iterated on.
+The spawning system was changed to include dropships for players, and camera angles for droppod spawns were reworked, and the exploding droppod door was re-added.
+VoyageDB continued to update their own Grunt Mode mod, and the spawning zones rework in that mod was actually added to Grunt Mode 2.</p>
+
+<p><img src="/blog/assets/images/posts/gruntmode/imc_death.png" alt="An IMC soldier is fired upon by two enemy soldiers" /></p>
+<p class="video_legend">
+  Things are looking bad for this IMC soldier.
+</p>
+
+<h3 id="the-class-system-and-new-game-economy">The class system and new game economy</h3>
+<p>As time went on, I developed other features into the mod.
+Learning from games like Counter Strike and Tom Clancy’s Rainbow Six Siege, I understood that randomness killed competition.
+As such, I reworked how the class system functioned, in such a way that you were able to pick your class before you spawned in.
+This led to a problem, however, where, as the Specialist class had the extra ability to throw personal drones, and the Shield Captain class had an extra mobile shield, there was very little reason to pick other classes, as these were objectively better and more interesting.
+Leaving these classes freely available to players, however, would severely limit the variety within a match, causing players to lean back toward being much more powerful than the average grunt.
+For this reason, the new economy system was created.
+At first, it simply locked these more powerful classes until you scored a certain amount of points, however, this only delayed the problem.
+The economy was then changed to be similar to Star Wars Battlefront II (2017), and ironically, the old economy system was similar to the 2005 Star Wars Battlefront II, which I had also played.
+Under the new economy system, the points you earned would be spent upon spawning in as these more powerful classes, forcing you to return to the main classes after you died.</p>
+
+<p>With this new class system I had created, it became easier than ever to introduce new and balanced classes into the game.
+Spectre classes were later released, with one of their key differences being the ability to double jump, intending to mimic the extreme jumps made by AI spectres.
+This new ability reopened unused parts of the maps which were lost by the removal of pilot movement, and for the first time in Grunt Mode, players could become pilots again if they acquired enough points.</p>
+
+<p>The class system was later expanded further with new classes with special unlock requirements.
+Existing classes also received upgrade trees, allowing you to specialize in a specific class, making them more powerful the more you played with it.
+These unlocks reset every round, however, this meant that people were spending more time in-game, experimenting with each class and what its unlocks had to offer.
+The system had expanded so much that it was unreasonable to play as every single class within a single match, even with the later extended match times, much less upgrade each class to its fullest potential.
+This kept replayability extremely high and helped shaped the mod from a fun gamemode that twisted Titanfall’s rules into its own experience that to many felt like an entirely different game compared to the main multiplayer, especially with the addition of the variety of grunt gamemodes.</p>
+
+<p><img src="/blog/assets/images/posts/gruntmode/ambush.png" alt="An IMC soldier is at a window, waiting for an enemy to shop up" /></p>
+<p class="video_legend">
+  An IMC soldier is patiently waiting for enemies to show up.
+</p>
+
+<h2 id="server-hosting-and-playtests">Server hosting and Playtests</h2>
+<p>Anyone who has had the playtester role in the Northstar Discord in 2023 was constantly bombarded by the updates and changes I was making to the mod, testing the mod weekly at times.
+However, as I did not have access to a 24/7 dedicated server, the playtests were really just a way to announce that a server running the mod was currently active.
+Thankfully, the two largest Northstar hosts at the time, <a href="https://discord.gg/5xgB45SbQY">ikhadhonger</a> and the <a href="https://linktr.ee/untamedaxis">Untamed Axis group</a> both offered to host the mod free of charge.
+I am still thankful for the time and money they spent helping to make this mod accessible to more people.
+At one point, when ikhadhonger was taking a break from server hosting, Untamed Axis had three servers all running the mod to help handle the large influx of players.</p>
+
+<p>While the outside server hosting provided access to the mod for a large number of players, the organized playtests still remained highly popular, to the point where the playtest server was consistently the Northstar server with the highest playercount.
+To adjust to this popularity, the server’s settings were changed to include longer match time, higher maximum player counts, and higher AI counts.
+I even enlisted the help of some community members who were some of the most active on the server, and they helped manage the server whenever it was online to prevent cheaters and ensure the server came back whenever it crashed (which was a lot).</p>
+
+<p>I would like to thank everyone who participated in the playtests, as their feedback drastically shaped, balanced, and improved the mod to be what it is now.
+Many people who participated in the playtest suggested new additions and changes through in-game chat, Discord, and in Cassius Scrungoman’s case, they reached out for help creating a <a href="https://youtu.be/XU2k-3hHpEE">video essay</a> promoting the mod and analyzing why its changes made it popular.
+If you are more interested in Grunt Mode or Titanfall modding in general, I highly recommend the video and its much more lively format than this wall of text.</p>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/XU2k-3hHpEE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
+
+<h2 id="the-limitations-and-roadblocks">The limitations and roadblocks</h2>
+<p>One of the most difficult part of creating the mod was that I was doing many things that Titanfall 2 simply wasn’t built for.
+Players were never intended to wear grunt or spectre models, and as such crashes would arise during certain actions, like rodeoing, or during the evacuation sequence.
+These problems force me to create workarounds, like subtly changing models during the evacuation sequence.
+Another heavy limitation was that I was dedicated to make the mod server-side only.
+This meant that any player could join the game without having to download any external mods.
+While this made programming some parts of the mod, especially the user interaction, exceptionally difficult, this decision greatly increased the overall accessibility and popularity of the mod.
+Although Mod-Auto-Download now exists within Northstar, most of the important features are already present through server-sided means.
+The only changes that I was unable to implement through this were improvements to the UI and custom viewmodels, both of which would have improved the user experience and feel of the mod, but wouldn’t cause any significant changes.</p>
+
+<p><img src="/blog/assets/images/posts/gruntmode/banner.png" alt="IMC soldiers are running together towards the enemy" /></p>
+<p class="video_legend">
+  The Militia is ready for some action.
+</p>
+
+<h2 id="the-continuation-of-voyagedbs-mod">The continuation of VoyageDB’s mod</h2>
+<p>I would still like to recognize that VoyageDB continued to support their mod for a long time after both it and Grunt Mode 2’s release.
+While VoyageDB themself has become unreachable, and the mod is currently incompatible with recent versions of Northstar, it also later introduced its own randomly spawning class system, which also began assigning players specific guns and equipment, and while it took aspects from Grunt Mode 2, VoyageDB kept their focus on making an enjoyable and more grounded spinoff of Titanfall’s original attrition mode, not shying away from giving players movement equipment like grappling hooks or stims, and not dictating any decisions based on the game’s lore.</p>
+
+<p>Creating Grunt Mode 2 was definitely an enjoyable hobby, and I am very thankful to everyone who helped make this idea a reality.
+This was my first large project, and I couldn’t have done it without the other contributors of Northstar, ikhadhonger and Untamed Zilla’s servers, the moderators of the playtesting server, and it wouldn’t have been shaped into what it is now without the feedback and analysis from Cassius, my friends, and the many community members who dedicated their time to playtesting through every single crash scenario.</p>
+
+<p>If you want to try the mod for yourself, it can be <a href="https://thunderstore.io/c/northstar/p/EnderBoy9217/Grunt_Mode_2/">downloaded on Thunderstore</a>.</p>
+
+<p>VoyageDB’s mod can also be <a href="https://thunderstore.io/c/northstar/p/VoyageDB_Modding_Home/Grunt_Mode/">downloaded on Thunderstore</a>, however it may only work for some old versions of Northstar.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/blog/tags/#gamemode" class="page__taxonomy-item p-category" rel="tag">Gamemode</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-10-06">October 6, 2024</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Grunt+mode%20https%3A%2F%2Fnorthstar.tf%2Fblog%2Fgrunt-gamemode%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fgrunt-gamemode%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <!--
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fgrunt-gamemode%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  -->
+  
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fgrunt-gamemode%2F&title=Grunt+mode" class="btn btn--reddit" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a class="btn btn--mastodon"><i class="fab fa-fw fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a>
+</section>
+
+<script src="/blog/assets/js/mastodon.js"></script>
+
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/payload-gamemode/" class="pagination--pager" title="Payload gamemode
+">Previous</a>
+    
+    
+      <a href="/blog/sp-to-mp/" class="pagination--pager" title="Making an MP mode out of SP content
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/three-years/" rel="permalink">Frontier News Network: Happy third birthday Northstar!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-01-27T00:00:00+00:00">January 27, 2025</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Yep, first official release was in December 2021, three years ago!
+
+
+
+During 2024, progress has been made on:
+
+  several features, such as mod auto-downloadi...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/sp-to-mp/" rel="permalink">Making an MP mode out of SP content
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-11-09T00:00:00+00:00">November 9, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Hello, dear community, Alystrasz here!
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/payload-gamemode/" rel="permalink">Payload gamemode
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-08-26T00:00:00+00:00">August 26, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Ayo! I am Zanieon and I have a funny and interesting story to tell about a custom gamemode for Northstar.
+
+How everything started
+
+
+  “Payload? What’s that Z...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/mad-update/" rel="permalink">State of progress: MAD
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-08-09T00:00:00+00:00">August 9, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Hey, Alystrasz here, to give you some information about the feature I’m currently developing, MAD!
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/blog/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Northstar devs. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/blog/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

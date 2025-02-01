@@ -1,0 +1,767 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>State of progress: MAD - Northstar blog</title>
+<meta name="description" content="Hey, Alystrasz here, to give you some information about the feature I’m currently developing, MAD!">
+
+
+  
+  <meta property="article:author" content="Alystrasz">
+  
+
+
+<!--
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Northstar blog">
+<meta property="og:title" content="State of progress: MAD">
+<meta property="og:url" content="https://northstar.tf/blog/mad-update/">
+-->
+
+
+  <meta property="og:description" content="Hey, Alystrasz here, to give you some information about the feature I’m currently developing, MAD!">
+
+
+
+  <meta property="og:image" content="https://northstar.tf/blog/assets/images/posts/mad-progress/missing-mod.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2024-08-09T00:00:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2024-08-09T18:43:00+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://northstar.tf/blog/mad-update/">
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/blog/feed.xml" type="application/atom+xml" rel="alternate" title="Northstar blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/blog/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="120x120" href="/blog/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/blog/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/blog/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/blog/">
+          Northstar blog
+          <span class="site-subtitle">Your latest information about Titanfall2 and Northstar.</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://northstar.tf">Main website</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/blog/assets/images/posts/mad-progress/missing-mod.png" alt="State of progress: MAD" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://northstar.tf/blog/">
+        <img src="/blog/assets/images/alystrasz-profile.jpg" alt="Alystrasz" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://northstar.tf/blog/" itemprop="url">Alystrasz</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Northstar developer passionate about Titanfall.<br />And music.<br />And French fries.<br />And beer.<br />And Titanfall.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Gridiron</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://remyraes.com/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/Alystrasz" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github-square" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://fosstodon.org/@remyr" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-mastodon-square" aria-hidden="true"></i><span class="label">Mastodon</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="State of progress: MAD">
+    <meta itemprop="description" content="Hey, Alystrasz here, to give you some information about the feature I’m currently developing, MAD!">
+    <meta itemprop="datePublished" content="2024-08-09T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2024-08-09T18:43:00+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://northstar.tf/blog/mad-update/" class="u-url" itemprop="url">State of progress: MAD
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-08-09T00:00:00+00:00">August 9, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p>Hey, Alystrasz here, to give you some information about the feature I’m currently developing, MAD!</p>
+
+<h3 id="what-is-mad">What is MAD?</h3>
+
+<p>MAD is an acronym that stands for <em>mod auto-downloading</em>; the idea of the feature is for your game to download
+mods required by the server as you join it.
+Some games are known to integrate this feature, like Counter-Strike or Team Fortress.</p>
+
+<p>On Northstar, currently, when joining a server requiring client-side mods, you will be displayed this message:</p>
+
+<p><img src="/blog/assets/images/posts/mad-progress/missing-mod.png" alt="Screenshot of the missing mod interface when joining a server" /></p>
+
+<p>This breaks your user experience since it forces you to go download the mod by yourself on the Internet (in practice,
+you won’t look for the missing mod, and just join another server).</p>
+
+<hr />
+
+<p>I’ve been working on this feature for two years (first commit on <a href="https://github.com/R2Northstar/NorthstarLauncher/pull/262/commits/114653052972383f9b154d96c581a2b90c483c87">Aug. 30th, 2022</a>), and progress is slow since there is much to be taken into
+consideration here: according to <code class="language-plaintext highlighter-rouge">git-hours</code>, I invested at least 258 hours in the launcher part and 197 hours in the
+scripting part.
+Progress is nonetheless being made: you might have noticed that we did some <em>production testing</em>
+of the feature earlier this year through the <a href="/blog/parkour-tournament">Parkour tournament</a> we organised.</p>
+
+<p>Let’s now check where we are on the development of MAD.</p>
+
+<h3 id="what-is-done">What is done?</h3>
+
+<h4 id="verification-system">Verification system</h4>
+
+<p>Don’t worry, Northstar is <em>not</em> going to download malware stuff to your computer! We have a verification system
+to avoid doing that.</p>
+
+<p>Basically, your game can only download mods that went through a verification process described here:
+<a href="https://github.com/R2Northstar/VerifiedMods">https://github.com/R2Northstar/VerifiedMods</a>;
+this process includes mod source code being public and release upload be automatic (by the way, if you want your
+gamemode to be auto-downloadable, don’t hesitate to submit a request in the aforementioned repository!)</p>
+
+<p>Even though it can always be improved, this verification system is functional and currently supports 5 mods for
+auto-downloading.</p>
+
+<h4 id="downloading-mods">Downloading mods</h4>
+
+<p>The implementation of this mod auto-downloading feature within Northstar was done in the two Northstar core components:</p>
+
+<ul>
+  <li>the <a href="https://github.com/R2Northstar/NorthstarLauncher"><strong>NorthstarLauncher</strong></a> native code (C++) is responsible for low-level calls: think file system access, mod archive fetching etc.</li>
+  <li>the <a href="https://github.com/R2Northstar/NorthstarMods"><strong>NorthstarMods</strong></a> script part (Squirrel VM) invokes native methods and updates UI accordingly.</li>
+</ul>
+
+<p>Here are the basic steps of the downloading process, when joining a server requiring mods you don’t locally have:</p>
+<ol>
+  <li>Retrieve the list of verified mods from GitHub;</li>
+  <li>Ensure missing mod can be downloaded;</li>
+  <li>Download missing mod archive file;</li>
+  <li>Ensure archive is not corrupted;</li>
+  <li>Extract mod archive to current player profile;</li>
+  <li>Reload mods to add downloaded mod to local mods collection;</li>
+  <li>Server can be joined.</li>
+</ol>
+
+<p>As you can see on the video below, mod downloading actually works™.</p>
+
+<video controls="" style="max-width: 100%">
+    <source src="/blog/assets/video/posts/mad/autodl-parkour-example.webm" type="video/webm" />
+    Sorry, your browser doesn't support embedded videos.
+</video>
+
+<p>Ok, I admit things go fast! Here’s another example with a bigger mod (a custom map reusing assets of a single
+player level):</p>
+
+<video controls="" style="max-width: 100%">
+    <source src="/blog/assets/video/posts/mad/autodl-s2s-example.webm" type="video/webm" />
+    Sorry, your browser doesn't support embedded videos.
+</video>
+
+<h3 id="whats-left-to-be-done">What’s left to be done?</h3>
+
+<p>So, why isn’t MAD public yet?</p>
+
+<p>Actually, it is deployed, but shielded behind a configuration variable (you have to type <code class="language-plaintext highlighter-rouge">allow_mod_auto_download 1</code>
+in your console to enable it) because we feel like some stuff is missing:</p>
+
+<h4 id="assets-reloading-mad-only-working-for-gamemodes-and-basic-maps">Assets reloading (mad only working for gamemodes and basic maps)</h4>
+
+<p>Currently, the game is not able to reload assets (sounds for instance) without restarting, it means that if
+you download a mod including sound assets through MAD, your game will just crash.</p>
+
+<h4 id="mod-versions">Mod versions</h4>
+
+<p>If you join a server requiring <code class="language-plaintext highlighter-rouge">v1.1.0</code> of a given mod but you already have <code class="language-plaintext highlighter-rouge">v1.0.0</code> installed, the game should
+disable your <code class="language-plaintext highlighter-rouge">v1.0.0</code> version, and install <code class="language-plaintext highlighter-rouge">v1.1.0</code> through MAD; the problem is that the game is currently not
+able to distinguish between multiple versions of a same mod: mod handling code has to be rewritten to take mod
+versions into account.</p>
+
+<h6 id="example">Example</h6>
+
+<p>Currently, to enable the <code class="language-plaintext highlighter-rouge">Parkour</code> mod, you would have to call the following function:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">NSSetModEnabled</span><span class="p">(</span><span class="dl">"</span><span class="s2">Parkour</span><span class="dl">"</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>But this won’t work if you have several versions of the <code class="language-plaintext highlighter-rouge">Parkour</code> mod installed.
+To fix that, the idea is to add a “version” parameter to the game interface, as such:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">NSSetModEnabled</span><span class="p">(</span><span class="dl">"</span><span class="s2">Parkour</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">1.1.0</span><span class="dl">"</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>MAD development is tracked on this <a href="https://github.com/R2Northstar/Northstar/issues/674">GitHub issue</a>, don’t
+hesitate to comment it, or to reach me on Discord!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/blog/tags/#mad" class="page__taxonomy-item p-category" rel="tag">MAD</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-08-09">August 9, 2024</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=State+of+progress%3A+MAD%20https%3A%2F%2Fnorthstar.tf%2Fblog%2Fmad-update%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fmad-update%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <!--
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fmad-update%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  -->
+  
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fmad-update%2F&title=State+of+progress%3A+MAD" class="btn btn--reddit" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a class="btn btn--mastodon"><i class="fab fa-fw fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a>
+</section>
+
+<script src="/blog/assets/js/mastodon.js"></script>
+
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/parkour-tournament/" class="pagination--pager" title="Birthday’s Parkour tournament
+">Previous</a>
+    
+    
+      <a href="/blog/payload-gamemode/" class="pagination--pager" title="Payload gamemode
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/three-years/" rel="permalink">Frontier News Network: Happy third birthday Northstar!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-01-27T00:00:00+00:00">January 27, 2025</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Yep, first official release was in December 2021, three years ago!
+
+
+
+During 2024, progress has been made on:
+
+  several features, such as mod auto-downloadi...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/sp-to-mp/" rel="permalink">Making an MP mode out of SP content
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-11-09T00:00:00+00:00">November 9, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Hello, dear community, Alystrasz here!
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/grunt-gamemode/" rel="permalink">Grunt mode
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-10-06T00:00:00+00:00">October 6, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Hello Northstar! I am EnderBoy9217 and here I will share with you the process of creating one of Northstar’s most recognizable mods, Grunt Mode 2.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/payload-gamemode/" rel="permalink">Payload gamemode
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-08-26T00:00:00+00:00">August 26, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Ayo! I am Zanieon and I have a funny and interesting story to tell about a custom gamemode for Northstar.
+
+How everything started
+
+
+  “Payload? What’s that Z...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/blog/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Northstar devs. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/blog/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
