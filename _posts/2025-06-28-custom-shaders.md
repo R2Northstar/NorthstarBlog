@@ -106,7 +106,14 @@ While RoyalBlue and me were working on porting Titanfall 1 maps, we quickly ran 
 You see, the map we were starting with was `mp_runoff`, a Titanfall 1 map that quite prominently displays a *water* treatment facility where you traverse the canals of said facility which are filled with a bit of water.
 In the initial map file port from RoyalBlue, the water wasn't visible, but after a lot of tinkering after I finished the first test scripts to port the Materials from Titanfall 1 to Titanfall 2, the water became visible, sadly not in its Titanfall 1 glory, which is where shaders come into play.
 
-In Titanfall 1 the water shader is a VMT shader, trying to tell a Titanfall 2 VMT material to use said water shader crashes Titanfall 2.
+<p style="display:flex;justify-content:center">
+    <img src="{{ 'assets/images/posts/custom-shaders/initial-water.png' | relative_url }}" alt="Initial water shader, using a test texture made in paint." />
+</p>
+<p class="img_legend">
+  "Basically i used a test texture i made in paint to see if it would propably load the water mesh"
+</p>
+
+In Titanfall 1, the water shader is a VMT shader, trying to tell a Titanfall 2 VMT material to use said water shader crashes Titanfall 2.
 Why?
 
 Well, turns out the VMT shader files for the water shader simply don't exist in Titanfall 2, but after RoyalBlue did some digging in the game, it turned out the game still seems to try to load those files.
@@ -144,7 +151,7 @@ This was the point where motivation also kinda went away for trying anything sha
 Getting literally any news on shader things would take over 10 months.
 
 In that time, I on and off tried new ideas for the water shader again and again but nothing ever worked.
-So we decided to (for now) keep the simple refract water I put together in VMTs, video attached: while this wasn't a custom shader, it was ok for now, and was good enough to make me not completely waste my time trying to get custom shaders working:
+So we decided to (for now) keep the simple refract water I put together in VMTs, video attached: while this wasn't a custom shader, it was ok for the moment, and good enough to make me not completely waste my time trying to get custom shaders working:
 
 <video muted controls style="max-width: 100%">
     <source src="{{ 'assets/video/posts/custom-shaders/basic_water.mp4' | relative_url }}"
