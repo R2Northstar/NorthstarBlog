@@ -24,8 +24,51 @@ I will only talk about Vertex- and Pixel shaders here (VS and PS respectivly) as
 
 So what do these fancy words even mean you might ask?
 
+<style>
+.img_legend {
+  font-size: 0.8em !important;
+  font-style: italic;
+  text-align: center;
+  margin-top: -15px !important;
+}
+.video_legend {
+  font-size: 0.8em !important;
+  font-style: italic;
+  text-align: center;
+}
+</style>
+
+<p style="display:flex;justify-content:center">
+    <img src="{{ 'assets/images/posts/custom-shaders/example.png' | relative_url }}" alt="A white, floating cube." />
+</p>
+<p class="img_legend">
+  To explain these types, we will also use this cube as an example.
+</p>
+
 Vertex shaders in very basic terms are able to modify the basic “shape” of a 3D object in a game every frame.
+
+<video autoplay muted loop style="max-width: 100%">
+    <source src="{{ 'assets/video/posts/custom-shaders/wobble.mp4' | relative_url }}"
+            type="video/mp4"
+    >
+    Sorry, your browser doesn't support embedded videos.
+</video>
+<p class="video_legend">
+  This is our cube with a simple vertex shader applied that makes the mesh wobble a bit.
+</p>
+
 Pixel shaders basically does the same but for pixels on said mesh, to for example give the cube a anodized metal finish look, it can use just math for this, or textures that then do alot of heavy math to calculate the finished look of your cube.
+
+<video autoplay muted loop style="max-width: 100%">
+    <source src="{{ 'assets/video/posts/custom-shaders/ps.mp4' | relative_url }}"
+            type="video/mp4"
+    >
+    Sorry, your browser doesn't support embedded videos.
+</video>
+<p class="video_legend">
+  And now with the pixel shader ontop of that, we also have it change its look each frame.
+</p>
+
 
 I wont go into detail on all the other shader types that exist because there is quite alot more but i will leave you with a small fun fact!
 Ever wonder why exactly Graphics Cards were used so extensivly for crypto mining?
@@ -45,6 +88,13 @@ For example, the vmt pixel shader “unlittwotexture” is over 1 gigabytes big,
 The reason?
 In the vmt shader there are over 100k different compiled shader files in the so called “vcs” file (ValveCompiledShader), while the rpak shader has... 8.
 vmt shaders are basically legacy source engine things, while the rpak shaders are something respawn themselfs added to the engine.
+
+<p style="display:flex;justify-content:center">
+    <img src="{{ 'assets/images/posts/custom-shaders/shader-size.png' | relative_url }}" alt="Size comparison of VMT and RPAK shaders, with the least being smaller." />
+</p>
+<p class="img_legend">
+  Rpak shaders are indeed much smaller than VMT shaders.
+</p>
 
 # First attempts
 
@@ -76,6 +126,15 @@ In parallel with all of this the people behind repak, a piece of software that a
 This was the point where motivation also kinda went away for trying anything shader related, and RoyalBlue and me deciced to simply stop trying to get the water shader working for now and in the future possibly port it to the rpak shader system if we can figure that out.
 Getting literally any news on shader things would take over 10 months.
 In that time i on and off tried new ideas for the water shader again and again but nothing ever worked.
+So we decided to for now keep the simple refract water i put together in vmts for now, video attached, while this wasnt a custom shader it was ok for now and was good enough to make me not completely waste my time trying to get custom shaders working.
+
+<video muted controls style="max-width: 100%">
+    <source src="{{ 'assets/video/posts/custom-shaders/basic_water.mp4' | relative_url }}"
+            type="video/webm"
+    >
+    Sorry, your browser doesn't support embedded videos.
+</video>
+
 Somewhere in this timeline a man, a legend, emerged... Amos, the founder of r5reloaded, the northstar equivalent for Apex Legends, he started to contribute alot to repak and somewhere in thoose months made it actually properly pack shaders in a custom “.msw” file format, said format was made by rexx and rika for their new piece of software “rsx” which would replace LegionPlus as “the” program to export files from Apex and Titanfall 2 .rpak files.
 Which brings us to...
 
@@ -127,6 +186,18 @@ Later on i also went on to make some more debug shaders to debug more informatio
     >
     Sorry, your browser doesn't support embedded videos.
 </video>
+
+---
+
+<video controls muted style="max-width: 100%">
+    <source src="{{ 'assets/video/posts/custom-shaders/vmt-to-rpak-fail.mp4' | relative_url }}"
+            type="video/mp4"
+    >
+    Sorry, your browser doesn't support embedded videos.
+</video>
+<p class="video_legend">
+  Bonus: trying to port the original vmt shader to the rpak system but failing epicly.
+</p>
 
 ## The future
 
