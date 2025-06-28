@@ -104,25 +104,40 @@ new changed shader.
 A couple minutes after the shaders first worked ingame i decided to try something useful, visualizing the Lightmaps (a integral part to making shadows and lights look good ingame) of the map.
 A single line change in the world shader later we had a shader that just rendered one part of the Lightmap data ingame.
 
-MEDIA
+<img src="{{ 'assets/images/posts/custom-shaders/lightmap-shader.png' | relative_url }}" alt="Screenshot showcasing a shader rendering one part of the Lightmap data ingame" />
 
 Ok, this was cool, we had something to finally visualize alot of thing that before this we had to use programms like renderdoc for, to even remotely see if something like the lightmaps was not quite right but still... where is the fun in something that allows infinite customizablity if you dont mess with it.
 So a couple minutes later i found a good looking shader online which renders a mandelbrot fractal, ported it to hlsl and integrated it into the main world pixel shader for the map.
 I think a video of it does it more justice.
 
-MEDIA
+<video muted controls style="max-width: 100%">
+    <source src="{{ 'assets/video/posts/custom-shaders/mandelbrot.mp4' | relative_url }}"
+            type="video/webm"
+    >
+    Sorry, your browser doesn't support embedded videos.
+</video>
 
 This was it, a fully procedual fractal, no textures used, all done in shader code with math, something that previously wouldve taken possibly hundreds of megabytes in animated vmt was now just 12kb big and a shader that performed even better then a animated vmt would.
 
 Later on i also went on to make some more debug shaders to debug more information about the world materials, for example one that cycles through multiple important textures in the material.
 
-MEDIA
+<video muted controls style="max-width: 100%">
+    <source src="{{ 'assets/video/posts/custom-shaders/debug.mp4' | relative_url }}"
+            type="video/webm"
+    >
+    Sorry, your browser doesn't support embedded videos.
+</video>
 
 ## The future
 
 Since all this i have made some more custom shaders, such as porting the Balatro background shader to Titanfall as a camo.
 
-MEDIA
+<video muted controls style="max-width: 100%">
+    <source src="{{ 'assets/video/posts/custom-shaders/balatro.mp4' | relative_url }}"
+            type="video/webm"
+    >
+    Sorry, your browser doesn't support embedded videos.
+</video>
 
 But all this is pale in comparison what the entire community can do with shaders with proper ressources and tools for this process.
 In the coming week i will also start releasing a proper guide for modders to both make and integrate custom shaders into their projects, be it maps or just cosmetic mods.
