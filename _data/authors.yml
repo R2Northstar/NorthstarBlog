@@ -58,3 +58,14 @@ EnderBoy9217:
       - label: "GitHub"
         icon: "fab fa-fw fa-github-square"
         url: "https://github.com/EnderBoy9217"
+
+4V:
+  name     : "FourthVolt"
+  avatar   : "/assets/images/4V.jpg"
+  bio      : "Hi, im EM4V. I do a bit of Titanfall 2 modding, code trash and make 3d models."
+  location : "Runoff"
+  email    :
+  links:
+      - label: "GitHub"
+        icon: "fab fa-fw fa-github-square"
+        url: "https://github.com/EM4Volts"
