@@ -1,8 +1,8 @@
 ---
 title: "Bringing custom shaders to Northstar"
 header:
-  image: /assets/images/page-header-image.jpg
-  og_image: /assets/images/page-header-image.jpg
+  image: /assets/images/posts/custom-shaders/banner.png
+  og_image: /assets/images/posts/custom-shaders/banner.png
 tags:
 author: 4V
 last_modified_at: 2025-06-28T15:43:00-01:00
