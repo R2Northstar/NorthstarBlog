@@ -181,6 +181,10 @@ From here on, the speedrun of getting something custom in game began, heart at 1
 
 It worked!
 
+<p style="display:flex;justify-content:center">
+    <img src="{{ 'assets/images/posts/custom-shaders/first.png' | relative_url }}" alt="In game screenshot of the first shaders, colouring all surfaces in a bright red." />
+</p>
+
 Everything using that shader ingame was red, like the first shader file should do, paint it all red.
 The first time a custom shader worked, I think I can confidently say that both RoyalBlue and me had about a BPM of 200 at this point...
 
