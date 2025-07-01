@@ -8,7 +8,7 @@ author: 4V
 last_modified_at: 2025-06-28T15:43:00-01:00
 ---
 
-Hey, 4V here, RoyalBlue and me are currently working on bringing Titanfall 1 maps into Titanfall 2.
+Hey, 4V here! RoyalBlue and me are currently working on bringing Titanfall 1 maps into Titanfall 2.
 While we are still having a lot of obstacles on our way, it's come quite the long process, and in the process of that endeavour, a lot of discoveries were made that are also useful in many other mods and projects relating Titanfall 2 and Northstar.
 Today, I want to talk about one of these, possible one of the biggest for overall mods, **custom shaders**.
 
