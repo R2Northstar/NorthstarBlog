@@ -1,0 +1,893 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Bringing custom shaders to Northstar - Northstar blog</title>
+<meta name="description" content="Hey, 4V here! RoyalBlue and me are currently working on bringing Titanfall 1 maps into Titanfall 2. While we are still having a lot of obstacles on our way, it’s come quite the long process, and in the process of that endeavour, a lot of discoveries were made that are also useful in many other mods and projects relating Titanfall 2 and Northstar. Today, I want to talk about one of these, possible one of the biggest for overall mods, custom shaders.">
+
+
+  
+  <meta property="article:author" content="FourthVolt">
+  
+
+
+<!--
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Northstar blog">
+<meta property="og:title" content="Bringing custom shaders to Northstar">
+<meta property="og:url" content="https://northstar.tf/blog/custom-shaders/">
+-->
+
+
+  <meta property="og:description" content="Hey, 4V here! RoyalBlue and me are currently working on bringing Titanfall 1 maps into Titanfall 2. While we are still having a lot of obstacles on our way, it’s come quite the long process, and in the process of that endeavour, a lot of discoveries were made that are also useful in many other mods and projects relating Titanfall 2 and Northstar. Today, I want to talk about one of these, possible one of the biggest for overall mods, custom shaders.">
+
+
+
+  <meta property="og:image" content="https://northstar.tf/blog/assets/images/posts/custom-shaders/banner.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-06-28T00:00:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2025-06-28T16:43:00+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://northstar.tf/blog/custom-shaders/">
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/blog/feed.xml" type="application/atom+xml" rel="alternate" title="Northstar blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/blog/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="120x120" href="/blog/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/blog/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/blog/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/blog/">
+          Northstar blog
+          <span class="site-subtitle">Your latest information about Titanfall2 and Northstar.</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://northstar.tf">Main website</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/blog/assets/images/posts/custom-shaders/banner.png" alt="Bringing custom shaders to Northstar" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://northstar.tf/blog/">
+        <img src="/blog/assets/images/4V.jpg" alt="FourthVolt" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://northstar.tf/blog/" itemprop="url">FourthVolt</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Hi, im EM4V. I do a bit of Titanfall 2 modding, code trash and make 3d models.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Runoff</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/EM4Volts" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github-square" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Bringing custom shaders to Northstar">
+    <meta itemprop="description" content="Hey, 4V here! RoyalBlue and me are currently working on bringing Titanfall 1 maps into Titanfall 2.While we are still having a lot of obstacles on our way, it’s come quite the long process, and in the process of that endeavour, a lot of discoveries were made that are also useful in many other mods and projects relating Titanfall 2 and Northstar.Today, I want to talk about one of these, possible one of the biggest for overall mods, custom shaders.">
+    <meta itemprop="datePublished" content="2025-06-28T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-06-28T16:43:00+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://northstar.tf/blog/custom-shaders/" class="u-url" itemprop="url">Bringing custom shaders to Northstar
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-06-28T00:00:00+00:00">June 28, 2025</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          13 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p>Hey, 4V here! RoyalBlue and me are currently working on bringing Titanfall 1 maps into Titanfall 2.
+While we are still having a lot of obstacles on our way, it’s come quite the long process, and in the process of that endeavour, a lot of discoveries were made that are also useful in many other mods and projects relating Titanfall 2 and Northstar.
+Today, I want to talk about one of these, possible one of the biggest for overall mods, <strong>custom shaders</strong>.</p>
+
+<p>You might have seen posts in the Northstar discord recently of different shaders having been brought <em>in game</em>, such as a mandelbrot fractal or for people that love games, the Balatro background as a shader, these are all custom shaders.
+So let’s start getting into how we got from wanting Titanfall 1 maps in Titanfall 2 to bringing the Balatro background into Titanfall 2 as a 12kb shader file.</p>
+
+<h2 id="shaders">Shaders</h2>
+
+<p>First, let me quickly explain what a shader in this context even is, how it started and how it’s going, aswell as future applications of this work.</p>
+
+<p>Shaders are, in their most basic form, code in compiled form that runs on your graphics card and basically do a lot of math in a short time to achieve a desired result based on what type of shader it is.
+There are multiple types of shaders like <strong>Vertex</strong>, <strong>Pixel</strong>, Compute or Geometry shaders.
+I will only talk about Vertex- and Pixel shaders here (VS and PS respectivly), as they are the only relevant shaders for our usage, as well as try to keep it not too technical.</p>
+
+<p>So what do these fancy words even mean you might ask?</p>
+
+<style>
+.img_legend {
+  font-size: 0.8em !important;
+  font-style: italic;
+  text-align: center;
+  margin-top: -15px !important;
+}
+.video_legend {
+  font-size: 0.8em !important;
+  font-style: italic;
+  text-align: center;
+}
+</style>
+
+<p style="display:flex;justify-content:center">
+    <img src="/blog/assets/images/posts/custom-shaders/example.png" alt="A white, floating cube." />
+</p>
+<p class="img_legend">
+  To explain these types, we will also use this cube as an example.
+</p>
+
+<p>Vertex shaders in very basic terms are able to modify the basic “shape” of a 3D object in a game every frame.</p>
+
+<video autoplay="" muted="" loop="" style="max-width: 100%">
+    <source src="/blog/assets/video/posts/custom-shaders/wobble.mp4" type="video/mp4" />
+    Sorry, your browser doesn't support embedded videos.
+</video>
+<p class="video_legend">
+  This is our cube with a simple vertex shader applied that makes the mesh wobble a bit.
+</p>
+
+<p>Pixel shaders basically does the same, but for pixels on said mesh, to for example give the cube an anodized metal finish look; it can use just math for this, or textures that then do a lot of heavy math to calculate the finished look of your cube.</p>
+
+<video autoplay="" muted="" loop="" style="max-width: 100%">
+    <source src="/blog/assets/video/posts/custom-shaders/ps.mp4" type="video/mp4" />
+    Sorry, your browser doesn't support embedded videos.
+</video>
+<p class="video_legend">
+  And now with the pixel shader on top of that, we also have it change its look each frame.
+</p>
+
+<p>I won’t go into detail on all the other shader types that exist, because there is quite a lot more, but i will leave you with a small fun fact!</p>
+
+<blockquote>
+  <p>Ever wonder why exactly Graphics Cards were used so extensivly for crypto mining?</p>
+
+  <p>The answer is <strong>compute</strong> shaders, they allow you to do HEAVY calculations in parallel without having to actually do any other heavy graphics work, basically perfect for big math calculations, which is exactly what crypto mining in its basic form is.</p>
+</blockquote>
+
+<p>Before we can jump into Titanfall and all the fun we have to quickly just get to explaing one more word.</p>
+
+<p>What is a <strong>“Material”</strong>?
+A material takes some parameters like for example different textures, the shader that is supposed to be used and some more technical things to pass that to the game, which then uses all that info to, after a lot of processes, bring the beautiful world of Titanfall onto your screen.</p>
+
+<h2 id="making-sense-of-shaders-in-titanfall-2">Making sense of shaders in Titanfall 2</h2>
+
+<p>Titanfall 2 uses multiple shader systems, we will call them <strong>“rpak shaders”</strong> and <strong>“VMT shaders”</strong>.
+Most Materials in Titanfall 2 use rpak shaders, it’s important to note that the rpak system did not exist in Titanfall 1, as such, all materials in Titanfall 1 use VMT shaders and VMT materials.</p>
+
+<p>What is the difference between these two?
+Rpak shaders for one are a lot smaller in filesize compared to comparable VMT counterparts; for example, the VMT pixel shader “unlittwotexture” is over 1 gigabyte big, while a comparable rpak counterpart “uberSamp2222_wld” is… 111 kilobytes big (quick math: thats over 9000 times smaller).
+The reason?
+In the VMT shader, there are over 100k different compiled shader files in the so called “vcs” file (ValveCompiledShader), while the rpak shader has… 8.
+VMT shaders are basically legacy source engine things, while the rpak shaders are something respawn themselves added to the engine.</p>
+
+<p style="display:flex;justify-content:center">
+    <img src="/blog/assets/images/posts/custom-shaders/shader-size.png" alt="Size comparison of VMT and RPAK shaders, with the least being smaller." />
+</p>
+<p class="img_legend">
+  Rpak shaders are indeed much smaller than VMT shaders.
+</p>
+
+<h1 id="first-attempts">First attempts</h1>
+
+<p>While RoyalBlue and me were working on porting Titanfall 1 maps, we quickly ran into one big cosmetic issue.</p>
+
+<p>You see, the map we were starting with was <code class="language-plaintext highlighter-rouge">mp_runoff</code>, a Titanfall 1 map that quite prominently displays a <em>water</em> treatment facility where you traverse the canals of said facility which are filled with a bit of water.
+In the initial map file port from RoyalBlue, the water wasn’t visible, but after a lot of tinkering after I finished the first test scripts to port the Materials from Titanfall 1 to Titanfall 2, the water became visible, sadly not in its Titanfall 1 glory, which is where shaders come into play.</p>
+
+<p style="display:flex;justify-content:center">
+    <img src="/blog/assets/images/posts/custom-shaders/initial-water.png" alt="Initial water shader, using a test texture made in paint." />
+</p>
+<p class="img_legend">
+  "Basically i used a test texture i made in paint to see if it would propably load the water mesh"
+</p>
+
+<p>In Titanfall 1, the water shader is a VMT shader, trying to tell a Titanfall 2 VMT material to use said water shader crashes Titanfall 2.
+Why?</p>
+
+<p>Well, turns out the VMT shader files for the water shader simply don’t exist in Titanfall 2, but after RoyalBlue did some digging in the game, it turned out the game still seems to try to load those files.
+10 minutes later, I simply took said shader from Titanfall 1, copied it into Titanfall 2 and… <em>it crashes</em>.</p>
+
+<p>Skipping a lot of technical things here, we got no further then the game simply crashing.
+So we got to work.
+The shaders for VMT files are stored in, as before mentioned, “.vcs” files, which is basically just a file format that is a lot of individual shader files packed into a single file, so your computer has an easier time reading them.
+Our idea here was that certain, very important information in the individual shader files needs to be changed to fit the Titanfall 2 variants, the so called “buffers”.</p>
+
+<p>About 2 days later, we had a working vcs file unpacker and packer script, put .vcs file in, get a folder of all the individual shader files out.
+As these files are compiled in a format that is not human readable, we had to decompile them to see what could be done.</p>
+
+<p>The plan here was something like this:</p>
+<ol>
+  <li>Unpack a VMT shader from Titanfall 1 that also exists in Titanfall 2 (we had choosen the “refract” shader);</li>
+  <li>Decompile all shader files after unpacking (it’s just a couple thousand, what could go wrong);</li>
+  <li>See the main differences, then from this fix these differences in the Titanfall 1 water shader files to fit Titanfall 2.</li>
+</ol>
+
+<hr />
+
+<p>Oh yeah, and in the meantime, we also found the exact DirectX shader compiler Respawn used, in order to replicate the shaders as close as possible to remove as many things that could go wrong, in our case version <code class="language-plaintext highlighter-rouge">9.30.9200.16384</code>, a version that just didn’t exist.
+We couldnt find it anywhere, no archive, no Microsoft websites, nothing.
+Until I just decided to try my luck and ask in the official DirectX discord server (yes, that exists) for that version, where a very kind Microsoft employee told me quickly that 9200 is the build number of <strong>Windows 8.1</strong>, turns out the compiler we searched for was part of an Windows 8.1 SDK.</p>
+
+<p>Cool, we got the files all fixed (keep in mind, that meant “fixing” about 2000 different shader files), got the right compiler and we even figured out how to get the game to properly load our VMT shader files in the meantime.
+Launch Northstar, open console, type in our map name prefixed by “map” to load it… <em>and it crashes</em>.
+Still with an error that can be traced back to the part that loads the shaders.</p>
+
+<p>In parallel with all of this, the people behind <strong>repak</strong> (a piece of software that allows us to make our own .rpak files) was working on basically reinventing half of it, to make it possible for us to unpack and repack shaders into .rpak files, so we can at least use rpak shaders for stuff like decals or grass in the maps.</p>
+
+<hr />
+
+<p>This was the point where motivation also kinda went away for trying anything shader related, and RoyalBlue and me deciced to simply stop trying to get the water shader working for now, and in the future possibly port it to the rpak shader system if we can figure that out.</p>
+
+<p>Getting literally any news on shader things would take over 10 months.</p>
+
+<p>In that time, I on and off tried new ideas for the water shader again and again but nothing ever worked.
+So we decided to (for now) keep the simple refract water I put together in VMTs, video attached: while this wasn’t a custom shader, it was ok for the moment, and good enough to make me not completely waste my time trying to get custom shaders working:</p>
+
+<video muted="" controls="" style="max-width: 100%">
+    <source src="/blog/assets/video/posts/custom-shaders/basic_water.mp4" type="video/webm" />
+    Sorry, your browser doesn't support embedded videos.
+</video>
+
+<p>Somewhere in this timeline, a man, a legend, emerged… <strong>Amos, the founder of r5reloaded</strong>, the Northstar equivalent for Apex Legends.
+He started to contribute a lot to repak, and somewhere in those months made it actually properly pack shaders in a custom “.msw” file format, said format was made by rexx and rika for their new piece of software <strong>rsx</strong>, which would replace LegionPlus as THE program to export files from Apex and Titanfall 2 .rpak files.</p>
+
+<p>Which brings us to…</p>
+
+<h2 id="the-first-of-many-custom-shaders">The first of many custom shaders</h2>
+
+<p>Somewhere in early 2025, RoyalBlue and me came together again in voice chat for the first time in a long time, since I was gone for a bit.
+This was also when I learned repak got huge updates, one of which being proper shader packing.
+2 hours later of rewriting my entire code that makes the Materials for our map ports to fit the new repak software format, we were ready.</p>
+
+<p>We packed a shader from a different map and used it.
+It worked, we finally had what’s needed to make transparent materials transparent, to make scrolling materials scrolling, to make glass glass.</p>
+
+<p>But I was bothered.
+It’s really cool and basically everything needed to port maps, but for whatever reason I always want more, so I asked RoyalBlue if she could possibly help me with an unpacker and packer for the custom “.msw” file format; I wanted to write it myself but she literally whipped together a working programm for this in like 2 hours, fixed it in another hour because something was broken and then sent me a working version.</p>
+
+<p>From here on, the speedrun of getting something custom in game began, heart at 140BPM (at least for me); I was decompiling every shader in that msw, changing it a bit to have every of the file display a different color, recompiling them, then repacking into .msw to pack into an .rpak and test it.</p>
+
+<p>It worked!</p>
+
+<p style="display:flex;justify-content:center">
+    <img src="/blog/assets/images/posts/custom-shaders/first.png" alt="In game screenshot of the first shaders, colouring all surfaces in a bright red." />
+</p>
+
+<p>Everything using that shader ingame was red, like the first shader file should do, paint it all red.
+The first time a custom shader worked, I think I can confidently say that both RoyalBlue and me had about a BPM of 200 at this point…</p>
+
+<h2 id="the-process">The process</h2>
+
+<p>So in a bit more details, how?</p>
+
+<p>The basic process goes something like this:</p>
+
+<ol>
+  <li>Get an existing Titanfall 2 rpak shader and unpack it to the “.msw” file via rsx;</li>
+  <li>Unpack this “.msw” with the unpacker software RoyalBlue made;</li>
+  <li>Decompile the first shader fxc file with a decompiler;</li>
+  <li>Change the hlsl code to whatever you want;</li>
+  <li>Recompile with an compatible DirectX compiler to the right shader model (in our case for the rpak pixel shaders ps_5_0), while fixing all errors and potential warnings in the process;</li>
+  <li>Repack the “.msw” file;</li>
+  <li>Make a new “.rpak” with our new “.msw” file which contains the new changed shader.</li>
+</ol>
+
+<h2 id="making-a-useful-shader-and-messing-with-them-too">Making a useful shader and messing with them too</h2>
+
+<p>A couple minutes after the shaders first worked in game, I decided to try something useful, visualizing the <strong>Lightmaps</strong> (a integral part to making shadows and lights look good in game) of the map.
+A single line change in the world shader later, we had a shader that just rendered one part of the Lightmap data in game:</p>
+
+<p><img src="/blog/assets/images/posts/custom-shaders/lightmap-shader.png" alt="Screenshot showcasing a shader rendering one part of the Lightmap data ingame" /></p>
+
+<p>Ok, this was cool, we had something to finally visualize a lot of things that before this we had to use programms like <strong>renderdoc</strong> for, to even remotely see if something like the lightmaps was not quite right.
+But still… Where is the fun in something that allows infinite customizablity if you dont mess with it.</p>
+
+<p>So a couple minutes later, I found a good looking shader online which renders a mandelbrot fractal, ported it to hlsl and integrated it into the main world pixel shader for the map. I think a video of it does it more justice:</p>
+
+<video muted="" controls="" style="max-width: 100%">
+    <source src="/blog/assets/video/posts/custom-shaders/mandelbrot.mp4" type="video/webm" />
+    Sorry, your browser doesn't support embedded videos.
+</video>
+
+<p>This was it, a fully procedural fractal, no textures used, all done in shader code with math, something that previously would’ve taken possibly hundreds of megabytes in animated VMT was now just 12kb big, and in a shader that performed even better then a animated VMT would.</p>
+
+<p>Later on, I also went on to make some more debug shaders to debug more information about the world materials, for example one that cycles through multiple important textures in the material:</p>
+
+<video muted="" controls="" style="max-width: 100%">
+    <source src="/blog/assets/video/posts/custom-shaders/debug.mp4" type="video/webm" />
+    Sorry, your browser doesn't support embedded videos.
+</video>
+
+<hr />
+
+<video controls="" muted="" style="max-width: 100%">
+    <source src="/blog/assets/video/posts/custom-shaders/vmt-to-rpak-fail.mp4" type="video/mp4" />
+    Sorry, your browser doesn't support embedded videos.
+</video>
+<p class="video_legend">
+  Bonus: trying to port the original VMT shader to the rpak system but failing epicly.
+</p>
+
+<h2 id="the-future">The future</h2>
+
+<p>Since all this, I have made some more custom shaders, such as porting the <strong>Balatro</strong> background shader to Titanfall as a camo:</p>
+
+<video muted="" controls="" style="max-width: 100%">
+    <source src="/blog/assets/video/posts/custom-shaders/balatro.mp4" type="video/webm" />
+    Sorry, your browser doesn't support embedded videos.
+</video>
+
+<p>But all this is pale in comparison to what the entire community can do with shaders with proper ressources and tools for this process.
+In the coming week, I will also start releasing a proper guide for modders to both make and integrate custom shaders into their projects, be it maps or just cosmetic mods.</p>
+
+<p>This can eventually lead to an completely new era of mods that port weapons from other games, in which modders could port the original shaders to make the weapons look even closer to their original version.
+Or mappers that want to go crazy on effects, maybe even people that just simply want to recompile original shaders to only render the diffuse texture of a Material to make the game run at even more fps because why not?</p>
+
+<hr />
+
+<p>I sincerely hope this was an interesting read for you and that you were able to take at least something with you from this.
+This was my first time trying to write something like this, and all I can say is that I never thought I could properly finish this.</p>
+
+<p>Also, no, I didn’t forget it.</p>
+
+<p>Massive thanks to everyone that made this even remotely possible.
+The people working on rsx and repak. rexx, Rika, Amos, Spoon and all others that contributed to it.
+Those working on making porting maps even possible. Biscuit3659, RoyalBlue and others contributing to it.
+BobTheBob, while she isn’t activly helping in the porting process of maps, she is the person that started the entire thing of porting <code class="language-plaintext highlighter-rouge">runoff</code> by using it for the first ever Titanfall 1&gt;Titanfall 2 tests years ago.
+Literally everyone else that made, or still makes Northstar possible.</p>
+
+<p>Thanks for reading through this.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2025-06-28">June 28, 2025</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Bringing+custom+shaders+to+Northstar%20https%3A%2F%2Fnorthstar.tf%2Fblog%2Fcustom-shaders%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fcustom-shaders%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <!--
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fcustom-shaders%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  -->
+  
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fnorthstar.tf%2Fblog%2Fcustom-shaders%2F&title=Bringing+custom+shaders+to+Northstar" class="btn btn--reddit" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a class="btn btn--mastodon"><i class="fab fa-fw fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a>
+</section>
+
+<script src="/blog/assets/js/mastodon.js"></script>
+
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/three-years/" class="pagination--pager" title="Frontier News Network: Happy third birthday Northstar!
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/three-years/" rel="permalink">Frontier News Network: Happy third birthday Northstar!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-01-27T00:00:00+00:00">January 27, 2025</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Yep, first official release was in December 2021, three years ago!
+
+
+
+During 2024, progress has been made on:
+
+  several features, such as mod auto-downloadi...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/sp-to-mp/" rel="permalink">Making an MP mode out of SP content
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-11-09T00:00:00+00:00">November 9, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Hello, dear community, Alystrasz here!
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/grunt-gamemode/" rel="permalink">Grunt mode
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-10-06T00:00:00+00:00">October 6, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Hello Northstar! I am EnderBoy9217 and here I will share with you the process of creating one of Northstar’s most recognizable mods, Grunt Mode 2.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/payload-gamemode/" rel="permalink">Payload gamemode
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2024-08-26T00:00:00+00:00">August 26, 2024</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Ayo! I am Zanieon and I have a funny and interesting story to tell about a custom gamemode for Northstar.
+
+How everything started
+
+
+  “Payload? What’s that Z...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/blog/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 Northstar devs. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/blog/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
